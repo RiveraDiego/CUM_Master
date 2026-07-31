@@ -1,0 +1,19 @@
+{
+  "@@locale": "es",
+  "appTitle": "CUM Master",
+  "@appTitle": {
+    "description": "Nombre de la aplicación"
+  },
+  "studentsEmptyTitle": "Aún no hay estudiantes",
+  "@studentsEmptyTitle": {
+    "description": "Título mostrado antes de crear el primer estudiante"
+  },
+  "studentsEmptyDescription": "Crea un perfil de estudiante para organizar la información académica en este dispositivo.",
+  "@studentsEmptyDescription": {
+    "description": "Explica por qué se debe crear un perfil de estudiante"
+  },
+  "studentsCreateAction": "Agregar estudiante",
+  "@studentsCreateAction": {
+    "description": "Etiqueta de la acción para crear un estudiante"
+  }
+}
