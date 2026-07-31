@@ -15,5 +15,33 @@
   "studentsCreateAction": "Add student",
   "@studentsCreateAction": {
     "description": "Label for the action that creates a student"
-  }
+  },
+  "studentsTitle": "Students",
+  "studentCreateTitle": "Add student",
+  "studentEditTitle": "Edit student",
+  "studentCardLabel": "Student ID",
+  "studentCardHint": "Enter the student ID number",
+  "studentCardRequiredError": "Student ID is required.",
+  "studentCardDuplicateError": "A student with this ID already exists.",
+  "studentUniversityLabel": "University (optional)",
+  "studentUniversityHint": "Enter the university name",
+  "studentUniversityNotSpecified": "University not specified",
+  "studentMoreActions": "More student actions",
+  "studentDeleteTitle": "Delete student?",
+  "studentDeleteMessage": "This will permanently delete student {studentCard}.",
+  "@studentDeleteMessage": {
+    "placeholders": {
+      "studentCard": {"type": "String"}
+    }
+  },
+  "studentDeleted": "Student deleted.",
+  "studentNotFoundError": "This student no longer exists.",
+  "studentStorageError": "Student data could not be saved. Try again.",
+  "studentsLoadError": "Students could not be loaded.",
+  "saveAction": "Save",
+  "editAction": "Edit",
+  "deleteAction": "Delete",
+  "cancelAction": "Cancel",
+  "closeAction": "Close",
+  "retryAction": "Try again"
 }

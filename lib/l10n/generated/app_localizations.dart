@@ -121,6 +121,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add student'**
   String get studentsCreateAction;
+
+  /// No description provided for @studentsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Students'**
+  String get studentsTitle;
+
+  /// No description provided for @studentCreateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add student'**
+  String get studentCreateTitle;
+
+  /// No description provided for @studentEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit student'**
+  String get studentEditTitle;
+
+  /// No description provided for @studentCardLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Student ID'**
+  String get studentCardLabel;
+
+  /// No description provided for @studentCardHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the student ID number'**
+  String get studentCardHint;
+
+  /// No description provided for @studentCardRequiredError.
+  ///
+  /// In en, this message translates to:
+  /// **'Student ID is required.'**
+  String get studentCardRequiredError;
+
+  /// No description provided for @studentCardDuplicateError.
+  ///
+  /// In en, this message translates to:
+  /// **'A student with this ID already exists.'**
+  String get studentCardDuplicateError;
+
+  /// No description provided for @studentUniversityLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'University (optional)'**
+  String get studentUniversityLabel;
+
+  /// No description provided for @studentUniversityHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the university name'**
+  String get studentUniversityHint;
+
+  /// No description provided for @studentUniversityNotSpecified.
+  ///
+  /// In en, this message translates to:
+  /// **'University not specified'**
+  String get studentUniversityNotSpecified;
+
+  /// No description provided for @studentMoreActions.
+  ///
+  /// In en, this message translates to:
+  /// **'More student actions'**
+  String get studentMoreActions;
+
+  /// No description provided for @studentDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete student?'**
+  String get studentDeleteTitle;
+
+  /// No description provided for @studentDeleteMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This will permanently delete student {studentCard}.'**
+  String studentDeleteMessage(String studentCard);
+
+  /// No description provided for @studentDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Student deleted.'**
+  String get studentDeleted;
+
+  /// No description provided for @studentNotFoundError.
+  ///
+  /// In en, this message translates to:
+  /// **'This student no longer exists.'**
+  String get studentNotFoundError;
+
+  /// No description provided for @studentStorageError.
+  ///
+  /// In en, this message translates to:
+  /// **'Student data could not be saved. Try again.'**
+  String get studentStorageError;
+
+  /// No description provided for @studentsLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Students could not be loaded.'**
+  String get studentsLoadError;
+
+  /// No description provided for @saveAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get saveAction;
+
+  /// No description provided for @editAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get editAction;
+
+  /// No description provided for @deleteAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteAction;
+
+  /// No description provided for @cancelAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelAction;
+
+  /// No description provided for @closeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get closeAction;
+
+  /// No description provided for @retryAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get retryAction;
 }
 
 class _AppLocalizationsDelegate
