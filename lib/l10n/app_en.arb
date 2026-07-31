@@ -1,0 +1,19 @@
+{
+  "@@locale": "en",
+  "appTitle": "CUM Master",
+  "@appTitle": {
+    "description": "Application name"
+  },
+  "studentsEmptyTitle": "No students yet",
+  "@studentsEmptyTitle": {
+    "description": "Heading shown before the first student is created"
+  },
+  "studentsEmptyDescription": "Create a student profile to organize academic information on this device.",
+  "@studentsEmptyDescription": {
+    "description": "Explains why the user should create a student profile"
+  },
+  "studentsCreateAction": "Add student",
+  "@studentsCreateAction": {
+    "description": "Label for the action that creates a student"
+  }
+}
