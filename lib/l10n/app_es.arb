@@ -15,5 +15,33 @@
   "studentsCreateAction": "Agregar estudiante",
   "@studentsCreateAction": {
     "description": "Etiqueta de la acción para crear un estudiante"
-  }
+  },
+  "studentsTitle": "Estudiantes",
+  "studentCreateTitle": "Agregar estudiante",
+  "studentEditTitle": "Editar estudiante",
+  "studentCardLabel": "Carnet estudiantil",
+  "studentCardHint": "Ingresa el número de carnet",
+  "studentCardRequiredError": "El carnet estudiantil es obligatorio.",
+  "studentCardDuplicateError": "Ya existe un estudiante con este carnet.",
+  "studentUniversityLabel": "Universidad (opcional)",
+  "studentUniversityHint": "Ingresa el nombre de la universidad",
+  "studentUniversityNotSpecified": "Universidad no especificada",
+  "studentMoreActions": "Más acciones del estudiante",
+  "studentDeleteTitle": "¿Eliminar estudiante?",
+  "studentDeleteMessage": "Se eliminará permanentemente al estudiante {studentCard}.",
+  "@studentDeleteMessage": {
+    "placeholders": {
+      "studentCard": {"type": "String"}
+    }
+  },
+  "studentDeleted": "Estudiante eliminado.",
+  "studentNotFoundError": "Este estudiante ya no existe.",
+  "studentStorageError": "No se pudieron guardar los datos. Inténtalo de nuevo.",
+  "studentsLoadError": "No se pudieron cargar los estudiantes.",
+  "saveAction": "Guardar",
+  "editAction": "Editar",
+  "deleteAction": "Eliminar",
+  "cancelAction": "Cancelar",
+  "closeAction": "Cerrar",
+  "retryAction": "Reintentar"
 }
