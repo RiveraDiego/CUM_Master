@@ -30,6 +30,12 @@ class CyclesPage extends ConsumerWidget {
                           : Icons.calendar_month_outlined,
                     ),
                     title: Text(items[index].name),
+                    onLongPress: () => _rename(
+                      context,
+                      ref,
+                      items[index].id,
+                      items[index].name,
+                    ),
                     subtitle: items[index].isActive
                         ? Text(l10n.cycleActive)
                         : null,
@@ -100,6 +106,38 @@ class CyclesPage extends ConsumerWidget {
       if (context.mounted) _show(context, l10n.cycleInUseError);
     } on CycleException {
       if (context.mounted) _show(context, l10n.cycleStorageError);
+    }
+  }
+
+  Future<void> _rename(
+    BuildContext context,
+    WidgetRef ref,
+    String id,
+    String current,
+  ) async {
+    final l10n = AppLocalizations.of(context)!;
+    final controller = TextEditingController(text: current);
+    final name = await showDialog<String>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(l10n.cycleEditTitle),
+        content: TextField(controller: controller, autofocus: true),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: Text(l10n.cancelAction),
+          ),
+          FilledButton(
+            onPressed: () =>
+                Navigator.pop(dialogContext, controller.text.trim()),
+            child: Text(l10n.saveAction),
+          ),
+        ],
+      ),
+    );
+    controller.dispose();
+    if (name != null && name.isNotEmpty) {
+      await ref.read(cycleActionsProvider).rename(studentId, id, name);
     }
   }
 

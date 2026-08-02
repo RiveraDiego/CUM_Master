@@ -5,6 +5,8 @@ class SubjectSummary {
     required this.assessmentCount,
     required this.average,
     required this.isWeighted,
+    required this.creditUnits,
+    required this.cycleId,
   });
 
   final String id;
@@ -12,6 +14,8 @@ class SubjectSummary {
   final int assessmentCount;
   final double? average;
   final bool isWeighted;
+  final double creditUnits;
+  final String cycleId;
 }
 
 class StudentAcademicSummary {
@@ -21,6 +25,7 @@ class StudentAcademicSummary {
     required this.university,
     required this.activeCycleName,
     required this.subjects,
+    required this.generalCum,
   });
 
   final String id;
@@ -28,10 +33,17 @@ class StudentAcademicSummary {
   final String? university;
   final String? activeCycleName;
   final List<SubjectSummary> subjects;
+  final double? generalCum;
 
   double? get overallAverage {
     final values = subjects.map((item) => item.average).whereType<double>();
     if (values.isEmpty) return null;
-    return values.reduce((left, right) => left + right) / values.length;
+    final graded = subjects.where((item) => item.average != null).toList();
+    final units = graded.fold<double>(0, (sum, item) => sum + item.creditUnits);
+    return graded.fold<double>(
+          0,
+          (sum, item) => sum + item.average! * item.creditUnits,
+        ) /
+        units;
   }
 }

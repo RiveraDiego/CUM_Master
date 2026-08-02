@@ -96,6 +96,12 @@ class _StudentSummaryCard extends StatelessWidget {
               style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 8),
+            Text(
+              l10n.dashboardGeneralCum(
+                summary.generalCum?.toStringAsFixed(2) ?? '—',
+              ),
+            ),
+            const SizedBox(height: 8),
             if (summary.subjects.isEmpty)
               Text(l10n.dashboardNoSubjects)
             else
@@ -145,7 +151,7 @@ class _AverageBadge extends StatelessWidget {
       color: Theme.of(context).colorScheme.primaryContainer,
       borderRadius: BorderRadius.circular(16),
     ),
-    child: Text(value == null ? '—' : '${value!.toStringAsFixed(1)}%'),
+    child: Text(value == null ? '—' : '${value!.toStringAsFixed(2)}/10'),
   );
 }
 

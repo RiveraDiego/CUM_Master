@@ -295,4 +295,73 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get subjectCycleRequiredError =>
       'Selecciona el ciclo al que pertenece la materia.';
+
+  @override
+  String get subjectCreditUnitsLabel => 'Unidades valorativas (UV)';
+
+  @override
+  String get subjectCreditUnitsError =>
+      'Ingresa una cantidad de UV mayor que cero.';
+
+  @override
+  String get subjectHistoricalGradeLabel => 'Nota final histórica (opcional)';
+
+  @override
+  String get subjectHistoricalGradeHelp =>
+      'Si la completas, tendrá prioridad sobre el cálculo de evaluaciones.';
+
+  @override
+  String get subjectHistoricalGradeError => 'La nota debe estar entre 0 y 10.';
+
+  @override
+  String get activitiesTitle => 'Actividades';
+
+  @override
+  String get activitiesCreateAction => 'Agregar actividad';
+
+  @override
+  String get activitiesEmpty =>
+      'No hay actividades. Se utilizará la nota manual de la evaluación.';
+
+  @override
+  String get activitiesLoadError => 'No se pudieron cargar las actividades.';
+
+  @override
+  String get activityCreateTitle => 'Agregar actividad';
+
+  @override
+  String get activityEditTitle => 'Editar actividad';
+
+  @override
+  String get activityNameLabel => 'Nombre de la actividad';
+
+  @override
+  String get activityRequiredError => 'El nombre es obligatorio.';
+
+  @override
+  String activityWeightTotal(num weight) {
+    return 'Ponderación total: $weight%';
+  }
+
+  @override
+  String get activityCalculationReady =>
+      'La nota de la evaluación se calculará con estas actividades.';
+
+  @override
+  String get activityCalculationIncomplete =>
+      'Completa exactamente 100% para calcular la evaluación.';
+
+  @override
+  String get cycleEditTitle => 'Renombrar ciclo';
+
+  @override
+  String get assessmentManualGrade => 'Nota manual (sin actividades)';
+
+  @override
+  String get assessmentCalculatedGrade => 'Nota calculada por actividades';
+
+  @override
+  String dashboardGeneralCum(String cum) {
+    return 'CUM general histórico: $cum';
+  }
 }

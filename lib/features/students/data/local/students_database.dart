@@ -5,7 +5,7 @@ class StudentsDatabase {
   StudentsDatabase({DatabaseFactory? factory, this.databasePath})
     : _factory = factory ?? databaseFactory;
 
-  static const schemaVersion = 4;
+  static const schemaVersion = 5;
   static const fileName = 'cum_master.db';
 
   final DatabaseFactory _factory;
@@ -50,6 +50,7 @@ class StudentsDatabase {
           await _createCyclesTable(database);
           await _createSubjectsTable(database);
           await _createAssessmentsTable(database);
+          await _createActivitiesTable(database);
         },
         onUpgrade: (database, oldVersion, newVersion) async {
           if (oldVersion < 2) {
@@ -67,6 +68,17 @@ class StudentsDatabase {
             );
           }
           if (oldVersion < 3) await _createAssessmentsTable(database);
+          if (oldVersion < 5) {
+            if (oldVersion >= 2) {
+              await database.execute(
+                'ALTER TABLE subjects ADD COLUMN credit_units REAL NOT NULL DEFAULT 1',
+              );
+              await database.execute(
+                'ALTER TABLE subjects ADD COLUMN manual_final_grade REAL',
+              );
+            }
+            await _createActivitiesTable(database);
+          }
         },
       ),
     );
@@ -118,12 +130,16 @@ class StudentsDatabase {
         cycle_id TEXT NOT NULL,
         name TEXT NOT NULL COLLATE NOCASE,
         code TEXT,
+        credit_units REAL NOT NULL DEFAULT 1,
+        manual_final_grade REAL,
         created_at TEXT NOT NULL,
         updated_at TEXT NOT NULL,
         FOREIGN KEY(student_id) REFERENCES students(id) ON DELETE CASCADE,
         FOREIGN KEY(cycle_id) REFERENCES cycles(id) ON DELETE RESTRICT,
         UNIQUE(cycle_id, name),
         CHECK(length(trim(name)) > 0),
+        CHECK(credit_units > 0),
+        CHECK(manual_final_grade IS NULL OR (manual_final_grade >= 0 AND manual_final_grade <= 10)),
         CHECK(updated_at >= created_at)
       )
     ''');
@@ -153,6 +169,29 @@ class StudentsDatabase {
     ''');
     await database.execute(
       'CREATE INDEX idx_assessments_subject_id ON assessments(subject_id)',
+    );
+  }
+
+  static Future<void> _createActivitiesTable(Database database) async {
+    await database.execute('''
+      CREATE TABLE activities (
+        id TEXT PRIMARY KEY NOT NULL,
+        assessment_id TEXT NOT NULL,
+        name TEXT NOT NULL COLLATE NOCASE,
+        score REAL NOT NULL,
+        max_score REAL NOT NULL,
+        weight REAL NOT NULL,
+        created_at TEXT NOT NULL,
+        updated_at TEXT NOT NULL,
+        FOREIGN KEY(assessment_id) REFERENCES assessments(id) ON DELETE CASCADE,
+        UNIQUE(assessment_id, name),
+        CHECK(length(trim(name)) > 0),
+        CHECK(score >= 0 AND max_score > 0 AND score <= max_score),
+        CHECK(weight > 0 AND weight <= 100)
+      )
+    ''');
+    await database.execute(
+      'CREATE INDEX idx_activities_assessment_id ON activities(assessment_id)',
     );
   }
 

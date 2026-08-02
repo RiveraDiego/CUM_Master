@@ -28,12 +28,16 @@ class SubjectsController extends AsyncNotifier<List<Subject>> {
     required String cycleId,
     required String name,
     String? code,
+    required double creditUnits,
+    double? manualFinalGrade,
   }) async {
     await ref.read(createSubjectProvider)(
       studentId: studentId,
       cycleId: cycleId,
       name: name,
       code: code,
+      creditUnits: creditUnits,
+      manualFinalGrade: manualFinalGrade,
     );
     await refresh();
     ref.read(academicDataRevisionProvider.notifier).bump();
@@ -44,6 +48,8 @@ class SubjectsController extends AsyncNotifier<List<Subject>> {
     required String cycleId,
     required String name,
     String? code,
+    required double creditUnits,
+    double? manualFinalGrade,
   }) async {
     await ref.read(updateSubjectProvider)(
       id: id,
@@ -51,6 +57,8 @@ class SubjectsController extends AsyncNotifier<List<Subject>> {
       cycleId: cycleId,
       name: name,
       code: code,
+      creditUnits: creditUnits,
+      manualFinalGrade: manualFinalGrade,
     );
     await refresh();
     ref.read(academicDataRevisionProvider.notifier).bump();

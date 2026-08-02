@@ -46,6 +46,8 @@ class SubjectLocalDataSource {
             'cycle_id': subject.cycleId,
             'name': subject.name,
             'code': subject.code,
+            'credit_units': subject.creditUnits,
+            'manual_final_grade': subject.manualFinalGrade,
             'updated_at': subject.updatedAt.toIso8601String(),
           },
           where: 'id = ? AND student_id = ?',
@@ -67,6 +69,8 @@ class SubjectLocalDataSource {
     'cycle_id': subject.cycleId,
     'name': subject.name,
     'code': subject.code,
+    'credit_units': subject.creditUnits,
+    'manual_final_grade': subject.manualFinalGrade,
     'created_at': subject.createdAt.toIso8601String(),
     'updated_at': subject.updatedAt.toIso8601String(),
   };
@@ -77,6 +81,8 @@ class SubjectLocalDataSource {
     cycleId: map['cycle_id']! as String,
     name: map['name']! as String,
     code: map['code'] as String?,
+    creditUnits: (map['credit_units'] as num?)?.toDouble() ?? 1,
+    manualFinalGrade: (map['manual_final_grade'] as num?)?.toDouble(),
     createdAt: DateTime.parse(map['created_at']! as String),
     updatedAt: DateTime.parse(map['updated_at']! as String),
   );

@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+import '../../features/activities/presentation/activities_page.dart';
 import '../../features/assessments/presentation/pages/assessments_page.dart';
 import '../../features/cycles/presentation/cycles_page.dart';
 import '../../features/dashboard/presentation/pages/dashboard_page.dart';
@@ -18,6 +19,7 @@ abstract final class AppRoute {
   static const subjectEdit = 'subject-edit';
   static const assessments = 'assessments';
   static const cycles = 'cycles';
+  static const activities = 'activities';
 }
 
 final GoRouter appRouter = GoRouter(
@@ -27,6 +29,12 @@ final GoRouter appRouter = GoRouter(
       path: '/',
       name: AppRoute.dashboard,
       builder: (context, state) => const DashboardPage(),
+    ),
+    GoRoute(
+      path: '/activities/:assessmentId',
+      name: AppRoute.activities,
+      builder: (context, state) =>
+          ActivitiesPage(assessmentId: state.pathParameters['assessmentId']!),
     ),
     GoRoute(
       path: '/students',

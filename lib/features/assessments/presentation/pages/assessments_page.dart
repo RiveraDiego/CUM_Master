@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../core/router/app_router.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../activities/application/activity_providers.dart';
+import '../../../dashboard/application/hierarchical_grade_calculator.dart';
 import '../../domain/entities/assessment.dart';
 import '../../domain/errors/assessment_exceptions.dart';
 import '../controllers/assessments_controller.dart';
@@ -37,34 +41,14 @@ class AssessmentsPage extends ConsumerWidget {
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 96),
                   itemCount: items.length,
                   separatorBuilder: (_, _) => const SizedBox(height: 8),
-                  itemBuilder: (_, index) => Card(
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        child: Text('${items[index].percentage.round()}%'),
-                      ),
-                      title: Text(items[index].name),
-                      subtitle: Text(
-                        l10n.assessmentScore(
-                          items[index].score,
-                          items[index].maxScore,
-                        ),
-                      ),
-                      trailing: PopupMenuButton<String>(
-                        onSelected: (action) => action == 'edit'
-                            ? _edit(context, ref, items[index])
-                            : _delete(context, ref, items[index]),
-                        itemBuilder: (_) => [
-                          PopupMenuItem(
-                            value: 'edit',
-                            child: Text(l10n.editAction),
-                          ),
-                          PopupMenuItem(
-                            value: 'delete',
-                            child: Text(l10n.deleteAction),
-                          ),
-                        ],
-                      ),
+                  itemBuilder: (_, index) => _AssessmentCard(
+                    assessment: items[index],
+                    onOpen: () => context.pushNamed(
+                      AppRoute.activities,
+                      pathParameters: {'assessmentId': items[index].id},
                     ),
+                    onEdit: () => _edit(context, ref, items[index]),
+                    onDelete: () => _delete(context, ref, items[index]),
                   ),
                 ),
         ),
@@ -263,6 +247,53 @@ class AssessmentsPage extends ConsumerWidget {
   );
   static void _snack(BuildContext context, String text) =>
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
+}
+
+class _AssessmentCard extends ConsumerWidget {
+  const _AssessmentCard({
+    required this.assessment,
+    required this.onOpen,
+    required this.onEdit,
+    required this.onDelete,
+  });
+  final Assessment assessment;
+  final VoidCallback onOpen;
+  final VoidCallback onEdit;
+  final VoidCallback onDelete;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
+    final activities = ref.watch(activitiesProvider(assessment.id));
+    final grade = activities.whenData(
+      (items) => const HierarchicalGradeCalculator().evaluationGrade(
+        assessment,
+        items,
+      ),
+    );
+    final calculated = grade.value;
+    return Card(
+      child: ListTile(
+        onTap: onOpen,
+        leading: CircleAvatar(
+          child: Text(calculated == null ? '—' : calculated.toStringAsFixed(1)),
+        ),
+        title: Text(assessment.name),
+        subtitle: Text(
+          activities.value?.isEmpty ?? true
+              ? l10n.assessmentManualGrade
+              : l10n.assessmentCalculatedGrade,
+        ),
+        trailing: PopupMenuButton<String>(
+          onSelected: (action) => action == 'edit' ? onEdit() : onDelete(),
+          itemBuilder: (_) => [
+            PopupMenuItem(value: 'edit', child: Text(l10n.editAction)),
+            PopupMenuItem(value: 'delete', child: Text(l10n.deleteAction)),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class _CenterMessage extends StatelessWidget {

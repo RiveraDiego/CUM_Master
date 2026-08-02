@@ -91,6 +91,27 @@ class SqliteCycleRepository implements CycleRepository {
   }
 
   @override
+  Future<void> rename(String cycleId, String name) async {
+    try {
+      final db = await database.database;
+      await db.update(
+        'cycles',
+        {
+          'name': name.trim(),
+          'updated_at': DateTime.now().toUtc().toIso8601String(),
+        },
+        where: 'id = ?',
+        whereArgs: [cycleId],
+      );
+    } on DatabaseException catch (error) {
+      if (error.isUniqueConstraintError()) {
+        throw const DuplicateCycleNameException();
+      }
+      throw const CycleStorageException();
+    }
+  }
+
+  @override
   Future<void> delete(String cycleId) async {
     try {
       final db = await database.database;
