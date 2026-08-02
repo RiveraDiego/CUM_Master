@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/state/academic_data_revision.dart';
 import '../../../assessments/application/assessment_providers.dart';
+import '../../../cycles/application/cycle_providers.dart';
 import '../../../students/application/student_providers.dart';
 import '../../../subjects/application/subject_providers.dart';
 import '../../application/academic_summary_calculator.dart';
@@ -30,8 +31,12 @@ class DashboardController extends AsyncNotifier<List<StudentAcademicSummary>> {
     final summaries = <StudentAcademicSummary>[];
     for (final student in students) {
       final subjects = await ref.read(listSubjectsProvider)(student.id);
+      final cycles = await ref.read(cycleRepositoryProvider).getAll(student.id);
+      final activeCycle = cycles.where((item) => item.isActive).firstOrNull;
       final subjectSummaries = <SubjectSummary>[];
-      for (final subject in subjects) {
+      for (final subject in subjects.where(
+        (item) => item.cycleId == activeCycle?.id,
+      )) {
         final assessments = await ref.read(listAssessmentsProvider)(subject.id);
         final average = calculator(assessments);
         subjectSummaries.add(
@@ -49,6 +54,7 @@ class DashboardController extends AsyncNotifier<List<StudentAcademicSummary>> {
           id: student.id,
           studentCard: student.studentCard,
           university: student.university,
+          activeCycleName: activeCycle?.name,
           subjects: subjectSummaries,
         ),
       );

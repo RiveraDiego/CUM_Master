@@ -41,12 +41,12 @@ class DashboardPage extends ConsumerWidget {
                     padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
                     children: [
                       Text(
-                        l10n.activeSemesterTitle,
+                        l10n.activeCycleTitle,
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        l10n.activeSemesterCurrentScope,
+                        l10n.activeCycleCurrentScope,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       const SizedBox(height: 20),
@@ -91,6 +91,11 @@ class _StudentSummaryCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
+            Text(
+              summary.activeCycleName ?? l10n.dashboardNoActiveCycle,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 8),
             if (summary.subjects.isEmpty)
               Text(l10n.dashboardNoSubjects)
             else

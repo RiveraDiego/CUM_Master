@@ -19,12 +19,14 @@ class StudentAcademicSummary {
     required this.id,
     required this.studentCard,
     required this.university,
+    required this.activeCycleName,
     required this.subjects,
   });
 
   final String id;
   final String studentCard;
   final String? university;
+  final String? activeCycleName;
   final List<SubjectSummary> subjects;
 
   double? get overallAverage {

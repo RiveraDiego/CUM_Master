@@ -43,6 +43,7 @@ class SubjectLocalDataSource {
     return await database.update(
           'subjects',
           {
+            'cycle_id': subject.cycleId,
             'name': subject.name,
             'code': subject.code,
             'updated_at': subject.updatedAt.toIso8601String(),
@@ -63,6 +64,7 @@ class SubjectLocalDataSource {
   Map<String, Object?> _toMap(Subject subject) => {
     'id': subject.id,
     'student_id': subject.studentId,
+    'cycle_id': subject.cycleId,
     'name': subject.name,
     'code': subject.code,
     'created_at': subject.createdAt.toIso8601String(),
@@ -72,6 +74,7 @@ class SubjectLocalDataSource {
   Subject _fromMap(Map<String, Object?> map) => Subject(
     id: map['id']! as String,
     studentId: map['student_id']! as String,
+    cycleId: map['cycle_id']! as String,
     name: map['name']! as String,
     code: map['code'] as String?,
     createdAt: DateTime.parse(map['created_at']! as String),

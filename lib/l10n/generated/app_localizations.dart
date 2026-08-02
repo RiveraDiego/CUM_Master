@@ -488,17 +488,17 @@ abstract class AppLocalizations {
   /// **'Home'**
   String get dashboardTitle;
 
-  /// No description provided for @activeSemesterTitle.
+  /// No description provided for @activeCycleTitle.
   ///
   /// In en, this message translates to:
-  /// **'Active semester'**
-  String get activeSemesterTitle;
+  /// **'Active term'**
+  String get activeCycleTitle;
 
-  /// No description provided for @activeSemesterCurrentScope.
+  /// No description provided for @activeCycleCurrentScope.
   ///
   /// In en, this message translates to:
-  /// **'Summary of each student\'s current subjects.'**
-  String get activeSemesterCurrentScope;
+  /// **'Summary of each student\'s subjects in their active academic term.'**
+  String get activeCycleCurrentScope;
 
   /// No description provided for @dashboardLoadError.
   ///
@@ -541,6 +541,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Manage subjects'**
   String get dashboardManageSubjects;
+
+  /// No description provided for @dashboardNoActiveCycle.
+  ///
+  /// In en, this message translates to:
+  /// **'No active term'**
+  String get dashboardNoActiveCycle;
+
+  /// No description provided for @cyclesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Academic terms'**
+  String get cyclesTitle;
+
+  /// No description provided for @cyclesCreateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add term'**
+  String get cyclesCreateAction;
+
+  /// No description provided for @cyclesEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no terms yet. Add one to organize subjects.'**
+  String get cyclesEmpty;
+
+  /// No description provided for @cyclesLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Academic terms could not be loaded.'**
+  String get cyclesLoadError;
+
+  /// No description provided for @cycleCreateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add academic term'**
+  String get cycleCreateTitle;
+
+  /// No description provided for @cycleNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Term name'**
+  String get cycleNameLabel;
+
+  /// No description provided for @cycleActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active term'**
+  String get cycleActive;
+
+  /// No description provided for @cycleDuplicateError.
+  ///
+  /// In en, this message translates to:
+  /// **'A term with this name already exists.'**
+  String get cycleDuplicateError;
+
+  /// No description provided for @cycleInUseError.
+  ///
+  /// In en, this message translates to:
+  /// **'A term containing subjects cannot be deleted.'**
+  String get cycleInUseError;
+
+  /// No description provided for @cycleStorageError.
+  ///
+  /// In en, this message translates to:
+  /// **'The academic term data could not be saved.'**
+  String get cycleStorageError;
+
+  /// No description provided for @subjectCycleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Academic term'**
+  String get subjectCycleLabel;
+
+  /// No description provided for @subjectCycleRequiredError.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the term this subject belongs to.'**
+  String get subjectCycleRequiredError;
 }
 
 class _AppLocalizationsDelegate

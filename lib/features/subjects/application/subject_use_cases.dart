@@ -31,6 +31,7 @@ class CreateSubject {
 
   Future<Subject> call({
     required String studentId,
+    String? cycleId,
     required String name,
     String? code,
   }) async {
@@ -38,6 +39,7 @@ class CreateSubject {
     final subject = Subject(
       id: _uuid.v4(),
       studentId: studentId,
+      cycleId: cycleId ?? 'cycle-$studentId',
       name: name,
       code: code,
       createdAt: now,
@@ -56,6 +58,7 @@ class UpdateSubject {
   Future<Subject> call({
     required String id,
     required String studentId,
+    String? cycleId,
     required String name,
     String? code,
   }) async {
@@ -65,6 +68,7 @@ class UpdateSubject {
     }
     final now = _now().toUtc();
     final updated = current.copyWith(
+      cycleId: cycleId ?? current.cycleId,
       name: name,
       code: code,
       updatedAt: now.isAfter(current.updatedAt)
