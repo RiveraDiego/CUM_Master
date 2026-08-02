@@ -57,6 +57,25 @@ flutter run
 
 Para elegir el teléfono desde Android Studio, selecciona el dispositivo Android en la barra superior antes de pulsar **Run**. No selecciones `Windows`, porque el proyecto está configurado actualmente para Android.
 
+## Preparar una versión para Google Play
+
+La aplicación usa el identificador definitivo `com.riveradiego.cum_master`. Google Play no permite cambiarlo después de subir la primera versión.
+
+1. Genera una clave privada de carga con `keytool` o desde Android Studio.
+2. Copia `android/key.properties.example` como `android/key.properties`.
+3. Completa las contraseñas, alias y ruta del archivo `.jks`.
+4. Conserva una copia privada de la clave y sus contraseñas; no pueden recuperarse desde este repositorio.
+5. Ejecuta:
+
+```bash
+flutter analyze
+flutter test
+flutter build appbundle --release
+```
+
+El archivo para Google Play se generará en `build/app/outputs/bundle/release/app-release.aab`. `key.properties` y todas las claves `.jks`/`.keystore` están excluidos de Git.
+La compilación release se detiene intencionalmente si falta la firma, para evitar subir por error un bundle no publicable.
+
 ## Calidad
 
 El repositorio utiliza Conventional Commits y cada hito funcional se valida con:
@@ -86,7 +105,9 @@ El repositorio utiliza Conventional Commits y cada hito funcional se valida con:
 - [x] Tutorial guiado de primer inicio y acceso desde el menú
 - [x] Modo claro, oscuro y sincronizado con el dispositivo
 - [ ] Refinamiento del sistema visual definitivo
-- [ ] Identidad, firma y Android App Bundle para Google Play
+- [ ] Ícono definitivo de CUM Master
+- [x] Nombre, identificador y configuración segura de firma Android
+- [ ] Generar Android App Bundle firmado para Google Play
 - [ ] Pruebas internas y cerradas en Google Play
 - [ ] Estadísticas históricas
 - [ ] Publicidad mínima
