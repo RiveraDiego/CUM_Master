@@ -133,11 +133,13 @@ class _StudentCard extends StatelessWidget {
         onTap: onOpen,
         contentPadding: const EdgeInsetsDirectional.fromSTEB(16, 8, 8, 8),
         leading: const CircleAvatar(child: Icon(Icons.person_outline)),
-        title: Text(student.studentCard),
-        subtitle: student.university == null
-            ? Text(l10n.studentUniversityNotSpecified)
-            : Text(student.university!),
-        isThreeLine: false,
+        title: Text(student.name ?? student.studentCard),
+        subtitle: Text(
+          [
+            if (student.name != null) student.studentCard,
+            student.university ?? l10n.studentUniversityNotSpecified,
+          ].join(' · '),
+        ),
         trailing: PopupMenuButton<_StudentAction>(
           tooltip: l10n.studentMoreActions,
           onSelected: (action) {

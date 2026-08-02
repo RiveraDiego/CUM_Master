@@ -34,6 +34,7 @@ class StudentAcademicSummary {
   const StudentAcademicSummary({
     required this.id,
     required this.studentCard,
+    required this.studentName,
     required this.university,
     required this.activeCycleName,
     required this.currentCycleId,
@@ -45,6 +46,7 @@ class StudentAcademicSummary {
 
   final String id;
   final String studentCard;
+  final String? studentName;
   final String? university;
   final String? activeCycleName;
   final String? currentCycleId;

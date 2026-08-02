@@ -2,29 +2,34 @@ class Student {
   Student({
     required String id,
     required String studentCard,
+    String? name,
     String? university,
     required DateTime createdAt,
     required DateTime updatedAt,
   }) : id = _requiredTrimmed(id, 'id'),
        studentCard = _requiredTrimmed(studentCard, 'studentCard'),
+       name = _optionalTrimmed(name),
        university = _optionalTrimmed(university),
        createdAt = _requiredUtc(createdAt, 'createdAt'),
        updatedAt = _validUpdatedAt(createdAt, updatedAt);
 
   final String id;
   final String studentCard;
+  final String? name;
   final String? university;
   final DateTime createdAt;
   final DateTime updatedAt;
 
   Student copyWith({
     String? studentCard,
+    Object? name = _notProvided,
     Object? university = _notProvided,
     DateTime? updatedAt,
   }) {
     return Student(
       id: id,
       studentCard: studentCard ?? this.studentCard,
+      name: identical(name, _notProvided) ? this.name : name as String?,
       university: identical(university, _notProvided)
           ? this.university
           : university as String?,
@@ -71,6 +76,7 @@ class Student {
         other is Student &&
             id == other.id &&
             studentCard == other.studentCard &&
+            name == other.name &&
             university == other.university &&
             createdAt == other.createdAt &&
             updatedAt == other.updatedAt;
@@ -78,7 +84,7 @@ class Student {
 
   @override
   int get hashCode =>
-      Object.hash(id, studentCard, university, createdAt, updatedAt);
+      Object.hash(id, studentCard, name, university, createdAt, updatedAt);
 }
 
 const _notProvided = Object();

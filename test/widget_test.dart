@@ -75,6 +75,8 @@ void main() {
     await tester.tap(find.byIcon(Icons.arrow_back));
     await tester.pumpAndSettle();
     expect(find.text('Estudiantes'), findsWidgets);
+    expect(find.byIcon(Icons.arrow_back), findsNothing);
+    expect(find.byIcon(Icons.menu), findsOneWidget);
   });
 }
 

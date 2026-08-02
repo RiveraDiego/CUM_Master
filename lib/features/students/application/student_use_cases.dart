@@ -35,12 +35,14 @@ class CreateStudent {
 
   Future<Student> call({
     required String studentCard,
+    String? name,
     String? university,
   }) async {
     final now = _now().toUtc();
     final student = Student(
       id: _uuid.v4(),
       studentCard: studentCard,
+      name: name,
       university: university,
       createdAt: now,
       updatedAt: now,
@@ -59,6 +61,7 @@ class UpdateStudent {
   Future<Student> call({
     required String studentId,
     required String studentCard,
+    String? name,
     String? university,
   }) async {
     final student = await _repository.getById(studentId);
@@ -72,6 +75,7 @@ class UpdateStudent {
         : student.updatedAt.add(const Duration(microseconds: 1));
     final updated = student.copyWith(
       studentCard: studentCard,
+      name: name,
       university: university,
       updatedAt: updatedAt,
     );

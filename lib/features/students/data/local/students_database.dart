@@ -5,7 +5,7 @@ class StudentsDatabase {
   StudentsDatabase({DatabaseFactory? factory, this.databasePath})
     : _factory = factory ?? databaseFactory;
 
-  static const schemaVersion = 8;
+  static const schemaVersion = 9;
   static const fileName = 'cum_master.db';
 
   final DatabaseFactory _factory;
@@ -40,6 +40,7 @@ class StudentsDatabase {
             CREATE TABLE students (
               id TEXT PRIMARY KEY NOT NULL,
               student_card TEXT NOT NULL COLLATE NOCASE UNIQUE,
+              name TEXT,
               university TEXT,
               created_at TEXT NOT NULL,
               updated_at TEXT NOT NULL,
@@ -94,6 +95,9 @@ class StudentsDatabase {
           }
           if (oldVersion < 7) await _createAcademicSettingsTable(database);
           if (oldVersion < 8) await _createAppPreferencesTable(database);
+          if (oldVersion < 9) {
+            await database.execute('ALTER TABLE students ADD COLUMN name TEXT');
+          }
         },
       ),
     );

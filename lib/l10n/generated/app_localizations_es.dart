@@ -37,6 +37,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get studentCardLabel => 'Carnet estudiantil';
 
   @override
+  String get studentNameLabel => 'Nombre del estudiante';
+
+  @override
+  String get studentNameHint => 'Ej. Diego, Ana o Mi cuenta';
+
+  @override
+  String get optionalFieldLabel => 'Opcional';
+
+  @override
   String get studentCardHint => 'Ingresa el número de carnet';
 
   @override
@@ -229,11 +238,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get dashboardTitle => 'Inicio';
 
   @override
-  String get activeCycleTitle => 'Ciclo activo';
+  String get dashboardStudentFilterLabel => 'Filtrar por estudiante';
 
   @override
-  String get activeCycleCurrentScope =>
-      'Resumen de las materias del ciclo lectivo activo de cada estudiante.';
+  String get dashboardAllStudents => 'Todos los estudiantes';
 
   @override
   String get dashboardLoadError => 'No se pudo cargar el resumen académico.';

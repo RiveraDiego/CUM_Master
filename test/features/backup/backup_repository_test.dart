@@ -37,6 +37,7 @@ void main() {
   test('exports and restores the complete relational data set', () async {
     final student = await CreateStudent(students)(
       studentCard: 'AB-123',
+      name: 'Diego',
       university: 'Universidad de prueba',
     );
     final now = DateTime.now().toUtc();
@@ -65,6 +66,7 @@ void main() {
     await backup.importJson(json);
 
     expect((await ListStudents(students)()).single.studentCard, 'AB-123');
+    expect((await ListStudents(students)()).single.name, 'Diego');
     expect((await cycles.getAll(student.id)).single.name, 'Ciclo III');
     expect(
       (await ListSubjects(subjects)(student.id)).single.name,

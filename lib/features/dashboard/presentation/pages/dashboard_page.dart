@@ -11,11 +11,18 @@ import '../../../settings/domain/academic_settings.dart';
 import '../../domain/entities/academic_summary.dart';
 import '../controllers/dashboard_controller.dart';
 
-class DashboardPage extends ConsumerWidget {
+class DashboardPage extends ConsumerStatefulWidget {
   const DashboardPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<DashboardPage> createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends ConsumerState<DashboardPage> {
+  String? _selectedStudentId;
+
+  @override
+  Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final summaries = ref.watch(dashboardControllerProvider);
     final settings =
@@ -40,17 +47,13 @@ class DashboardPage extends ConsumerWidget {
                 onTap: () => context.pushNamed(AppRoute.students),
               );
             }
-            if (items.length == 1 && items.single.activeCycleName == null) {
-              final student = items.single;
-              return _DashboardMessage(
-                title: l10n.dashboardNoCurrentCycleMessage,
-                action: l10n.dashboardChooseCurrentCycle,
-                onTap: () => context.pushNamed(
-                  AppRoute.cycles,
-                  pathParameters: {'studentId': student.id},
-                ),
-              );
-            }
+            final selectedId =
+                items.any((item) => item.id == _selectedStudentId)
+                ? _selectedStudentId
+                : null;
+            final visibleItems = selectedId == null
+                ? items
+                : items.where((item) => item.id == selectedId).toList();
             return RefreshIndicator(
               onRefresh: () =>
                   ref.read(dashboardControllerProvider.notifier).refresh(),
@@ -58,17 +61,32 @@ class DashboardPage extends ConsumerWidget {
                 physics: const AlwaysScrollableScrollPhysics(),
                 padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
                 children: [
-                  Text(
-                    l10n.activeCycleTitle,
-                    style: Theme.of(context).textTheme.headlineSmall,
+                  DropdownButtonFormField<String?>(
+                    key: ValueKey(selectedId),
+                    initialValue: selectedId,
+                    decoration: InputDecoration(
+                      labelText: l10n.dashboardStudentFilterLabel,
+                      prefixIcon: const Icon(Icons.person_search_outlined),
+                    ),
+                    items: [
+                      DropdownMenuItem<String?>(
+                        value: null,
+                        child: Text(l10n.dashboardAllStudents),
+                      ),
+                      for (final student in items)
+                        DropdownMenuItem<String?>(
+                          value: student.id,
+                          child: Text(
+                            student.studentName ?? student.studentCard,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                    ],
+                    onChanged: (studentId) =>
+                        setState(() => _selectedStudentId = studentId),
                   ),
-                  const SizedBox(height: 4),
-                  Text(
-                    l10n.activeCycleCurrentScope,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  const SizedBox(height: 20),
-                  for (final item in items) ...[
+                  const SizedBox(height: 16),
+                  for (final item in visibleItems) ...[
                     _StudentSummaryCard(
                       summary: item,
                       settings: settings,
@@ -115,9 +133,16 @@ class _StudentSummaryCard extends StatelessWidget {
               const Icon(Icons.event_busy_outlined, size: 40),
               const SizedBox(height: 12),
               Text(
-                summary.studentCard,
+                summary.studentName ?? summary.studentCard,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
+              if (summary.studentName != null) ...[
+                const SizedBox(height: 2),
+                Text(
+                  summary.studentCard,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
               const SizedBox(height: 8),
               Text(
                 l10n.dashboardNoCurrentCycleMessage,
@@ -149,9 +174,19 @@ class _StudentSummaryCard extends StatelessWidget {
                 const CircleAvatar(child: Icon(Icons.person_outline)),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: Text(
-                    summary.studentCard,
-                    style: Theme.of(context).textTheme.titleLarge,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        summary.studentName ?? summary.studentCard,
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      if (summary.studentName != null)
+                        Text(
+                          summary.studentCard,
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                    ],
                   ),
                 ),
                 _AverageBadge(

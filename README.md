@@ -6,7 +6,7 @@ Aplicación Android offline para organizar el historial académico universitario
 
 ## Funcionalidades disponibles
 
-- Gestión local de múltiples estudiantes, diferenciados por carnet y universidad opcional.
+- Gestión local de múltiples estudiantes, con nombre y universidad opcionales y carnet obligatorio.
 - CRUD de ciclos lectivos con un único ciclo marcado como actual, o ninguno.
 - CRUD de materias asociadas a cualquier ciclo.
 - Unidades valorativas y nota final histórica por materia.
@@ -14,6 +14,7 @@ Aplicación Android offline para organizar el historial académico universitario
 - CRUD opcional de actividades dentro de cada evaluación.
 - Cálculo jerárquico de actividades, evaluaciones, nota final y CUM.
 - Dashboard con selector de ciclo y acceso rápido al ciclo actual.
+- Dashboard filtrable por todos los estudiantes o por un estudiante específico.
 - Copias de seguridad completas en JSON para guardar, compartir e importar.
 - Interfaz en español e inglés.
 - Persistencia SQLite completamente local, sin autenticación ni nube.

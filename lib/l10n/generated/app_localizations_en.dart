@@ -37,6 +37,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get studentCardLabel => 'Student ID';
 
   @override
+  String get studentNameLabel => 'Student name';
+
+  @override
+  String get studentNameHint => 'E.g. Diego, Ana, or My account';
+
+  @override
+  String get optionalFieldLabel => 'Optional';
+
+  @override
   String get studentCardHint => 'Enter the student ID number';
 
   @override
@@ -226,11 +235,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashboardTitle => 'Home';
 
   @override
-  String get activeCycleTitle => 'Active term';
+  String get dashboardStudentFilterLabel => 'Filter by student';
 
   @override
-  String get activeCycleCurrentScope =>
-      'Summary of each student\'s subjects in their active academic term.';
+  String get dashboardAllStudents => 'All students';
 
   @override
   String get dashboardLoadError => 'The academic summary could not be loaded.';
