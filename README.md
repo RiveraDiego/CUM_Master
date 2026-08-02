@@ -79,6 +79,8 @@ flutter build appbundle --release
 El archivo para Google Play se generará en `build/app/outputs/bundle/release/app-release.aab`. `key.properties` y todas las claves `.jks`/`.keystore` están excluidos de Git.
 La compilación release se detiene intencionalmente si falta la firma, para evitar subir por error un bundle no publicable.
 
+La estación de desarrollo principal ya dispone de una clave de carga privada y genera un AAB firmado verificable. Antes de publicar desde otra computadora, restaura de forma privada `upload-keystore.jks` y `key.properties`; nunca los copies al repositorio.
+
 ## Calidad
 
 El repositorio utiliza Conventional Commits y cada hito funcional se valida con:
@@ -110,7 +112,7 @@ El repositorio utiliza Conventional Commits y cada hito funcional se valida con:
 - [x] Refinamiento del sistema visual definitivo
 - [x] Ícono definitivo y adaptable de CUM Master
 - [x] Nombre, identificador y configuración segura de firma Android
-- [ ] Generar Android App Bundle firmado para Google Play
+- [x] Generar Android App Bundle firmado para Google Play
 - [ ] Pruebas internas y cerradas en Google Play
 - [x] Estadísticas históricas
 - [ ] Publicidad mínima
