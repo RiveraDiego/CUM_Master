@@ -5,6 +5,15 @@
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round">
+        <meta-data
+            android:name="com.riveradiego.cum_master.OWNER"
+            android:value="Diego Menendez" />
+        <meta-data
+            android:name="com.riveradiego.cum_master.COPYRIGHT"
+            android:value="Copyright 2026 Diego Menendez. All rights reserved." />
+        <meta-data
+            android:name="com.riveradiego.cum_master.PROVENANCE_ID"
+            android:value="CUMM-DM-SV-2026-ORIGINAL" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

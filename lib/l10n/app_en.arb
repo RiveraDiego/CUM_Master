@@ -238,5 +238,20 @@
   "backupShareAction": "Share with another app",
   "backupShareDescription": "Send it through WhatsApp, email, or another app",
   "backupSaveSuccess": "The backup was saved successfully.",
-  "backupSaveCancelled": "The backup was not saved. You can try again."
+  "backupSaveCancelled": "The backup was not saved. You can try again.",
+  "studentCardPrivacyHelper": "You may enter the real student card number or create a unique identifier to recognize this student in the app.",
+  "privacyMenuAction": "Your data privacy",
+  "privacyTitle": "Your data privacy",
+  "privacySummaryTitle": "Your data stays with you",
+  "privacySummaryDescription": "CUM Master works without an account and stores academic information only on this device.",
+  "privacyLocalTitle": "Local storage",
+  "privacyLocalDescription": "Students, identifiers, cycles, subjects, and grades are stored in your phone's internal app database.",
+  "privacyIdentifierTitle": "Your real student card is not required",
+  "privacyIdentifierDescription": "You can assign any unique identifier that helps you recognize the student. You decide which information to enter.",
+  "privacyNoCloudTitle": "No cloud or data transmission",
+  "privacyNoCloudDescription": "The current version has no authentication or proprietary servers and does not share academic information with the developer or third parties.",
+  "privacyBackupTitle": "You control backups",
+  "privacyBackupDescription": "Information only leaves the app when you choose to export or share a backup. You are responsible for protecting the file and deciding who receives it.",
+  "privacyFullPolicyAction": "Read the full policy",
+  "privacyOpenError": "The privacy policy could not be opened."
 }

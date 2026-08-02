@@ -8,6 +8,7 @@ import '../../features/settings/presentation/academic_settings_page.dart';
 import '../../features/statistics/presentation/statistics_page.dart';
 import '../../features/onboarding/presentation/startup_page.dart';
 import '../../features/onboarding/presentation/tutorial_page.dart';
+import '../../features/privacy/presentation/privacy_page.dart';
 import '../../features/students/presentation/pages/student_form_page.dart';
 import '../../features/students/presentation/pages/students_page.dart';
 import '../../features/subjects/presentation/pages/subject_form_page.dart';
@@ -28,6 +29,7 @@ abstract final class AppRoute {
   static const settings = 'settings';
   static const statistics = 'statistics';
   static const tutorial = 'tutorial';
+  static const privacy = 'privacy';
 }
 
 final GoRouter appRouter = GoRouter(
@@ -57,6 +59,11 @@ final GoRouter appRouter = GoRouter(
       path: '/backup',
       name: AppRoute.backup,
       builder: (context, state) => const BackupPage(),
+    ),
+    GoRoute(
+      path: '/privacy',
+      name: AppRoute.privacy,
+      builder: (context, state) => const PrivacyPage(),
     ),
     GoRoute(
       path: '/activities/:assessmentId',

@@ -238,5 +238,20 @@
   "backupShareAction": "Compartir con otra aplicación",
   "backupShareDescription": "Envíala por WhatsApp, correo u otra aplicación",
   "backupSaveSuccess": "La copia se guardó correctamente.",
-  "backupSaveCancelled": "No se guardó la copia. Puedes intentarlo nuevamente."
+  "backupSaveCancelled": "No se guardó la copia. Puedes intentarlo nuevamente.",
+  "studentCardPrivacyHelper": "Puedes escribir tu carnet real o inventar un identificador único para reconocer a este estudiante dentro de la app.",
+  "privacyMenuAction": "Privacidad de tus datos",
+  "privacyTitle": "Privacidad de tus datos",
+  "privacySummaryTitle": "Tus datos permanecen contigo",
+  "privacySummaryDescription": "CUM Master funciona sin cuenta y guarda la información académica únicamente en este dispositivo.",
+  "privacyLocalTitle": "Almacenamiento local",
+  "privacyLocalDescription": "Los estudiantes, identificadores, ciclos, materias y notas se guardan en la base de datos interna de tu teléfono.",
+  "privacyIdentifierTitle": "No necesitas usar tu carnet real",
+  "privacyIdentifierDescription": "Puedes asignar cualquier identificador único que te permita reconocer al estudiante. Tú decides qué información ingresar.",
+  "privacyNoCloudTitle": "Sin nube ni envío de datos",
+  "privacyNoCloudDescription": "La versión actual no tiene autenticación ni servidores propios y no comparte tu información académica con el desarrollador ni con terceros.",
+  "privacyBackupTitle": "Tú controlas las copias",
+  "privacyBackupDescription": "La información solo sale de la app cuando eliges exportar o compartir una copia. Tú eres responsable de proteger el archivo y decidir con quién compartirlo.",
+  "privacyFullPolicyAction": "Leer la política completa",
+  "privacyOpenError": "No se pudo abrir la política de privacidad."
 }

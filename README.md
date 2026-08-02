@@ -4,6 +4,12 @@ CUM Master es una aplicación Android para organizar calificaciones universitari
 
 Funciona completamente sin conexión a internet. La información académica se guarda en el teléfono del usuario y no requiere crear una cuenta.
 
+## Descargar la aplicación
+
+[**Descargar CUM Master 1.0.1 · Nuegado Guardián para Android**](./CUM_Master-1.0.1-Nuegado-Guardian.apk)
+
+El APK corresponde a una versión release firmada. Como todavía no se distribuye mediante Google Play, Android puede solicitar autorización para instalar aplicaciones desde esta fuente.
+
 ## ¿Qué es el CUM?
 
 El CUM es un indicador del rendimiento académico acumulado de un estudiante. A diferencia de un promedio simple, toma en cuenta la nota final de cada materia y sus unidades valorativas (UV): una materia con más UV tiene mayor influencia en el resultado.
@@ -63,7 +69,7 @@ La aplicación permite registrar únicamente las notas finales disponibles o añ
 
 CUM Master no requiere una cuenta y no envía la información académica a servidores. Los estudiantes, carnets, ciclos, materias y notas permanecen en el dispositivo.
 
-El usuario puede exportar una copia de seguridad y decide dónde guardarla o compartirla. La versión inicial no contiene publicidad ni SDK publicitarios. Consulta la [política de privacidad](PRIVACY_POLICY.md) para obtener más información.
+El usuario puede exportar una copia de seguridad y decide dónde guardarla o compartirla. La versión inicial no contiene publicidad ni SDK publicitarios. Consulta la [política de privacidad pública](https://riveradiego.github.io/CUM_Master/) para obtener más información.
 
 ## Estado del proyecto
 
@@ -123,7 +129,15 @@ Las sugerencias, reportes de errores y contribuciones son bienvenidos mediante l
 
 ## Versión
 
-**1.0.0 · Nuegado**
+**1.0.1 · Nuegado Guardián**
+
+## Licencia y propiedad intelectual
+
+CUM Master es un proyecto de **Diego Menendez** y se publica bajo una licencia de **todos los derechos reservados**. El repositorio es público para facilitar su consulta, auditoría y presentación, pero eso no autoriza copiar, redistribuir, modificar, republicar ni comercializar el código o la aplicación.
+
+La autoría se documenta mediante la [licencia](LICENSE.md), el [aviso de propiedad](NOTICE.md), el historial Git, la firma de los artefactos Android y metadatos de procedencia incorporados en la aplicación.
+
+Los paquetes de terceros utilizados por CUM Master conservan sus licencias correspondientes. Para solicitar autorización de uso o colaboración, escribe a [dmenendez3075@gmail.com](mailto:dmenendez3075@gmail.com).
 
 ## Autor y contacto
 

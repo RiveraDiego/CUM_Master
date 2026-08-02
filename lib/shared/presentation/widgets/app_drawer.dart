@@ -99,6 +99,13 @@ class AppDrawer extends StatelessWidget {
                     title: Text(l10n.tutorialMenuAction),
                     onTap: () => _openTutorial(context),
                   ),
+                  const SizedBox(height: 4),
+                  ListTile(
+                    leading: const Icon(Icons.privacy_tip_outlined),
+                    title: Text(l10n.privacyMenuAction),
+                    selected: currentRoute == AppRoute.privacy,
+                    onTap: () => _navigate(context, AppRoute.privacy),
+                  ),
                 ],
               ),
             ),
