@@ -79,123 +79,29 @@ class AssessmentsPage extends ConsumerWidget {
     Assessment? current,
   ]) async {
     final l10n = AppLocalizations.of(context)!;
-    final name = TextEditingController(text: current?.name);
-    final score = TextEditingController(text: current?.score.toString());
-    final max = TextEditingController(text: current?.maxScore.toString());
-    final weight = TextEditingController(text: current?.weight?.toString());
-    final key = GlobalKey<FormState>();
-    final saved = await showDialog<bool>(
+    final value = await showDialog<_AssessmentFormValue>(
       context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: Text(
-          current == null
-              ? l10n.assessmentCreateTitle
-              : l10n.assessmentEditTitle,
-        ),
-        content: Form(
-          key: key,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextFormField(
-                  controller: name,
-                  decoration: InputDecoration(
-                    labelText: l10n.assessmentNameLabel,
-                  ),
-                  validator: (v) => v == null || v.trim().isEmpty
-                      ? l10n.assessmentNameRequiredError
-                      : null,
-                ),
-                TextFormField(
-                  controller: score,
-                  decoration: InputDecoration(
-                    labelText: l10n.assessmentScoreLabel,
-                  ),
-                  keyboardType: const TextInputType.numberWithOptions(
-                    decimal: true,
-                  ),
-                  inputFormatters: [_decimalFormatter],
-                  validator: (v) =>
-                      _positiveOrZero(v) ? null : l10n.assessmentNumberError,
-                ),
-                TextFormField(
-                  controller: max,
-                  decoration: InputDecoration(
-                    labelText: l10n.assessmentMaxScoreLabel,
-                  ),
-                  keyboardType: const TextInputType.numberWithOptions(
-                    decimal: true,
-                  ),
-                  inputFormatters: [_decimalFormatter],
-                  validator: (v) {
-                    if (!_positive(v)) return l10n.assessmentPositiveError;
-                    final obtained = double.tryParse(score.text);
-                    final maximum = double.parse(v!);
-                    return obtained != null && obtained > maximum
-                        ? l10n.assessmentScoreRangeError
-                        : null;
-                  },
-                ),
-                TextFormField(
-                  controller: weight,
-                  decoration: InputDecoration(
-                    labelText: l10n.assessmentWeightLabel,
-                  ),
-                  keyboardType: const TextInputType.numberWithOptions(
-                    decimal: true,
-                  ),
-                  inputFormatters: [_decimalFormatter],
-                  validator: (v) =>
-                      v == null ||
-                          v.trim().isEmpty ||
-                          (_positive(v) && double.parse(v) <= 100)
-                      ? null
-                      : l10n.assessmentWeightError,
-                ),
-              ],
-            ),
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: Text(l10n.cancelAction),
-          ),
-          FilledButton(
-            onPressed: () {
-              if (key.currentState!.validate() &&
-                  double.parse(score.text) <= double.parse(max.text)) {
-                Navigator.pop(dialogContext, true);
-              }
-            },
-            child: Text(l10n.saveAction),
-          ),
-        ],
-      ),
+      builder: (_) => _AssessmentEditorDialog(current: current),
     );
-    if (saved == true && context.mounted) {
+    if (value != null && context.mounted) {
       try {
         final notifier = ref.read(
           assessmentsControllerProvider(subjectId).notifier,
         );
-        final optionalWeight = weight.text.trim().isEmpty
-            ? null
-            : double.parse(weight.text);
         if (current == null) {
           await notifier.create(
-            name: name.text,
-            score: double.parse(score.text),
-            maxScore: double.parse(max.text),
-            weight: optionalWeight,
+            name: value.name,
+            score: value.score,
+            maxScore: value.maxScore,
+            weight: value.weight,
           );
         } else {
           await notifier.updateValue(
             id: current.id,
-            name: name.text,
-            score: double.parse(score.text),
-            maxScore: double.parse(max.text),
-            weight: optionalWeight,
+            name: value.name,
+            score: value.score,
+            maxScore: value.maxScore,
+            weight: value.weight,
           );
         }
       } on DuplicateAssessmentNameException {
@@ -204,10 +110,6 @@ class AssessmentsPage extends ConsumerWidget {
         if (context.mounted) _snack(context, l10n.assessmentStorageError);
       }
     }
-    name.dispose();
-    score.dispose();
-    max.dispose();
-    weight.dispose();
   }
 
   Future<void> _delete(
@@ -244,6 +146,168 @@ class AssessmentsPage extends ConsumerWidget {
     }
   }
 
+  static void _snack(BuildContext context, String text) =>
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
+}
+
+class _AssessmentFormValue {
+  const _AssessmentFormValue({
+    required this.name,
+    required this.score,
+    required this.maxScore,
+    required this.weight,
+  });
+
+  final String name;
+  final double score;
+  final double maxScore;
+  final double? weight;
+}
+
+class _AssessmentEditorDialog extends StatefulWidget {
+  const _AssessmentEditorDialog({this.current});
+
+  final Assessment? current;
+
+  @override
+  State<_AssessmentEditorDialog> createState() =>
+      _AssessmentEditorDialogState();
+}
+
+class _AssessmentEditorDialogState extends State<_AssessmentEditorDialog> {
+  final _formKey = GlobalKey<FormState>();
+  late final TextEditingController _name;
+  late final TextEditingController _score;
+  late final TextEditingController _maxScore;
+  late final TextEditingController _weight;
+
+  static final _decimalFormatter = FilteringTextInputFormatter.allow(
+    RegExp(r'^\d*[.]?\d{0,2}'),
+  );
+
+  @override
+  void initState() {
+    super.initState();
+    _name = TextEditingController(text: widget.current?.name);
+    _score = TextEditingController(text: widget.current?.score.toString());
+    _maxScore = TextEditingController(
+      text: widget.current?.maxScore.toString(),
+    );
+    _weight = TextEditingController(text: widget.current?.weight?.toString());
+  }
+
+  @override
+  void dispose() {
+    _name.dispose();
+    _score.dispose();
+    _maxScore.dispose();
+    _weight.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    return AlertDialog(
+      title: Text(
+        widget.current == null
+            ? l10n.assessmentCreateTitle
+            : l10n.assessmentEditTitle,
+      ),
+      content: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextFormField(
+                controller: _name,
+                decoration: InputDecoration(
+                  labelText: l10n.assessmentNameLabel,
+                ),
+                validator: (value) => value == null || value.trim().isEmpty
+                    ? l10n.assessmentNameRequiredError
+                    : null,
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _score,
+                decoration: InputDecoration(
+                  labelText: l10n.assessmentScoreLabel,
+                ),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+                inputFormatters: [_decimalFormatter],
+                validator: (value) =>
+                    _positiveOrZero(value) ? null : l10n.assessmentNumberError,
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _maxScore,
+                decoration: InputDecoration(
+                  labelText: l10n.assessmentMaxScoreLabel,
+                ),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+                inputFormatters: [_decimalFormatter],
+                validator: (value) {
+                  if (!_positive(value)) return l10n.assessmentPositiveError;
+                  final obtained = double.tryParse(_score.text);
+                  final maximum = double.parse(value!);
+                  return obtained != null && obtained > maximum
+                      ? l10n.assessmentScoreRangeError
+                      : null;
+                },
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: _weight,
+                decoration: InputDecoration(
+                  labelText: l10n.assessmentWeightLabel,
+                ),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+                inputFormatters: [_decimalFormatter],
+                validator: (value) =>
+                    value == null ||
+                        value.trim().isEmpty ||
+                        (_positive(value) && double.parse(value) <= 100)
+                    ? null
+                    : l10n.assessmentWeightError,
+              ),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l10n.cancelAction),
+        ),
+        FilledButton(onPressed: _submit, child: Text(l10n.saveAction)),
+      ],
+    );
+  }
+
+  void _submit() {
+    if (!(_formKey.currentState?.validate() ?? false)) return;
+    final score = double.parse(_score.text);
+    final maxScore = double.parse(_maxScore.text);
+    if (score > maxScore) return;
+    Navigator.pop(
+      context,
+      _AssessmentFormValue(
+        name: _name.text.trim(),
+        score: score,
+        maxScore: maxScore,
+        weight: _weight.text.trim().isEmpty ? null : double.parse(_weight.text),
+      ),
+    );
+  }
+
   static bool _positiveOrZero(String? value) {
     final number = double.tryParse(value ?? '');
     return number != null && number >= 0;
@@ -253,12 +317,6 @@ class AssessmentsPage extends ConsumerWidget {
     final number = double.tryParse(value ?? '');
     return number != null && number > 0;
   }
-
-  static final _decimalFormatter = FilteringTextInputFormatter.allow(
-    RegExp(r'^\d*[.]?\d{0,2}'),
-  );
-  static void _snack(BuildContext context, String text) =>
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
 }
 
 class _AssessmentCard extends ConsumerWidget {
@@ -299,7 +357,12 @@ class _AssessmentCard extends ConsumerWidget {
               : l10n.assessmentCalculatedGrade,
         ),
         trailing: PopupMenuButton<String>(
-          onSelected: (action) => action == 'edit' ? onEdit() : onDelete(),
+          onSelected: (action) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (!context.mounted) return;
+              action == 'edit' ? onEdit() : onDelete();
+            });
+          },
           itemBuilder: (_) => [
             PopupMenuItem(value: 'edit', child: Text(l10n.editAction)),
             PopupMenuItem(value: 'delete', child: Text(l10n.deleteAction)),

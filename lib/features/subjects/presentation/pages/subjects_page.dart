@@ -261,8 +261,12 @@ class _SubjectCard extends StatelessWidget {
             : Text(subject.code!),
         trailing: PopupMenuButton<_Action>(
           tooltip: l10n.subjectMoreActions,
-          onSelected: (action) =>
-              action == _Action.edit ? onEdit() : onDelete(),
+          onSelected: (action) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (!context.mounted) return;
+              action == _Action.edit ? onEdit() : onDelete();
+            });
+          },
           itemBuilder: (_) => [
             PopupMenuItem(value: _Action.edit, child: Text(l10n.editAction)),
             PopupMenuItem(

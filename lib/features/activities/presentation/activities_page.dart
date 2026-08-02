@@ -103,6 +103,7 @@ class ActivitiesPage extends ConsumerWidget {
                       ? l10n.activityRequiredError
                       : null,
                 ),
+                const SizedBox(height: 16),
                 TextFormField(
                   controller: score,
                   keyboardType: TextInputType.number,
@@ -113,6 +114,7 @@ class ActivitiesPage extends ConsumerWidget {
                       ? null
                       : l10n.assessmentNumberError,
                 ),
+                const SizedBox(height: 16),
                 TextFormField(
                   controller: max,
                   keyboardType: TextInputType.number,
@@ -122,6 +124,7 @@ class ActivitiesPage extends ConsumerWidget {
                   validator: (v) =>
                       _valid(v) ? null : l10n.assessmentPositiveError,
                 ),
+                const SizedBox(height: 16),
                 TextFormField(
                   controller: weight,
                   keyboardType: TextInputType.number,
@@ -168,6 +171,7 @@ class ActivitiesPage extends ConsumerWidget {
             weight: double.parse(weight.text),
           );
     }
+    await Future<void>.delayed(kThemeAnimationDuration);
     name.dispose();
     score.dispose();
     max.dispose();
