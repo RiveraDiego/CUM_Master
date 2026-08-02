@@ -15,6 +15,7 @@ Aplicación Android offline para organizar el historial académico universitario
 - Cálculo jerárquico de actividades, evaluaciones, nota final y CUM.
 - Dashboard con selector de ciclo y acceso rápido al ciclo actual.
 - Dashboard filtrable por todos los estudiantes o por un estudiante específico.
+- Estadísticas históricas con promedio por ciclo, CUM acumulado y tendencia por estudiante.
 - Copias de seguridad completas en JSON para guardar, compartir e importar.
 - Interfaz en español e inglés.
 - Persistencia SQLite completamente local, sin autenticación ni nube.
@@ -111,7 +112,7 @@ El repositorio utiliza Conventional Commits y cada hito funcional se valida con:
 - [x] Nombre, identificador y configuración segura de firma Android
 - [ ] Generar Android App Bundle firmado para Google Play
 - [ ] Pruebas internas y cerradas en Google Play
-- [ ] Estadísticas históricas
+- [x] Estadísticas históricas
 - [ ] Publicidad mínima
 
 El simulador independiente, Premium y la sincronización en la nube están fuera del alcance de la versión inicial.

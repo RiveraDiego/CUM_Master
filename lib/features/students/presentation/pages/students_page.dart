@@ -143,14 +143,15 @@ class _StudentCard extends StatelessWidget {
         trailing: PopupMenuButton<_StudentAction>(
           tooltip: l10n.studentMoreActions,
           onSelected: (action) {
-            switch (action) {
-              case _StudentAction.edit:
-                onEdit();
-                return;
-              case _StudentAction.delete:
-                onDelete();
-                return;
-            }
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (!context.mounted) return;
+              switch (action) {
+                case _StudentAction.edit:
+                  onEdit();
+                case _StudentAction.delete:
+                  onDelete();
+              }
+            });
           },
           itemBuilder: (context) => [
             PopupMenuItem(

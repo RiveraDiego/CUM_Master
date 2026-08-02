@@ -524,6 +524,54 @@ abstract class AppLocalizations {
   /// **'All students'**
   String get dashboardAllStudents;
 
+  /// No description provided for @statisticsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get statisticsTitle;
+
+  /// No description provided for @statisticsLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics could not be calculated.'**
+  String get statisticsLoadError;
+
+  /// No description provided for @statisticsNoStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a student to start building their academic history.'**
+  String get statisticsNoStudents;
+
+  /// No description provided for @statisticsNoCycles.
+  ///
+  /// In en, this message translates to:
+  /// **'This student does not have any terms yet.'**
+  String get statisticsNoCycles;
+
+  /// No description provided for @statisticsEvolutionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Average evolution by term'**
+  String get statisticsEvolutionTitle;
+
+  /// No description provided for @statisticsCycleSubjects.
+  ///
+  /// In en, this message translates to:
+  /// **'{graded} of {total} subjects graded'**
+  String statisticsCycleSubjects(int graded, int total);
+
+  /// No description provided for @statisticsAverageValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg. {value}'**
+  String statisticsAverageValue(String value);
+
+  /// No description provided for @statisticsCumValue.
+  ///
+  /// In en, this message translates to:
+  /// **'GPA {value}'**
+  String statisticsCumValue(String value);
+
   /// No description provided for @dashboardLoadError.
   ///
   /// In en, this message translates to:
