@@ -426,6 +426,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get backupExportError => 'No se pudo crear la copia de seguridad.';
 
   @override
+  String get dashboardCycleSelectorLabel => 'Ciclo mostrado';
+
+  @override
+  String get dashboardCurrentCycleShort => 'Actual';
+
+  @override
+  String get dashboardShowCurrentCycle => 'Ver actual';
+
+  @override
   String get assessmentManualGrade => 'Nota manual (sin actividades)';
 
   @override

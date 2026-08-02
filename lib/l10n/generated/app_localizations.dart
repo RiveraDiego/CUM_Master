@@ -854,6 +854,24 @@ abstract class AppLocalizations {
   /// **'The backup could not be created.'**
   String get backupExportError;
 
+  /// No description provided for @dashboardCycleSelectorLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Displayed term'**
+  String get dashboardCycleSelectorLabel;
+
+  /// No description provided for @dashboardCurrentCycleShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get dashboardCurrentCycleShort;
+
+  /// No description provided for @dashboardShowCurrentCycle.
+  ///
+  /// In en, this message translates to:
+  /// **'View current'**
+  String get dashboardShowCurrentCycle;
+
   /// No description provided for @assessmentManualGrade.
   ///
   /// In en, this message translates to:

@@ -18,12 +18,27 @@ class SubjectSummary {
   final String cycleId;
 }
 
+class CycleSummaryOption {
+  const CycleSummaryOption({
+    required this.id,
+    required this.name,
+    required this.isCurrent,
+  });
+
+  final String id;
+  final String name;
+  final bool isCurrent;
+}
+
 class StudentAcademicSummary {
   const StudentAcademicSummary({
     required this.id,
     required this.studentCard,
     required this.university,
     required this.activeCycleName,
+    required this.currentCycleId,
+    required this.selectedCycleId,
+    required this.cycles,
     required this.subjects,
     required this.generalCum,
   });
@@ -32,8 +47,14 @@ class StudentAcademicSummary {
   final String studentCard;
   final String? university;
   final String? activeCycleName;
+  final String? currentCycleId;
+  final String? selectedCycleId;
+  final List<CycleSummaryOption> cycles;
   final List<SubjectSummary> subjects;
   final double? generalCum;
+
+  bool get isViewingCurrentCycle =>
+      currentCycleId != null && selectedCycleId == currentCycleId;
 
   double? get overallAverage {
     final values = subjects.map((item) => item.average).whereType<double>();
