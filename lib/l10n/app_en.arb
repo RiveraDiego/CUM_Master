@@ -1,6 +1,7 @@
 {
   "@@locale": "en",
   "appTitle": "CUM Master",
+  "drawerTagline": "Your academic progress",
   "@appTitle": {
     "description": "Application name"
   },

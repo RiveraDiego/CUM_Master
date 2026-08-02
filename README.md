@@ -20,6 +20,7 @@ Aplicación Android offline para organizar el historial académico universitario
 - Tutorial guiado en el primer inicio, omisible en cualquier paso y accesible nuevamente desde el menú lateral.
 - Tema claro, oscuro o sincronizado con la apariencia del dispositivo.
 - Menú lateral disponible en todas las pantallas operativas y navegación Atrás basada en el historial real.
+- Sistema visual Material 3 unificado e identidad propia de CUM Master.
 
 ## Reglas de cálculo implementadas
 
@@ -104,8 +105,8 @@ El repositorio utiliza Conventional Commits y cada hito funcional se valida con:
 - [x] Configuración académica: terminología, UV predeterminadas y redondeo
 - [x] Tutorial guiado de primer inicio y acceso desde el menú
 - [x] Modo claro, oscuro y sincronizado con el dispositivo
-- [ ] Refinamiento del sistema visual definitivo
-- [ ] Ícono definitivo de CUM Master
+- [x] Refinamiento del sistema visual definitivo
+- [x] Ícono definitivo y adaptable de CUM Master
 - [x] Nombre, identificador y configuración segura de firma Android
 - [ ] Generar Android App Bundle firmado para Google Play
 - [ ] Pruebas internas y cerradas en Google Play
