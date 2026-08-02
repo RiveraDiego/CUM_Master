@@ -262,6 +262,7 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
         ],
       ),
     );
+    await Future<void>.delayed(kThemeAnimationDuration);
     controller.dispose();
     if (name == null || name.isEmpty || !mounted) return;
     try {
