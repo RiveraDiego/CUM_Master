@@ -705,4 +705,55 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get backupSaveCancelled =>
       'No se guardó la copia. Puedes intentarlo nuevamente.';
+
+  @override
+  String get studentCardPrivacyHelper =>
+      'Puedes escribir tu carnet real o inventar un identificador único para reconocer a este estudiante dentro de la app.';
+
+  @override
+  String get privacyMenuAction => 'Privacidad de tus datos';
+
+  @override
+  String get privacyTitle => 'Privacidad de tus datos';
+
+  @override
+  String get privacySummaryTitle => 'Tus datos permanecen contigo';
+
+  @override
+  String get privacySummaryDescription =>
+      'CUM Master funciona sin cuenta y guarda la información académica únicamente en este dispositivo.';
+
+  @override
+  String get privacyLocalTitle => 'Almacenamiento local';
+
+  @override
+  String get privacyLocalDescription =>
+      'Los estudiantes, identificadores, ciclos, materias y notas se guardan en la base de datos interna de tu teléfono.';
+
+  @override
+  String get privacyIdentifierTitle => 'No necesitas usar tu carnet real';
+
+  @override
+  String get privacyIdentifierDescription =>
+      'Puedes asignar cualquier identificador único que te permita reconocer al estudiante. Tú decides qué información ingresar.';
+
+  @override
+  String get privacyNoCloudTitle => 'Sin nube ni envío de datos';
+
+  @override
+  String get privacyNoCloudDescription =>
+      'La versión actual no tiene autenticación ni servidores propios y no comparte tu información académica con el desarrollador ni con terceros.';
+
+  @override
+  String get privacyBackupTitle => 'Tú controlas las copias';
+
+  @override
+  String get privacyBackupDescription =>
+      'La información solo sale de la app cuando eliges exportar o compartir una copia. Tú eres responsable de proteger el archivo y decidir con quién compartirlo.';
+
+  @override
+  String get privacyFullPolicyAction => 'Leer la política completa';
+
+  @override
+  String get privacyOpenError => 'No se pudo abrir la política de privacidad.';
 }

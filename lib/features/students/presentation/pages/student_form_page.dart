@@ -133,6 +133,8 @@ class _StudentFormPageState extends ConsumerState<StudentFormPage> {
                   decoration: InputDecoration(
                     labelText: l10n.studentCardLabel,
                     hintText: l10n.studentCardHint,
+                    helperText: l10n.studentCardPrivacyHelper,
+                    helperMaxLines: 3,
                     prefixIcon: const Icon(Icons.badge_outlined),
                   ),
                   validator: (value) => value == null || value.trim().isEmpty

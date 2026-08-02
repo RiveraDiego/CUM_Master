@@ -63,7 +63,7 @@ La aplicación permite registrar únicamente las notas finales disponibles o añ
 
 CUM Master no requiere una cuenta y no envía la información académica a servidores. Los estudiantes, carnets, ciclos, materias y notas permanecen en el dispositivo.
 
-El usuario puede exportar una copia de seguridad y decide dónde guardarla o compartirla. La versión inicial no contiene publicidad ni SDK publicitarios. Consulta la [política de privacidad](PRIVACY_POLICY.md) para obtener más información.
+El usuario puede exportar una copia de seguridad y decide dónde guardarla o compartirla. La versión inicial no contiene publicidad ni SDK publicitarios. Consulta la [política de privacidad pública](https://riveradiego.github.io/CUM_Master/) para obtener más información.
 
 ## Estado del proyecto
 

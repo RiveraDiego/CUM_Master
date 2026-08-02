@@ -699,4 +699,55 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get backupSaveCancelled =>
       'The backup was not saved. You can try again.';
+
+  @override
+  String get studentCardPrivacyHelper =>
+      'You may enter the real student card number or create a unique identifier to recognize this student in the app.';
+
+  @override
+  String get privacyMenuAction => 'Your data privacy';
+
+  @override
+  String get privacyTitle => 'Your data privacy';
+
+  @override
+  String get privacySummaryTitle => 'Your data stays with you';
+
+  @override
+  String get privacySummaryDescription =>
+      'CUM Master works without an account and stores academic information only on this device.';
+
+  @override
+  String get privacyLocalTitle => 'Local storage';
+
+  @override
+  String get privacyLocalDescription =>
+      'Students, identifiers, cycles, subjects, and grades are stored in your phone\'s internal app database.';
+
+  @override
+  String get privacyIdentifierTitle => 'Your real student card is not required';
+
+  @override
+  String get privacyIdentifierDescription =>
+      'You can assign any unique identifier that helps you recognize the student. You decide which information to enter.';
+
+  @override
+  String get privacyNoCloudTitle => 'No cloud or data transmission';
+
+  @override
+  String get privacyNoCloudDescription =>
+      'The current version has no authentication or proprietary servers and does not share academic information with the developer or third parties.';
+
+  @override
+  String get privacyBackupTitle => 'You control backups';
+
+  @override
+  String get privacyBackupDescription =>
+      'Information only leaves the app when you choose to export or share a backup. You are responsible for protecting the file and deciding who receives it.';
+
+  @override
+  String get privacyFullPolicyAction => 'Read the full policy';
+
+  @override
+  String get privacyOpenError => 'The privacy policy could not be opened.';
 }

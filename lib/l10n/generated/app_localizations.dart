@@ -1363,6 +1363,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The backup was not saved. You can try again.'**
   String get backupSaveCancelled;
+
+  /// No description provided for @studentCardPrivacyHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'You may enter the real student card number or create a unique identifier to recognize this student in the app.'**
+  String get studentCardPrivacyHelper;
+
+  /// No description provided for @privacyMenuAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data privacy'**
+  String get privacyMenuAction;
+
+  /// No description provided for @privacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data privacy'**
+  String get privacyTitle;
+
+  /// No description provided for @privacySummaryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data stays with you'**
+  String get privacySummaryTitle;
+
+  /// No description provided for @privacySummaryDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'CUM Master works without an account and stores academic information only on this device.'**
+  String get privacySummaryDescription;
+
+  /// No description provided for @privacyLocalTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Local storage'**
+  String get privacyLocalTitle;
+
+  /// No description provided for @privacyLocalDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Students, identifiers, cycles, subjects, and grades are stored in your phone\'s internal app database.'**
+  String get privacyLocalDescription;
+
+  /// No description provided for @privacyIdentifierTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your real student card is not required'**
+  String get privacyIdentifierTitle;
+
+  /// No description provided for @privacyIdentifierDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'You can assign any unique identifier that helps you recognize the student. You decide which information to enter.'**
+  String get privacyIdentifierDescription;
+
+  /// No description provided for @privacyNoCloudTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No cloud or data transmission'**
+  String get privacyNoCloudTitle;
+
+  /// No description provided for @privacyNoCloudDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The current version has no authentication or proprietary servers and does not share academic information with the developer or third parties.'**
+  String get privacyNoCloudDescription;
+
+  /// No description provided for @privacyBackupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You control backups'**
+  String get privacyBackupTitle;
+
+  /// No description provided for @privacyBackupDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Information only leaves the app when you choose to export or share a backup. You are responsible for protecting the file and deciding who receives it.'**
+  String get privacyBackupDescription;
+
+  /// No description provided for @privacyFullPolicyAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Read the full policy'**
+  String get privacyFullPolicyAction;
+
+  /// No description provided for @privacyOpenError.
+  ///
+  /// In en, this message translates to:
+  /// **'The privacy policy could not be opened.'**
+  String get privacyOpenError;
 }
 
 class _AppLocalizationsDelegate
