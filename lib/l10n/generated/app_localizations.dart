@@ -1022,6 +1022,120 @@ abstract class AppLocalizations {
   /// **'Settings saved.'**
   String get settingsSaved;
 
+  /// No description provided for @tutorialTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How to use CUM Master'**
+  String get tutorialTitle;
+
+  /// No description provided for @tutorialMenuAction.
+  ///
+  /// In en, this message translates to:
+  /// **'View tutorial'**
+  String get tutorialMenuAction;
+
+  /// No description provided for @tutorialSkipAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get tutorialSkipAction;
+
+  /// No description provided for @tutorialPreviousAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous'**
+  String get tutorialPreviousAction;
+
+  /// No description provided for @tutorialNextAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get tutorialNextAction;
+
+  /// No description provided for @tutorialFinishAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Get started'**
+  String get tutorialFinishAction;
+
+  /// No description provided for @tutorialStepPosition.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {current} of {total}'**
+  String tutorialStepPosition(int current, int total);
+
+  /// No description provided for @tutorialWelcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your academic history in one place'**
+  String get tutorialWelcomeTitle;
+
+  /// No description provided for @tutorialWelcomeDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'CUM Master works without an account and stores everything on this device. Organize terms, subjects and grades using your university\'s structure.'**
+  String get tutorialWelcomeDescription;
+
+  /// No description provided for @tutorialStudentsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with a student'**
+  String get tutorialStudentsTitle;
+
+  /// No description provided for @tutorialStudentsDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a student using their student card number and optional university. You can manage several students without authentication.'**
+  String get tutorialStudentsDescription;
+
+  /// No description provided for @tutorialCyclesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Organize subjects by term'**
+  String get tutorialCyclesTitle;
+
+  /// No description provided for @tutorialCyclesDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Create historical terms and mark only the one you are attending as current. Then add each subject to its term and assign its credit units.'**
+  String get tutorialCyclesDescription;
+
+  /// No description provided for @tutorialGradesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Record only the detail you need'**
+  String get tutorialGradesTitle;
+
+  /// No description provided for @tutorialGradesDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'You can enter each assessment grade directly. For more precision, add activities and weights; the assessment is calculated when they total 100%.'**
+  String get tutorialGradesDescription;
+
+  /// No description provided for @tutorialDashboardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Review averages and CUM'**
+  String get tutorialDashboardTitle;
+
+  /// No description provided for @tutorialDashboardDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The dashboard shows subjects for the selected term. Browse historical terms, return to the current one and review the general credit-weighted CUM.'**
+  String get tutorialDashboardDescription;
+
+  /// No description provided for @tutorialBackupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Configure and protect your data'**
+  String get tutorialBackupTitle;
+
+  /// No description provided for @tutorialBackupDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Academic settings control credit units, decimals, rounding and terminology. Export regular backups so you can restore them on another phone.'**
+  String get tutorialBackupDescription;
+
   /// No description provided for @assessmentManualGrade.
   ///
   /// In en, this message translates to:

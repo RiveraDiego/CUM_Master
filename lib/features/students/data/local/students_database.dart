@@ -5,7 +5,7 @@ class StudentsDatabase {
   StudentsDatabase({DatabaseFactory? factory, this.databasePath})
     : _factory = factory ?? databaseFactory;
 
-  static const schemaVersion = 7;
+  static const schemaVersion = 8;
   static const fileName = 'cum_master.db';
 
   final DatabaseFactory _factory;
@@ -52,6 +52,7 @@ class StudentsDatabase {
           await _createAssessmentsTable(database);
           await _createActivitiesTable(database);
           await _createAcademicSettingsTable(database);
+          await _createAppPreferencesTable(database);
         },
         onUpgrade: (database, oldVersion, newVersion) async {
           if (oldVersion < 2) {
@@ -92,6 +93,7 @@ class StudentsDatabase {
             );
           }
           if (oldVersion < 7) await _createAcademicSettingsTable(database);
+          if (oldVersion < 8) await _createAppPreferencesTable(database);
         },
       ),
     );
@@ -226,6 +228,15 @@ class StudentsDatabase {
       'decimal_places': 1,
       'rounding_mode': 'ceiling',
     });
+  }
+
+  static Future<void> _createAppPreferencesTable(Database database) async {
+    await database.execute('''
+      CREATE TABLE app_preferences (
+        key TEXT PRIMARY KEY NOT NULL,
+        value TEXT NOT NULL
+      )
+    ''');
   }
 
   Future<void> close() async {

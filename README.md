@@ -17,6 +17,7 @@ Aplicación Android offline para organizar el historial académico universitario
 - Copias de seguridad completas en JSON para guardar, compartir e importar.
 - Interfaz en español e inglés.
 - Persistencia SQLite completamente local, sin autenticación ni nube.
+- Tutorial guiado en el primer inicio, omisible en cualquier paso y accesible nuevamente desde el menú lateral.
 
 ## Reglas de cálculo implementadas
 
@@ -63,6 +64,11 @@ El repositorio utiliza Conventional Commits y cada hito funcional se valida con:
 - compilación de APK Android;
 - instalación y prueba visual en un Galaxy S23 Ultra cuando está conectado.
 
+## Flujo de ramas
+
+- `main`: versión estable que se fusiona cuando un conjunto de cambios está listo.
+- `dev`: rama única de desarrollo; todas las funcionalidades se integran aquí mediante commits revisables.
+
 ## Roadmap inmediato
 
 - [x] Base Flutter profesional
@@ -75,7 +81,8 @@ El repositorio utiliza Conventional Commits y cada hito funcional se valida con:
 - [x] CUM ponderado por unidades valorativas
 - [x] Exportación e importación local
 - [x] Configuración académica: terminología, UV predeterminadas y redondeo
-- [ ] Sistema visual definitivo, modo oscuro y onboarding
+- [x] Tutorial guiado de primer inicio y acceso desde el menú
+- [ ] Sistema visual definitivo y modo oscuro
 - [ ] Identidad, firma y Android App Bundle para Google Play
 - [ ] Pruebas internas y cerradas en Google Play
 - [ ] Estadísticas históricas
