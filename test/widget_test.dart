@@ -34,6 +34,7 @@ void main() {
       find.text('en la Universidad Tecnológica de El Salvador'),
       findsOneWidget,
     );
+    expect(find.text('dmenendez3075@gmail.com'), findsOneWidget);
   });
 
   testWidgets('supports the English locale', (WidgetTester tester) async {

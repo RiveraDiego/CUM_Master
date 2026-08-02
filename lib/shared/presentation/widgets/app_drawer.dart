@@ -170,6 +170,23 @@ class _DeveloperSignature extends StatelessWidget {
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodySmall,
         ),
+        const SizedBox(height: 6),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.mail_outline, size: 15, color: colors.onSurfaceVariant),
+            const SizedBox(width: 5),
+            Flexible(
+              child: Text(
+                'dmenendez3075@gmail.com',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  color: colors.onSurfaceVariant,
+                ),
+              ),
+            ),
+          ],
+        ),
       ],
     ),
   );
