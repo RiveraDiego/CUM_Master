@@ -16,6 +16,8 @@ final dashboardControllerProvider =
     );
 
 class DashboardController extends AsyncNotifier<List<StudentAcademicSummary>> {
+  final _selectedCycleIds = <String, String>{};
+
   @override
   Future<List<StudentAcademicSummary>> build() {
     ref.watch(academicDataRevisionProvider);
@@ -27,6 +29,20 @@ class DashboardController extends AsyncNotifier<List<StudentAcademicSummary>> {
     state = await AsyncValue.guard(_load);
   }
 
+  Future<void> selectCycle(String studentId, String cycleId) async {
+    _selectedCycleIds[studentId] = cycleId;
+    state = await AsyncValue.guard(_load);
+  }
+
+  Future<void> showCurrentCycle(String studentId) async {
+    final current = state.value
+        ?.where((summary) => summary.id == studentId)
+        .firstOrNull
+        ?.currentCycleId;
+    if (current == null) return;
+    await selectCycle(studentId, current);
+  }
+
   Future<List<StudentAcademicSummary>> _load() async {
     const calculator = HierarchicalGradeCalculator();
     final students = await ref.read(listStudentsProvider)();
@@ -35,6 +51,16 @@ class DashboardController extends AsyncNotifier<List<StudentAcademicSummary>> {
       final subjects = await ref.read(listSubjectsProvider)(student.id);
       final cycles = await ref.read(cycleRepositoryProvider).getAll(student.id);
       final activeCycle = cycles.where((item) => item.isActive).firstOrNull;
+      final requestedCycleId = _selectedCycleIds[student.id];
+      final selectedCycle = activeCycle == null
+          ? null
+          : cycles.where((item) => item.id == requestedCycleId).firstOrNull ??
+                activeCycle;
+      if (selectedCycle == null) {
+        _selectedCycleIds.remove(student.id);
+      } else {
+        _selectedCycleIds[student.id] = selectedCycle.id;
+      }
       final allSubjectSummaries = <SubjectSummary>[];
       for (final subject in subjects) {
         final assessments = await ref.read(listAssessmentsProvider)(subject.id);
@@ -68,8 +94,19 @@ class DashboardController extends AsyncNotifier<List<StudentAcademicSummary>> {
           studentCard: student.studentCard,
           university: student.university,
           activeCycleName: activeCycle?.name,
+          currentCycleId: activeCycle?.id,
+          selectedCycleId: selectedCycle?.id,
+          cycles: cycles
+              .map(
+                (cycle) => CycleSummaryOption(
+                  id: cycle.id,
+                  name: cycle.name,
+                  isCurrent: cycle.isActive,
+                ),
+              )
+              .toList(growable: false),
           subjects: allSubjectSummaries
-              .where((item) => item.cycleId == activeCycle?.id)
+              .where((item) => item.cycleId == selectedCycle?.id)
               .toList(),
           generalCum: _cum(allSubjectSummaries),
         ),

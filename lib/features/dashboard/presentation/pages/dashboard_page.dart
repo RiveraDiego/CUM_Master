@@ -64,7 +64,15 @@ class DashboardPage extends ConsumerWidget {
                   ),
                   const SizedBox(height: 20),
                   for (final item in items) ...[
-                    _StudentSummaryCard(summary: item),
+                    _StudentSummaryCard(
+                      summary: item,
+                      onCycleSelected: (cycleId) => ref
+                          .read(dashboardControllerProvider.notifier)
+                          .selectCycle(item.id, cycleId),
+                      onShowCurrent: () => ref
+                          .read(dashboardControllerProvider.notifier)
+                          .showCurrentCycle(item.id),
+                    ),
                     const SizedBox(height: 16),
                   ],
                 ],
@@ -78,8 +86,14 @@ class DashboardPage extends ConsumerWidget {
 }
 
 class _StudentSummaryCard extends StatelessWidget {
-  const _StudentSummaryCard({required this.summary});
+  const _StudentSummaryCard({
+    required this.summary,
+    required this.onCycleSelected,
+    required this.onShowCurrent,
+  });
   final StudentAcademicSummary summary;
+  final ValueChanged<String> onCycleSelected;
+  final VoidCallback onShowCurrent;
 
   @override
   Widget build(BuildContext context) {
@@ -136,9 +150,42 @@ class _StudentSummaryCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 16),
-            Text(
-              summary.activeCycleName ?? l10n.dashboardNoActiveCycle,
-              style: Theme.of(context).textTheme.titleMedium,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: DropdownButtonFormField<String>(
+                    initialValue: summary.selectedCycleId,
+                    decoration: InputDecoration(
+                      labelText: l10n.dashboardCycleSelectorLabel,
+                      prefixIcon: const Icon(Icons.calendar_month_outlined),
+                    ),
+                    items: summary.cycles
+                        .map(
+                          (cycle) => DropdownMenuItem(
+                            value: cycle.id,
+                            child: Text(
+                              cycle.isCurrent
+                                  ? '${cycle.name} · ${l10n.dashboardCurrentCycleShort}'
+                                  : cycle.name,
+                            ),
+                          ),
+                        )
+                        .toList(growable: false),
+                    onChanged: (cycleId) {
+                      if (cycleId != null) onCycleSelected(cycleId);
+                    },
+                  ),
+                ),
+                if (!summary.isViewingCurrentCycle) ...[
+                  const SizedBox(width: 8),
+                  TextButton.icon(
+                    onPressed: onShowCurrent,
+                    icon: const Icon(Icons.my_location_outlined),
+                    label: Text(l10n.dashboardShowCurrentCycle),
+                  ),
+                ],
+              ],
             ),
             const SizedBox(height: 8),
             Text(
