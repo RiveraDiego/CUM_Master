@@ -30,46 +30,62 @@ class CyclesPage extends ConsumerWidget {
                           : Icons.calendar_month_outlined,
                     ),
                     title: Text(items[index].name),
-                    subtitle: items[index].isActive
-                        ? Text(l10n.cycleActive)
-                        : null,
-                    onTap: items[index].isActive
-                        ? null
-                        : () => ref
-                              .read(cycleActionsProvider)
-                              .setActive(studentId, items[index].id),
-                    trailing: PopupMenuButton<_CycleAction>(
-                      tooltip: l10n.subjectMoreActions,
-                      onSelected: (action) async {
-                        switch (action) {
-                          case _CycleAction.activate:
-                            await ref
-                                .read(cycleActionsProvider)
-                                .setActive(studentId, items[index].id);
-                          case _CycleAction.rename:
-                            await _rename(
-                              context,
-                              ref,
-                              items[index].id,
-                              items[index].name,
-                            );
-                          case _CycleAction.delete:
-                            await _delete(context, ref, items[index].id);
-                        }
-                      },
-                      itemBuilder: (_) => [
-                        if (!items[index].isActive)
-                          PopupMenuItem(
-                            value: _CycleAction.activate,
-                            child: Text(l10n.cycleActivateAction),
-                          ),
-                        PopupMenuItem(
-                          value: _CycleAction.rename,
-                          child: Text(l10n.cycleRenameAction),
+                    subtitle: Text(
+                      items[index].isActive
+                          ? l10n.cycleCurrentState
+                          : l10n.cycleNotCurrentState,
+                    ),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Switch(
+                          value: items[index].isActive,
+                          onChanged: (isCurrent) async {
+                            final actions = ref.read(cycleActionsProvider);
+                            if (isCurrent) {
+                              await actions.setActive(
+                                studentId,
+                                items[index].id,
+                              );
+                            } else {
+                              await actions.clearActive(studentId);
+                            }
+                          },
                         ),
-                        PopupMenuItem(
-                          value: _CycleAction.delete,
-                          child: Text(l10n.deleteAction),
+                        PopupMenuButton<_CycleAction>(
+                          tooltip: l10n.subjectMoreActions,
+                          onSelected: (action) async {
+                            switch (action) {
+                              case _CycleAction.activate:
+                                await ref
+                                    .read(cycleActionsProvider)
+                                    .setActive(studentId, items[index].id);
+                              case _CycleAction.rename:
+                                await _rename(
+                                  context,
+                                  ref,
+                                  items[index].id,
+                                  items[index].name,
+                                );
+                              case _CycleAction.delete:
+                                await _delete(context, ref, items[index].id);
+                            }
+                          },
+                          itemBuilder: (_) => [
+                            if (!items[index].isActive)
+                              PopupMenuItem(
+                                value: _CycleAction.activate,
+                                child: Text(l10n.cycleActivateAction),
+                              ),
+                            PopupMenuItem(
+                              value: _CycleAction.rename,
+                              child: Text(l10n.cycleRenameAction),
+                            ),
+                            PopupMenuItem(
+                              value: _CycleAction.delete,
+                              child: Text(l10n.deleteAction),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -112,10 +128,9 @@ class CyclesPage extends ConsumerWidget {
     controller.dispose();
     if (name == null || name.isEmpty) return;
     try {
-      final existing = await ref.read(cyclesProvider(studentId).future);
       await ref
           .read(cycleActionsProvider)
-          .create(studentId, name, active: existing.isEmpty);
+          .create(studentId, name, active: false);
     } on DuplicateCycleNameException {
       if (context.mounted) _show(context, l10n.cycleDuplicateError);
     } on CycleException {

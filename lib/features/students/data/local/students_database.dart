@@ -5,7 +5,7 @@ class StudentsDatabase {
   StudentsDatabase({DatabaseFactory? factory, this.databasePath})
     : _factory = factory ?? databaseFactory;
 
-  static const schemaVersion = 5;
+  static const schemaVersion = 6;
   static const fileName = 'cum_master.db';
 
   final DatabaseFactory _factory;
@@ -79,6 +79,17 @@ class StudentsDatabase {
             }
             await _createActivitiesTable(database);
           }
+          if (oldVersion < 6) {
+            await database.execute(
+              'DROP TRIGGER IF EXISTS create_default_cycle_after_student',
+            );
+            await database.update(
+              'cycles',
+              {'is_active': 0},
+              where: "id = 'cycle-' || student_id AND name = ?",
+              whereArgs: ['Ciclo actual'],
+            );
+          }
         },
       ),
     );
@@ -104,14 +115,6 @@ class StudentsDatabase {
     await database.execute(
       'CREATE UNIQUE INDEX idx_cycles_one_active ON cycles(student_id) WHERE is_active = 1',
     );
-    await database.execute('''
-      CREATE TRIGGER create_default_cycle_after_student
-      AFTER INSERT ON students
-      BEGIN
-        INSERT INTO cycles (id, student_id, name, is_active, created_at, updated_at)
-        VALUES ('cycle-' || NEW.id, NEW.id, 'Ciclo actual', 1, NEW.created_at, NEW.updated_at);
-      END
-    ''');
   }
 
   static Future<void> _createDefaultCycles(Database database) async {

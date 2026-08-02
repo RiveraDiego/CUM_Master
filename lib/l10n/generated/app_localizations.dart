@@ -758,6 +758,30 @@ abstract class AppLocalizations {
   /// **'Rename'**
   String get cycleRenameAction;
 
+  /// No description provided for @cycleCurrentState.
+  ///
+  /// In en, this message translates to:
+  /// **'This is the current term'**
+  String get cycleCurrentState;
+
+  /// No description provided for @cycleNotCurrentState.
+  ///
+  /// In en, this message translates to:
+  /// **'This is not the current term'**
+  String get cycleNotCurrentState;
+
+  /// No description provided for @dashboardNoCurrentCycleMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You have not set a current term. Activate one to see its subjects and grades here.'**
+  String get dashboardNoCurrentCycleMessage;
+
+  /// No description provided for @dashboardChooseCurrentCycle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose current term'**
+  String get dashboardChooseCurrentCycle;
+
   /// No description provided for @assessmentManualGrade.
   ///
   /// In en, this message translates to:

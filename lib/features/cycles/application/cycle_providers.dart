@@ -42,6 +42,12 @@ class CycleActions {
     ref.read(academicDataRevisionProvider.notifier).bump();
   }
 
+  Future<void> clearActive(String studentId) async {
+    await ref.read(cycleRepositoryProvider).clearActive(studentId);
+    ref.invalidate(cyclesProvider(studentId));
+    ref.read(academicDataRevisionProvider.notifier).bump();
+  }
+
   Future<void> rename(String studentId, String id, String name) async {
     await ref.read(cycleRepositoryProvider).rename(id, name);
     ref.invalidate(cyclesProvider(studentId));

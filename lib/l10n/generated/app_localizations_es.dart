@@ -373,6 +373,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get cycleRenameAction => 'Renombrar';
 
   @override
+  String get cycleCurrentState => 'Este es el ciclo actual';
+
+  @override
+  String get cycleNotCurrentState => 'No es el ciclo actual';
+
+  @override
+  String get dashboardNoCurrentCycleMessage =>
+      'No has establecido ningún ciclo como actual. Activa uno para ver sus materias y notas aquí.';
+
+  @override
+  String get dashboardChooseCurrentCycle => 'Elegir ciclo actual';
+
+  @override
   String get assessmentManualGrade => 'Nota manual (sin actividades)';
 
   @override
