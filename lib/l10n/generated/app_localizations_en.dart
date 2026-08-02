@@ -646,4 +646,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String dashboardGeneralCum(String cum) {
     return 'Overall historical GPA: $cum';
   }
+
+  @override
+  String get settingsAdPrivacyAction => 'Ad privacy options';
+
+  @override
+  String get settingsAdPrivacyError =>
+      'Privacy options could not be opened. Please try again.';
 }

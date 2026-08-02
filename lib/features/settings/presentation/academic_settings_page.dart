@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/ads/ad_service.dart';
 import '../../../core/theme/theme_mode_provider.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/presentation/widgets/app_drawer.dart';
@@ -80,6 +81,20 @@ class _AcademicSettingsPageState extends ConsumerState<AcademicSettingsPage> {
                             ref.read(appThemeModeActionsProvider).save(mode);
                           }
                         },
+                ),
+                ListenableBuilder(
+                  listenable: AdService.instance,
+                  builder: (context, _) =>
+                      AdService.instance.privacyOptionsRequired
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 12),
+                          child: OutlinedButton.icon(
+                            onPressed: _openAdPrivacyOptions,
+                            icon: const Icon(Icons.privacy_tip_outlined),
+                            label: Text(l10n.settingsAdPrivacyAction),
+                          ),
+                        )
+                      : const SizedBox.shrink(),
                 ),
                 const SizedBox(height: 32),
                 Text(
@@ -169,6 +184,16 @@ class _AcademicSettingsPageState extends ConsumerState<AcademicSettingsPage> {
         },
       ),
     );
+  }
+
+  Future<void> _openAdPrivacyOptions() async {
+    final l10n = AppLocalizations.of(context)!;
+    final error = await AdService.instance.showPrivacyOptions();
+    if (error != null && mounted) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.settingsAdPrivacyError)));
+    }
   }
 
   Widget _termPair(String label, int singular, int plural) {

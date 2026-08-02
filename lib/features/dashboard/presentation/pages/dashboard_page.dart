@@ -6,6 +6,7 @@ import '../../../../core/router/app_router.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/presentation/widgets/app_drawer.dart';
 import '../../../../shared/presentation/widgets/app_navigation_app_bar.dart';
+import '../../../../shared/presentation/widgets/minimal_banner_ad.dart';
 import '../../../settings/application/academic_settings_providers.dart';
 import '../../../settings/domain/academic_settings.dart';
 import '../../domain/entities/academic_summary.dart';
@@ -30,6 +31,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
     return Scaffold(
       appBar: appNavigationAppBar(context, title: Text(l10n.dashboardTitle)),
       drawer: const AppDrawer(),
+      bottomNavigationBar: const MinimalBannerAd(),
       body: SafeArea(
         child: summaries.when(
           loading: () => const Center(child: CircularProgressIndicator()),

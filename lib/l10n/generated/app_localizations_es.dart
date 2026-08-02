@@ -651,4 +651,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String dashboardGeneralCum(String cum) {
     return 'CUM general histórico: $cum';
   }
+
+  @override
+  String get settingsAdPrivacyAction => 'Opciones de privacidad de anuncios';
+
+  @override
+  String get settingsAdPrivacyError =>
+      'No se pudieron abrir las opciones de privacidad. IntÃ©ntalo nuevamente.';
 }
