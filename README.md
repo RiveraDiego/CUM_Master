@@ -1,95 +1,92 @@
 # 🎓 CUM Master
 
-> La plataforma académica inteligente para estudiantes universitarios.
+Aplicación Android offline para organizar el historial académico universitario, calcular notas finales y consultar el CUM ponderado por unidades valorativas.
 
-![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter)
-![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart)
-![Platform](https://img.shields.io/badge/Platform-Android-success)
-![License](https://img.shields.io/badge/License-MIT-blue)
+> Estado: desarrollo activo y preparación para pruebas internas/cerradas en Google Play.
 
-## 📖 Descripción
+## Funcionalidades disponibles
 
-**CUM Master** es una aplicación móvil desarrollada con **Flutter** cuyo objetivo es ayudar a estudiantes universitarios a gestionar, analizar y mejorar su rendimiento académico.
+- Gestión local de múltiples estudiantes, diferenciados por carnet y universidad opcional.
+- CRUD de ciclos lectivos con un único ciclo marcado como actual, o ninguno.
+- CRUD de materias asociadas a cualquier ciclo.
+- Unidades valorativas y nota final histórica por materia.
+- CRUD de evaluaciones con nota manual y ponderación opcional.
+- CRUD opcional de actividades dentro de cada evaluación.
+- Cálculo jerárquico de actividades, evaluaciones, nota final y CUM.
+- Dashboard con selector de ciclo y acceso rápido al ciclo actual.
+- Copias de seguridad completas en JSON para guardar, compartir e importar.
+- Interfaz en español e inglés.
+- Persistencia SQLite completamente local, sin autenticación ni nube.
 
-A diferencia de una simple calculadora de promedio, CUM Master será una plataforma académica inteligente, completamente configurable para adaptarse a cualquier universidad, país o sistema de evaluación.
+## Reglas de cálculo implementadas
 
----
+- Sin ponderaciones, la nota final usa el promedio simple de las evaluaciones.
+- Si existen evaluaciones ponderadas y otras sin ponderar, el peso restante se distribuye mediante el promedio de las no ponderadas; nunca se inventa una ponderación individual.
+- Una evaluación sin actividades utiliza la nota ingresada manualmente.
+- Una evaluación con actividades se calcula cuando sus ponderaciones suman 100 %.
+- El CUM general se pondera mediante las unidades valorativas de cada materia.
 
-# ✨ Características
+## Tecnología
 
-- 📚 Gestión ilimitada de materias
-- 📊 Cálculo de CUM, GPA y promedios ponderados
-- 🎯 Gestión de metas académicas
-- 🧮 Simulador de notas en tiempo real
-- 📈 Estadísticas de rendimiento
-- 💡 Insights inteligentes
-- ⚙️ Configuración avanzada de escalas de notas
-- 🌍 Soporte para múltiples sistemas educativos
-- 🌙 Modo claro y oscuro
-- ✨ Interfaz moderna con Material 3 y Glassmorphism
-- 📱 Funcionamiento 100% offline
-
----
-
-# 🛠️ Tecnologías
-
-- Flutter
-- Dart
+- Flutter y Dart
 - Material 3
 - Riverpod
 - GoRouter
 - SQLite
-- Clean Architecture
-- Feature First Architecture
+- Arquitectura Feature First con repositorios y casos de uso
+- Internacionalización desde código fuente
 
----
+## Ejecutar el proyecto
 
-# 📂 Estado del proyecto
+Requisitos:
 
-🚧 En desarrollo
+- Flutter estable configurado
+- Android Studio y Android SDK
+- JDK compatible con Flutter
+- Dispositivo Android o emulador con depuración habilitada
 
-Actualmente el proyecto se encuentra en fase de planificación y diseño de arquitectura.
+```bash
+flutter pub get
+flutter analyze
+flutter test
+flutter run
+```
 
----
+Para elegir el teléfono desde Android Studio, selecciona el dispositivo Android en la barra superior antes de pulsar **Run**. No selecciones `Windows`, porque el proyecto está configurado actualmente para Android.
 
-# 🗺️ Roadmap
+## Calidad
 
-- [x] Definición del producto
-- [ ] Documentación técnica (PRD)
-- [ ] Arquitectura
-- [ ] Modelo de datos
-- [ ] Configuración del proyecto Flutter
-- [ ] Sistema de diseño
-- [ ] Dashboard
-- [ ] Gestión de materias
-- [ ] Simulador
-- [ ] Estadísticas
-- [ ] Insights inteligentes
-- [ ] Monetización
-- [ ] Publicación en Google Play
+El repositorio utiliza Conventional Commits y cada hito funcional se valida con:
 
----
+- análisis estático;
+- pruebas unitarias y de widgets;
+- compilación de APK Android;
+- instalación y prueba visual en un Galaxy S23 Ultra cuando está conectado.
 
-# 🎯 Objetivo
+## Roadmap inmediato
 
-Construir una plataforma académica moderna que permita a cualquier estudiante tomar mejores decisiones sobre su rendimiento mediante herramientas inteligentes, simulaciones y análisis de datos.
+- [x] Base Flutter profesional
+- [x] CRUD de estudiantes
+- [x] CRUD de ciclos
+- [x] CRUD de materias
+- [x] CRUD de evaluaciones
+- [x] CRUD opcional de actividades
+- [x] Dashboard académico por ciclo
+- [x] CUM ponderado por unidades valorativas
+- [x] Exportación e importación local
+- [ ] Configuración académica: terminología, UV predeterminadas y redondeo
+- [ ] Sistema visual definitivo, modo oscuro y onboarding
+- [ ] Identidad, firma y Android App Bundle para Google Play
+- [ ] Pruebas internas y cerradas en Google Play
+- [ ] Estadísticas históricas
+- [ ] Publicidad mínima
 
----
+El simulador independiente, Premium y la sincronización en la nube están fuera del alcance de la versión inicial.
 
-# 🤝 Contribuciones
+## Privacidad y datos
 
-Actualmente el proyecto se encuentra en desarrollo privado.
+CUM Master no requiere una cuenta ni envía información académica a servidores. Los datos viven en el dispositivo. El usuario puede exportar una copia y guardarla en el servicio que prefiera.
 
-En futuras versiones podrán aceptarse contribuciones de la comunidad.
+## Autor
 
----
-
-# 📄 Licencia
-
-Este proyecto se distribuye bajo la licencia MIT.
-
----
-
-## 👨‍💻 Autor
-
-Desarrollado por **Diego Menéndez**.
+Desarrollado por Diego Rivera.
