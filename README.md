@@ -74,7 +74,7 @@ El repositorio utiliza Conventional Commits y cada hito funcional se valida con:
 - [x] Dashboard académico por ciclo
 - [x] CUM ponderado por unidades valorativas
 - [x] Exportación e importación local
-- [ ] Configuración académica: terminología, UV predeterminadas y redondeo
+- [x] Configuración académica: terminología, UV predeterminadas y redondeo
 - [ ] Sistema visual definitivo, modo oscuro y onboarding
 - [ ] Identidad, firma y Android App Bundle para Google Play
 - [ ] Pruebas internas y cerradas en Google Play

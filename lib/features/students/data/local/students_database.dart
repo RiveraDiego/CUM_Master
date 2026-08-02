@@ -5,7 +5,7 @@ class StudentsDatabase {
   StudentsDatabase({DatabaseFactory? factory, this.databasePath})
     : _factory = factory ?? databaseFactory;
 
-  static const schemaVersion = 6;
+  static const schemaVersion = 7;
   static const fileName = 'cum_master.db';
 
   final DatabaseFactory _factory;
@@ -51,6 +51,7 @@ class StudentsDatabase {
           await _createSubjectsTable(database);
           await _createAssessmentsTable(database);
           await _createActivitiesTable(database);
+          await _createAcademicSettingsTable(database);
         },
         onUpgrade: (database, oldVersion, newVersion) async {
           if (oldVersion < 2) {
@@ -90,6 +91,7 @@ class StudentsDatabase {
               whereArgs: ['Ciclo actual'],
             );
           }
+          if (oldVersion < 7) await _createAcademicSettingsTable(database);
         },
       ),
     );
@@ -196,6 +198,34 @@ class StudentsDatabase {
     await database.execute(
       'CREATE INDEX idx_activities_assessment_id ON activities(assessment_id)',
     );
+  }
+
+  static Future<void> _createAcademicSettingsTable(Database database) async {
+    await database.execute('''
+      CREATE TABLE academic_settings (
+        id INTEGER PRIMARY KEY CHECK(id = 1),
+        default_credit_units REAL NOT NULL DEFAULT 1,
+        decimal_places INTEGER NOT NULL DEFAULT 1,
+        rounding_mode TEXT NOT NULL DEFAULT 'ceiling',
+        cycle_singular TEXT,
+        cycle_plural TEXT,
+        subject_singular TEXT,
+        subject_plural TEXT,
+        assessment_singular TEXT,
+        assessment_plural TEXT,
+        activity_singular TEXT,
+        activity_plural TEXT,
+        CHECK(default_credit_units > 0),
+        CHECK(decimal_places BETWEEN 0 AND 3),
+        CHECK(rounding_mode IN ('ceiling', 'nearest', 'floor'))
+      )
+    ''');
+    await database.insert('academic_settings', {
+      'id': 1,
+      'default_credit_units': 1,
+      'decimal_places': 1,
+      'rounding_mode': 'ceiling',
+    });
   }
 
   Future<void> close() async {

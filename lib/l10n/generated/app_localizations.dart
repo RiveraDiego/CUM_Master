@@ -872,6 +872,156 @@ abstract class AppLocalizations {
   /// **'View current'**
   String get dashboardShowCurrentCycle;
 
+  /// No description provided for @settingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Academic settings'**
+  String get settingsTitle;
+
+  /// No description provided for @settingsLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings could not be loaded.'**
+  String get settingsLoadError;
+
+  /// No description provided for @settingsCalculationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculations and defaults'**
+  String get settingsCalculationTitle;
+
+  /// No description provided for @settingsDefaultUvLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Default credit units'**
+  String get settingsDefaultUvLabel;
+
+  /// No description provided for @settingsDefaultUvHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Used when creating a new subject.'**
+  String get settingsDefaultUvHelp;
+
+  /// No description provided for @settingsDecimalsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Displayed decimals'**
+  String get settingsDecimalsLabel;
+
+  /// No description provided for @settingsDecimalsValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} decimal places'**
+  String settingsDecimalsValue(int count);
+
+  /// No description provided for @settingsRoundingLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounding method'**
+  String get settingsRoundingLabel;
+
+  /// No description provided for @settingsRoundingCeiling.
+  ///
+  /// In en, this message translates to:
+  /// **'Round up'**
+  String get settingsRoundingCeiling;
+
+  /// No description provided for @settingsRoundingNearest.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearest value'**
+  String get settingsRoundingNearest;
+
+  /// No description provided for @settingsRoundingFloor.
+  ///
+  /// In en, this message translates to:
+  /// **'Round down'**
+  String get settingsRoundingFloor;
+
+  /// No description provided for @settingsApplyUvAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply these units to existing subjects'**
+  String get settingsApplyUvAction;
+
+  /// No description provided for @settingsApplyUvTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Update every subject?'**
+  String get settingsApplyUvTitle;
+
+  /// No description provided for @settingsApplyUvMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Every subject will use {value} credit units. Grades will not change.'**
+  String settingsApplyUvMessage(String value);
+
+  /// No description provided for @settingsApplyAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get settingsApplyAction;
+
+  /// No description provided for @settingsUvApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Credit units were updated successfully.'**
+  String get settingsUvApplied;
+
+  /// No description provided for @settingsTerminologyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Terminology'**
+  String get settingsTerminologyTitle;
+
+  /// No description provided for @settingsTerminologyHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave fields empty to use the language defaults.'**
+  String get settingsTerminologyHelp;
+
+  /// No description provided for @settingsCycleTerm.
+  ///
+  /// In en, this message translates to:
+  /// **'Term'**
+  String get settingsCycleTerm;
+
+  /// No description provided for @settingsSubjectTerm.
+  ///
+  /// In en, this message translates to:
+  /// **'Subject'**
+  String get settingsSubjectTerm;
+
+  /// No description provided for @settingsAssessmentTerm.
+  ///
+  /// In en, this message translates to:
+  /// **'Assessment'**
+  String get settingsAssessmentTerm;
+
+  /// No description provided for @settingsActivityTerm.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity'**
+  String get settingsActivityTerm;
+
+  /// No description provided for @settingsSingularLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'singular'**
+  String get settingsSingularLabel;
+
+  /// No description provided for @settingsPluralLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'plural'**
+  String get settingsPluralLabel;
+
+  /// No description provided for @settingsSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings saved.'**
+  String get settingsSaved;
+
   /// No description provided for @assessmentManualGrade.
   ///
   /// In en, this message translates to:

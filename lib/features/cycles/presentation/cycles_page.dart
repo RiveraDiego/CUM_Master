@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../application/cycle_providers.dart';
 import '../domain/errors/cycle_exceptions.dart';
+import '../../settings/application/academic_settings_providers.dart';
 
 class CyclesPage extends ConsumerWidget {
   const CyclesPage({super.key, required this.studentId});
@@ -12,8 +13,12 @@ class CyclesPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final cycles = ref.watch(cyclesProvider(studentId));
+    final terminology = ref.watch(academicSettingsProvider).value;
+    final title = terminology?.cyclePlural?.trim();
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.cyclesTitle)),
+      appBar: AppBar(
+        title: Text(title == null || title.isEmpty ? l10n.cyclesTitle : title),
+      ),
       body: cycles.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (_, _) => Center(child: Text(l10n.cyclesLoadError)),
