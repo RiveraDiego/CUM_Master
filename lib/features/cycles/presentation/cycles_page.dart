@@ -135,6 +135,7 @@ class CyclesPage extends ConsumerWidget {
         ],
       ),
     );
+    await Future<void>.delayed(kThemeAnimationDuration);
     controller.dispose();
     if (name == null || name.isEmpty) return;
     try {
@@ -185,6 +186,7 @@ class CyclesPage extends ConsumerWidget {
         ],
       ),
     );
+    await Future<void>.delayed(kThemeAnimationDuration);
     controller.dispose();
     if (name != null && name.isNotEmpty) {
       try {

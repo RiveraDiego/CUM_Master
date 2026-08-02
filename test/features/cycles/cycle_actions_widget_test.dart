@@ -1,5 +1,6 @@
 import 'package:cum_master/features/cycles/application/cycle_providers.dart';
 import 'package:cum_master/features/cycles/domain/entities/academic_cycle.dart';
+import 'package:cum_master/features/cycles/domain/repositories/cycle_repository.dart';
 import 'package:cum_master/features/cycles/presentation/cycles_page.dart';
 import 'package:cum_master/l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +21,12 @@ void main() {
       updatedAt: now,
     );
 
+    final repository = _CycleRepository();
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
           cyclesProvider('student-1').overrideWith((ref) async => [cycle]),
+          cycleRepositoryProvider.overrideWithValue(repository),
         ],
         child: const MaterialApp(
           locale: Locale('es'),
@@ -42,6 +45,39 @@ void main() {
 
     expect(find.text('Renombrar ciclo'), findsOneWidget);
     expect(find.text('Ciclo III'), findsNWidgets(2));
+
+    await tester.enterText(find.byType(TextField), 'Ciclo IV');
+    await tester.tap(find.text('Guardar'));
+    await tester.pumpAndSettle();
+
+    expect(repository.renamedCycleId, 'cycle-1');
+    expect(repository.renamedValue, 'Ciclo IV');
     expect(tester.takeException(), isNull);
   });
+}
+
+class _CycleRepository implements CycleRepository {
+  String? renamedCycleId;
+  String? renamedValue;
+
+  @override
+  Future<void> rename(String cycleId, String name) async {
+    renamedCycleId = cycleId;
+    renamedValue = name;
+  }
+
+  @override
+  Future<void> clearActive(String studentId) async {}
+
+  @override
+  Future<void> create(AcademicCycle cycle) async {}
+
+  @override
+  Future<void> delete(String cycleId) async {}
+
+  @override
+  Future<List<AcademicCycle>> getAll(String studentId) async => const [];
+
+  @override
+  Future<void> setActive(String studentId, String cycleId) async {}
 }
