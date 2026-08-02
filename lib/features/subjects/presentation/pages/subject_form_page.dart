@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/router/app_router.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../cycles/application/cycle_providers.dart';
+import '../../../cycles/domain/errors/cycle_exceptions.dart';
 import '../../application/subject_providers.dart';
 import '../../domain/entities/subject.dart';
 import '../../domain/errors/subject_exceptions.dart';
@@ -19,6 +21,7 @@ class SubjectFormPage extends ConsumerStatefulWidget {
 }
 
 class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
+  static const _createCycleValue = '__create_cycle__';
   final _formKey = GlobalKey<FormState>();
   final _name = TextEditingController();
   final _code = TextEditingController();
@@ -116,14 +119,45 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
                           child: Text(item.name),
                         ),
                       )
+                      .followedBy([
+                        DropdownMenuItem(
+                          value: _createCycleValue,
+                          child: Row(
+                            children: [
+                              const Icon(Icons.add, size: 20),
+                              const SizedBox(width: 8),
+                              Text(l10n.cycleCreateInlineAction),
+                            ],
+                          ),
+                        ),
+                      ])
                       .toList(),
                   onChanged: _saving
                       ? null
-                      : (value) => setState(() => _cycleId = value),
+                      : (value) async {
+                          if (value == _createCycleValue) {
+                            await _createCycle(l10n);
+                          } else {
+                            setState(() => _cycleId = value);
+                          }
+                        },
                   validator: (value) =>
                       value == null ? l10n.subjectCycleRequiredError : null,
                 );
               },
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton.icon(
+                onPressed: _saving
+                    ? null
+                    : () => context.pushNamed(
+                        AppRoute.cycles,
+                        pathParameters: {'studentId': widget.studentId},
+                      ),
+                icon: const Icon(Icons.settings_outlined),
+                label: Text(l10n.cyclesManageAction),
+              ),
             ),
             const SizedBox(height: 20),
             TextFormField(
@@ -200,6 +234,47 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
         ),
       ),
     );
+  }
+
+  Future<void> _createCycle(AppLocalizations l10n) async {
+    final controller = TextEditingController();
+    final name = await showDialog<String>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: Text(l10n.cycleCreateTitle),
+        content: TextField(
+          controller: controller,
+          autofocus: true,
+          textInputAction: TextInputAction.done,
+          onSubmitted: (value) => Navigator.pop(dialogContext, value.trim()),
+          decoration: InputDecoration(labelText: l10n.cycleNameLabel),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext),
+            child: Text(l10n.cancelAction),
+          ),
+          FilledButton(
+            onPressed: () =>
+                Navigator.pop(dialogContext, controller.text.trim()),
+            child: Text(l10n.saveAction),
+          ),
+        ],
+      ),
+    );
+    await Future<void>.delayed(kThemeAnimationDuration);
+    controller.dispose();
+    if (name == null || name.isEmpty || !mounted) return;
+    try {
+      final cycle = await ref
+          .read(cycleActionsProvider)
+          .create(widget.studentId, name, active: false);
+      if (mounted) setState(() => _cycleId = cycle.id);
+    } on DuplicateCycleNameException {
+      _show(l10n.cycleDuplicateError);
+    } on CycleException {
+      _show(l10n.cycleStorageError);
+    }
   }
 
   Widget _loadError(String message, {bool retry = false}) {

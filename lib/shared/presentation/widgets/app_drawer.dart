@@ -32,6 +32,11 @@ class AppDrawer extends StatelessWidget {
               title: Text(l10n.studentsTitle),
               onTap: () => _navigate(context, AppRoute.students),
             ),
+            ListTile(
+              leading: const Icon(Icons.backup_outlined),
+              title: Text(l10n.backupTitle),
+              onTap: () => _navigate(context, AppRoute.backup),
+            ),
           ],
         ),
       ),

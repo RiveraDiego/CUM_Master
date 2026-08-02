@@ -355,6 +355,86 @@ class AppLocalizationsEs extends AppLocalizations {
   String get cycleEditTitle => 'Renombrar ciclo';
 
   @override
+  String get cyclesManageAction => 'Gestionar ciclos';
+
+  @override
+  String get cycleCreateInlineAction => 'Crear nuevo ciclo';
+
+  @override
+  String get subjectsCycleFilterLabel => 'Ciclo que deseas consultar';
+
+  @override
+  String get subjectsEmptyForCycle => 'Este ciclo aún no tiene materias.';
+
+  @override
+  String get cycleActivateAction => 'Marcar como ciclo activo';
+
+  @override
+  String get cycleRenameAction => 'Renombrar';
+
+  @override
+  String get cycleCurrentState => 'Este es el ciclo actual';
+
+  @override
+  String get cycleNotCurrentState => 'No es el ciclo actual';
+
+  @override
+  String get dashboardNoCurrentCycleMessage =>
+      'No has establecido ningún ciclo como actual. Activa uno para ver sus materias y notas aquí.';
+
+  @override
+  String get dashboardChooseCurrentCycle => 'Elegir ciclo actual';
+
+  @override
+  String get backupTitle => 'Copia de seguridad';
+
+  @override
+  String get backupExportTitle => 'Exportar todos mis datos';
+
+  @override
+  String get backupExportDescription =>
+      'Crea un archivo para guardarlo o compartirlo.';
+
+  @override
+  String get backupImportTitle => 'Importar una copia';
+
+  @override
+  String get backupImportDescription =>
+      'Restaura estudiantes, ciclos, materias y notas desde un archivo.';
+
+  @override
+  String get backupImportConfirmTitle => '¿Importar una copia?';
+
+  @override
+  String get backupImportConfirmMessage =>
+      'Los datos actuales del dispositivo serán reemplazados. Esta acción no se puede deshacer.';
+
+  @override
+  String get backupChooseFileAction => 'Elegir archivo';
+
+  @override
+  String get backupImportSuccess => 'La copia se importó correctamente.';
+
+  @override
+  String get backupInvalidFileError =>
+      'El archivo no es una copia válida de CUM Master.';
+
+  @override
+  String get backupImportError => 'No se pudo importar la copia.';
+
+  @override
+  String get backupExportError => 'No se pudo crear la copia de seguridad.';
+
+  @override
+  String get dashboardCycleSelectorLabel => 'Ciclo mostrado';
+
+  @override
+  String get dashboardCurrentCycleShort => 'Actual';
+
+  @override
+  String get dashboardShowCurrentCycle => 'Ver actual';
+
+  @override
   String get assessmentManualGrade => 'Nota manual (sin actividades)';
 
   @override

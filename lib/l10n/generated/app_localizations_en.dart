@@ -351,6 +351,86 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cycleEditTitle => 'Rename term';
 
   @override
+  String get cyclesManageAction => 'Manage terms';
+
+  @override
+  String get cycleCreateInlineAction => 'Create new term';
+
+  @override
+  String get subjectsCycleFilterLabel => 'Academic term to view';
+
+  @override
+  String get subjectsEmptyForCycle =>
+      'This term does not have any subjects yet.';
+
+  @override
+  String get cycleActivateAction => 'Set as active term';
+
+  @override
+  String get cycleRenameAction => 'Rename';
+
+  @override
+  String get cycleCurrentState => 'This is the current term';
+
+  @override
+  String get cycleNotCurrentState => 'This is not the current term';
+
+  @override
+  String get dashboardNoCurrentCycleMessage =>
+      'You have not set a current term. Activate one to see its subjects and grades here.';
+
+  @override
+  String get dashboardChooseCurrentCycle => 'Choose current term';
+
+  @override
+  String get backupTitle => 'Backup';
+
+  @override
+  String get backupExportTitle => 'Export all my data';
+
+  @override
+  String get backupExportDescription => 'Creates a file you can save or share.';
+
+  @override
+  String get backupImportTitle => 'Import a backup';
+
+  @override
+  String get backupImportDescription =>
+      'Restores students, terms, subjects and grades from a file.';
+
+  @override
+  String get backupImportConfirmTitle => 'Import a backup?';
+
+  @override
+  String get backupImportConfirmMessage =>
+      'Current data on this device will be replaced. This action cannot be undone.';
+
+  @override
+  String get backupChooseFileAction => 'Choose file';
+
+  @override
+  String get backupImportSuccess => 'The backup was imported successfully.';
+
+  @override
+  String get backupInvalidFileError =>
+      'This file is not a valid CUM Master backup.';
+
+  @override
+  String get backupImportError => 'The backup could not be imported.';
+
+  @override
+  String get backupExportError => 'The backup could not be created.';
+
+  @override
+  String get dashboardCycleSelectorLabel => 'Displayed term';
+
+  @override
+  String get dashboardCurrentCycleShort => 'Current';
+
+  @override
+  String get dashboardShowCurrentCycle => 'View current';
+
+  @override
   String get assessmentManualGrade => 'Manual grade (no activities)';
 
   @override

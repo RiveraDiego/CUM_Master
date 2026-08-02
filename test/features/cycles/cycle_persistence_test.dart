@@ -30,9 +30,9 @@ void main() {
   });
   tearDown(() => database.close());
 
-  test('creates a default cycle and switches the active cycle', () async {
+  test('starts without a cycle and allows at most one current cycle', () async {
     final initial = await cycles.getAll(studentId);
-    expect(initial.single.isActive, isTrue);
+    expect(initial, isEmpty);
 
     final now = DateTime.now().toUtc();
     await cycles.create(
@@ -49,10 +49,24 @@ void main() {
 
     final updated = await cycles.getAll(studentId);
     expect(updated.singleWhere((item) => item.isActive).id, 'cycle-2');
+    await cycles.clearActive(studentId);
+    expect(
+      (await cycles.getAll(studentId)).any((item) => item.isActive),
+      isFalse,
+    );
   });
 
   test('associates a subject and protects a cycle in use', () async {
-    final cycle = (await cycles.getAll(studentId)).single;
+    final now = DateTime.now().toUtc();
+    final cycle = AcademicCycle(
+      id: 'cycle-history',
+      studentId: studentId,
+      name: 'Ciclo I',
+      isActive: false,
+      createdAt: now,
+      updatedAt: now,
+    );
+    await cycles.create(cycle);
     final subject = await CreateSubject(subjects)(
       studentId: studentId,
       cycleId: cycle.id,

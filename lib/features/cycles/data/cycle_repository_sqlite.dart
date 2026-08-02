@@ -91,6 +91,24 @@ class SqliteCycleRepository implements CycleRepository {
   }
 
   @override
+  Future<void> clearActive(String studentId) async {
+    try {
+      final db = await database.database;
+      await db.update(
+        'cycles',
+        {
+          'is_active': 0,
+          'updated_at': DateTime.now().toUtc().toIso8601String(),
+        },
+        where: 'student_id = ? AND is_active = 1',
+        whereArgs: [studentId],
+      );
+    } on DatabaseException {
+      throw const CycleStorageException();
+    }
+  }
+
+  @override
   Future<void> rename(String cycleId, String name) async {
     try {
       final db = await database.database;

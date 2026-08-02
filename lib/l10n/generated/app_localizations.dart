@@ -722,6 +722,156 @@ abstract class AppLocalizations {
   /// **'Rename term'**
   String get cycleEditTitle;
 
+  /// No description provided for @cyclesManageAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage terms'**
+  String get cyclesManageAction;
+
+  /// No description provided for @cycleCreateInlineAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Create new term'**
+  String get cycleCreateInlineAction;
+
+  /// No description provided for @subjectsCycleFilterLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Academic term to view'**
+  String get subjectsCycleFilterLabel;
+
+  /// No description provided for @subjectsEmptyForCycle.
+  ///
+  /// In en, this message translates to:
+  /// **'This term does not have any subjects yet.'**
+  String get subjectsEmptyForCycle;
+
+  /// No description provided for @cycleActivateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Set as active term'**
+  String get cycleActivateAction;
+
+  /// No description provided for @cycleRenameAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename'**
+  String get cycleRenameAction;
+
+  /// No description provided for @cycleCurrentState.
+  ///
+  /// In en, this message translates to:
+  /// **'This is the current term'**
+  String get cycleCurrentState;
+
+  /// No description provided for @cycleNotCurrentState.
+  ///
+  /// In en, this message translates to:
+  /// **'This is not the current term'**
+  String get cycleNotCurrentState;
+
+  /// No description provided for @dashboardNoCurrentCycleMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'You have not set a current term. Activate one to see its subjects and grades here.'**
+  String get dashboardNoCurrentCycleMessage;
+
+  /// No description provided for @dashboardChooseCurrentCycle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose current term'**
+  String get dashboardChooseCurrentCycle;
+
+  /// No description provided for @backupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup'**
+  String get backupTitle;
+
+  /// No description provided for @backupExportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Export all my data'**
+  String get backupExportTitle;
+
+  /// No description provided for @backupExportDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Creates a file you can save or share.'**
+  String get backupExportDescription;
+
+  /// No description provided for @backupImportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Import a backup'**
+  String get backupImportTitle;
+
+  /// No description provided for @backupImportDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Restores students, terms, subjects and grades from a file.'**
+  String get backupImportDescription;
+
+  /// No description provided for @backupImportConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Import a backup?'**
+  String get backupImportConfirmTitle;
+
+  /// No description provided for @backupImportConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Current data on this device will be replaced. This action cannot be undone.'**
+  String get backupImportConfirmMessage;
+
+  /// No description provided for @backupChooseFileAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose file'**
+  String get backupChooseFileAction;
+
+  /// No description provided for @backupImportSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'The backup was imported successfully.'**
+  String get backupImportSuccess;
+
+  /// No description provided for @backupInvalidFileError.
+  ///
+  /// In en, this message translates to:
+  /// **'This file is not a valid CUM Master backup.'**
+  String get backupInvalidFileError;
+
+  /// No description provided for @backupImportError.
+  ///
+  /// In en, this message translates to:
+  /// **'The backup could not be imported.'**
+  String get backupImportError;
+
+  /// No description provided for @backupExportError.
+  ///
+  /// In en, this message translates to:
+  /// **'The backup could not be created.'**
+  String get backupExportError;
+
+  /// No description provided for @dashboardCycleSelectorLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Displayed term'**
+  String get dashboardCycleSelectorLabel;
+
+  /// No description provided for @dashboardCurrentCycleShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get dashboardCurrentCycleShort;
+
+  /// No description provided for @dashboardShowCurrentCycle.
+  ///
+  /// In en, this message translates to:
+  /// **'View current'**
+  String get dashboardShowCurrentCycle;
+
   /// No description provided for @assessmentManualGrade.
   ///
   /// In en, this message translates to:

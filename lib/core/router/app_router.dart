@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../features/activities/presentation/activities_page.dart';
 import '../../features/assessments/presentation/pages/assessments_page.dart';
+import '../../features/backup/presentation/backup_page.dart';
 import '../../features/cycles/presentation/cycles_page.dart';
 import '../../features/dashboard/presentation/pages/dashboard_page.dart';
 import '../../features/students/presentation/pages/student_form_page.dart';
@@ -20,6 +21,7 @@ abstract final class AppRoute {
   static const assessments = 'assessments';
   static const cycles = 'cycles';
   static const activities = 'activities';
+  static const backup = 'backup';
 }
 
 final GoRouter appRouter = GoRouter(
@@ -29,6 +31,11 @@ final GoRouter appRouter = GoRouter(
       path: '/',
       name: AppRoute.dashboard,
       builder: (context, state) => const DashboardPage(),
+    ),
+    GoRoute(
+      path: '/backup',
+      name: AppRoute.backup,
+      builder: (context, state) => const BackupPage(),
     ),
     GoRoute(
       path: '/activities/:assessmentId',
