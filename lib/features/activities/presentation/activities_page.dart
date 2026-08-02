@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../l10n/generated/app_localizations.dart';
+import '../../../shared/presentation/widgets/app_drawer.dart';
+import '../../../shared/presentation/widgets/app_navigation_app_bar.dart';
 import '../application/activity_providers.dart';
 import '../domain/activity.dart';
 import '../../settings/application/academic_settings_providers.dart';
@@ -15,11 +17,13 @@ class ActivitiesPage extends ConsumerWidget {
     final terminology = ref.watch(academicSettingsProvider).value;
     final title = terminology?.activityPlural?.trim();
     return Scaffold(
-      appBar: AppBar(
+      appBar: appNavigationAppBar(
+        context,
         title: Text(
           title == null || title.isEmpty ? l10n.activitiesTitle : title,
         ),
       ),
+      drawer: const AppDrawer(),
       body: values.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (_, _) => Center(child: Text(l10n.activitiesLoadError)),

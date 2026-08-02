@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/router/app_router.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/presentation/widgets/app_drawer.dart';
+import '../../../../shared/presentation/widgets/app_navigation_app_bar.dart';
 import '../../../cycles/application/cycle_providers.dart';
 import '../../../cycles/domain/entities/academic_cycle.dart';
 import '../../../settings/application/academic_settings_providers.dart';
@@ -30,7 +32,8 @@ class _SubjectsPageState extends ConsumerState<SubjectsPage> {
     final terminology = ref.watch(academicSettingsProvider).value;
     final title = terminology?.subjectPlural?.trim();
     return Scaffold(
-      appBar: AppBar(
+      appBar: appNavigationAppBar(
+        context,
         title: Text(
           title == null || title.isEmpty ? l10n.subjectsTitle : title,
         ),
@@ -42,6 +45,7 @@ class _SubjectsPageState extends ConsumerState<SubjectsPage> {
           ),
         ],
       ),
+      drawer: const AppDrawer(),
       body: SafeArea(
         child: cycles.when(
           loading: () => const Center(child: CircularProgressIndicator()),

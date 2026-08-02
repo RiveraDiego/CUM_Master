@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/presentation/widgets/app_drawer.dart';
+import '../../../../shared/presentation/widgets/app_navigation_app_bar.dart';
 import '../../../settings/application/academic_settings_providers.dart';
 import '../../../settings/domain/academic_settings.dart';
 import '../../domain/entities/academic_summary.dart';
@@ -20,7 +21,7 @@ class DashboardPage extends ConsumerWidget {
     final settings =
         ref.watch(academicSettingsProvider).value ?? AcademicSettings.defaults;
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.dashboardTitle)),
+      appBar: appNavigationAppBar(context, title: Text(l10n.dashboardTitle)),
       drawer: const AppDrawer(),
       body: SafeArea(
         child: summaries.when(
@@ -36,7 +37,7 @@ class DashboardPage extends ConsumerWidget {
               return _DashboardMessage(
                 title: l10n.dashboardNoStudents,
                 action: l10n.studentsCreateAction,
-                onTap: () => context.goNamed(AppRoute.students),
+                onTap: () => context.pushNamed(AppRoute.students),
               );
             }
             if (items.length == 1 && items.single.activeCycleName == null) {

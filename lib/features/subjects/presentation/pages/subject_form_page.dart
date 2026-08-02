@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/router/app_router.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/presentation/widgets/app_drawer.dart';
+import '../../../../shared/presentation/widgets/app_navigation_app_bar.dart';
 import '../../../cycles/application/cycle_providers.dart';
 import '../../../cycles/domain/errors/cycle_exceptions.dart';
 import '../../../settings/application/academic_settings_providers.dart';
@@ -57,9 +59,11 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(
+      appBar: appNavigationAppBar(
+        context,
         title: Text(_editing ? l10n.subjectEditTitle : l10n.subjectCreateTitle),
       ),
+      drawer: const AppDrawer(),
       body: SafeArea(
         child: _editing && !_initialized
             ? FutureBuilder<Subject?>(

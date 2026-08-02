@@ -19,6 +19,7 @@ Aplicación Android offline para organizar el historial académico universitario
 - Persistencia SQLite completamente local, sin autenticación ni nube.
 - Tutorial guiado en el primer inicio, omisible en cualquier paso y accesible nuevamente desde el menú lateral.
 - Tema claro, oscuro o sincronizado con la apariencia del dispositivo.
+- Menú lateral disponible en todas las pantallas operativas y navegación Atrás basada en el historial real.
 
 ## Reglas de cálculo implementadas
 

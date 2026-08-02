@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/theme_mode_provider.dart';
 import '../../../l10n/generated/app_localizations.dart';
+import '../../../shared/presentation/widgets/app_drawer.dart';
+import '../../../shared/presentation/widgets/app_navigation_app_bar.dart';
 import '../application/academic_settings_providers.dart';
 import '../domain/academic_settings.dart';
 
@@ -38,7 +40,8 @@ class _AcademicSettingsPageState extends ConsumerState<AcademicSettingsPage> {
     final settings = ref.watch(academicSettingsProvider);
     final themeMode = ref.watch(appThemeModeProvider).value ?? ThemeMode.system;
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.settingsTitle)),
+      appBar: appNavigationAppBar(context, title: Text(l10n.settingsTitle)),
+      drawer: const AppDrawer(),
       body: settings.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (_, _) => Center(child: Text(l10n.settingsLoadError)),
