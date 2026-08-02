@@ -22,14 +22,19 @@ class BackupActions {
   const BackupActions(this.ref);
   final Ref ref;
 
-  Future<bool> exportAndShare() async {
+  Future<({String json, String name})> _createExport() async {
     final json = await ref.read(backupRepositoryProvider).exportJson();
-    final directory = await getTemporaryDirectory();
     final date = DateTime.now().toIso8601String().substring(0, 10);
+    return (json: json, name: 'cum-master-$date.json');
+  }
+
+  Future<bool> exportAndShare() async {
+    final export = await _createExport();
+    final directory = await getTemporaryDirectory();
     final file = File(
-      '${directory.path}${Platform.pathSeparator}cum-master-$date.json',
+      '${directory.path}${Platform.pathSeparator}${export.name}',
     );
-    await file.writeAsString(json, encoding: utf8, flush: true);
+    await file.writeAsString(export.json, encoding: utf8, flush: true);
     final result = await SharePlus.instance.share(
       ShareParams(
         files: [XFile(file.path, mimeType: 'application/json')],
@@ -37,6 +42,26 @@ class BackupActions {
       ),
     );
     return result.status != ShareResultStatus.unavailable;
+  }
+
+  Future<bool> exportAndSave() async {
+    final export = await _createExport();
+    const type = XTypeGroup(
+      label: 'CUM Master backup',
+      extensions: ['json'],
+      mimeTypes: ['application/json'],
+    );
+    final location = await getSaveLocation(
+      suggestedName: export.name,
+      acceptedTypeGroups: const [type],
+    );
+    if (location == null) return false;
+    await XFile.fromData(
+      utf8.encode(export.json),
+      mimeType: 'application/json',
+      name: export.name,
+    ).saveTo(location.path);
+    return true;
   }
 
   Future<bool> pickAndImport() async {

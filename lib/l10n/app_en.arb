@@ -231,5 +231,11 @@
   "setupCreateSubjectAction": "Add first subject",
   "setupCreateAssessmentAction": "Add first assessment",
   "setupDismissAction": "Hide guide",
-  "academicLocationLabel": "You are in"
+  "academicLocationLabel": "You are in",
+  "backupExportQuestion": "What do you want to do with your backup?",
+  "backupSaveDeviceAction": "Save on this device",
+  "backupSaveDeviceDescription": "Choose the folder and file name",
+  "backupShareAction": "Share with another app",
+  "backupShareDescription": "Send it through WhatsApp, email, or another app",
+  "backupSaveSuccess": "The backup was saved successfully."
 }
