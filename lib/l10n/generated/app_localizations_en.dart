@@ -431,7 +431,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashboardShowCurrentCycle => 'View current';
 
   @override
-  String get settingsTitle => 'Academic settings';
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get settingsAppearanceTitle => 'Appearance';
+
+  @override
+  String get settingsThemeLabel => 'App theme';
+
+  @override
+  String get settingsThemeHelp =>
+      'Follow your phone appearance or choose a fixed theme.';
+
+  @override
+  String get settingsThemeSystem => 'Use device theme';
+
+  @override
+  String get settingsThemeLight => 'Light';
+
+  @override
+  String get settingsThemeDark => 'Dark';
 
   @override
   String get settingsLoadError => 'Settings could not be loaded.';

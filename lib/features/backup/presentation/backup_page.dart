@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/generated/app_localizations.dart';
+import '../../../shared/presentation/widgets/app_drawer.dart';
+import '../../../shared/presentation/widgets/app_navigation_app_bar.dart';
 import '../../dashboard/presentation/controllers/dashboard_controller.dart';
 import '../../students/presentation/controllers/students_controller.dart';
 import '../application/backup_providers.dart';
@@ -21,7 +23,8 @@ class _BackupPageState extends ConsumerState<BackupPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.backupTitle)),
+      appBar: appNavigationAppBar(context, title: Text(l10n.backupTitle)),
+      drawer: const AppDrawer(),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [

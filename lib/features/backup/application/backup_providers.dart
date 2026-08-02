@@ -10,6 +10,7 @@ import '../../../core/state/academic_data_revision.dart';
 import '../../onboarding/application/tutorial_providers.dart';
 import '../../students/application/student_providers.dart';
 import '../../settings/application/academic_settings_providers.dart';
+import '../../../core/theme/theme_mode_provider.dart';
 import '../data/sqlite_backup_repository.dart';
 import '../domain/backup_repository.dart';
 
@@ -50,6 +51,7 @@ class BackupActions {
     await ref.read(backupRepositoryProvider).importJson(utf8.decode(bytes));
     ref.invalidate(academicSettingsProvider);
     ref.invalidate(tutorialCompletedProvider);
+    ref.invalidate(appThemeModeProvider);
     ref.read(academicDataRevisionProvider.notifier).bump();
     return true;
   }

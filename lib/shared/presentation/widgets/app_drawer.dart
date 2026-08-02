@@ -55,9 +55,11 @@ class AppDrawer extends StatelessWidget {
 
   void _navigate(BuildContext context, String routeName) {
     final router = GoRouter.of(context);
+    final currentRoute = GoRouterState.of(context).name;
     Navigator.of(context).pop();
+    if (currentRoute == routeName) return;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      router.goNamed(routeName);
+      router.pushNamed(routeName);
     });
   }
 

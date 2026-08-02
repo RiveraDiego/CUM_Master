@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/router/app_router.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/presentation/widgets/app_drawer.dart';
+import '../../../../shared/presentation/widgets/app_navigation_app_bar.dart';
 import '../../../activities/application/activity_providers.dart';
 import '../../../dashboard/application/hierarchical_grade_calculator.dart';
 import '../../../settings/application/academic_settings_providers.dart';
@@ -24,11 +26,13 @@ class AssessmentsPage extends ConsumerWidget {
     final terminology = ref.watch(academicSettingsProvider).value;
     final title = terminology?.assessmentPlural?.trim();
     return Scaffold(
-      appBar: AppBar(
+      appBar: appNavigationAppBar(
+        context,
         title: Text(
           title == null || title.isEmpty ? l10n.assessmentsTitle : title,
         ),
       ),
+      drawer: const AppDrawer(),
       body: SafeArea(
         child: values.when(
           loading: () => const Center(child: CircularProgressIndicator()),

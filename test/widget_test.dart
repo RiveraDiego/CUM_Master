@@ -43,7 +43,7 @@ void main() {
     expect(find.text('No students yet'), findsOneWidget);
   });
 
-  testWidgets('navigates repeatedly through the drawer without tree errors', (
+  testWidgets('drawer keeps history and back returns to the previous screen', (
     WidgetTester tester,
   ) async {
     appRouter.go('/students');
@@ -68,6 +68,12 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(tester.takeException(), isNull);
+    expect(find.text('Estudiantes'), findsWidgets);
+    await tester.tap(find.byIcon(Icons.arrow_back));
+    await tester.pumpAndSettle();
+    expect(find.text('Inicio'), findsWidgets);
+    await tester.tap(find.byIcon(Icons.arrow_back));
+    await tester.pumpAndSettle();
     expect(find.text('Estudiantes'), findsWidgets);
   });
 }

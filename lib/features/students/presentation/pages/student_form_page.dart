@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/presentation/widgets/app_drawer.dart';
+import '../../../../shared/presentation/widgets/app_navigation_app_bar.dart';
 import '../../application/student_providers.dart';
 import '../../domain/entities/student.dart';
 import '../../domain/errors/student_exceptions.dart';
@@ -46,11 +48,13 @@ class _StudentFormPageState extends ConsumerState<StudentFormPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(
+      appBar: appNavigationAppBar(
+        context,
         title: Text(
           _isEditing ? l10n.studentEditTitle : l10n.studentCreateTitle,
         ),
       ),
+      drawer: const AppDrawer(),
       body: SafeArea(
         child: _isEditing && !_initialized
             ? FutureBuilder<Student?>(
