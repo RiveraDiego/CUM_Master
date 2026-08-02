@@ -13,7 +13,7 @@ Aplicación Android offline para organizar el historial académico universitario
 - CRUD de evaluaciones con nota manual y ponderación opcional.
 - CRUD opcional de actividades dentro de cada evaluación.
 - Cálculo jerárquico de actividades, evaluaciones, nota final y CUM.
-- Dashboard con selector de ciclo y acceso rápido al ciclo actual.
+- Selector global de ciclo por estudiante: Dashboard, materias y creación de materias conservan el mismo contexto.
 - Dashboard filtrable por todos los estudiantes o por un estudiante específico.
 - Estadísticas históricas con promedio por ciclo, CUM acumulado y tendencia por estudiante.
 - Copias de seguridad completas en JSON para guardar, compartir e importar.
@@ -32,6 +32,7 @@ Aplicación Android offline para organizar el historial académico universitario
 - Una evaluación sin actividades utiliza la nota ingresada manualmente.
 - Una evaluación con actividades se calcula cuando sus ponderaciones suman 100 %.
 - El CUM general se pondera mediante las unidades valorativas de cada materia.
+- El redondeo convencional a un decimal conserva 8.52 como 8.5 y convierte 8.55 en 8.6.
 
 ## Tecnología
 

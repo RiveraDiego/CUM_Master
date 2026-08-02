@@ -15,8 +15,9 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 void main() {
   setUpAll(sqfliteFfiInit);
 
-  test('rounds one decimal upward by default', () {
-    expect(AcademicSettings.defaults.format(8.01), '8.1');
+  test('rounds one decimal conventionally by default', () {
+    expect(AcademicSettings.defaults.format(8.52), '8.5');
+    expect(AcademicSettings.defaults.format(8.55), '8.6');
     expect(AcademicSettings.defaults.format(8.10), '8.1');
   });
 

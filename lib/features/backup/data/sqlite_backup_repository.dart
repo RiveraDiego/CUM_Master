@@ -65,7 +65,7 @@ class SqliteBackupRepository implements BackupRepository {
             'id': 1,
             'default_credit_units': 1,
             'decimal_places': 1,
-            'rounding_mode': 'ceiling',
+            'rounding_mode': 'nearest',
           });
         }
       });

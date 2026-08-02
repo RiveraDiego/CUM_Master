@@ -7,6 +7,7 @@ import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/presentation/widgets/app_drawer.dart';
 import '../../../../shared/presentation/widgets/app_navigation_app_bar.dart';
 import '../../../cycles/application/cycle_providers.dart';
+import '../../../cycles/application/viewed_cycle_provider.dart';
 import '../../../cycles/domain/errors/cycle_exceptions.dart';
 import '../../../settings/application/academic_settings_providers.dart';
 import '../../application/subject_providers.dart';
@@ -113,10 +114,12 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
               loading: () => const LinearProgressIndicator(),
               error: (_, _) => Text(l10n.cyclesLoadError),
               data: (items) {
-                _cycleId ??= items
-                    .where((item) => item.isActive)
-                    .firstOrNull
-                    ?.id;
+                final viewedCycleId = ref.watch(
+                  viewedCycleIdsProvider,
+                )[widget.studentId];
+                _cycleId ??= items.any((item) => item.id == viewedCycleId)
+                    ? viewedCycleId
+                    : items.where((item) => item.isActive).firstOrNull?.id;
                 return DropdownButtonFormField<String>(
                   initialValue: _cycleId,
                   decoration: InputDecoration(
@@ -150,6 +153,11 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
                             await _createCycle(l10n);
                           } else {
                             setState(() => _cycleId = value);
+                            if (value != null) {
+                              ref
+                                  .read(viewedCycleIdsProvider.notifier)
+                                  .select(widget.studentId, value);
+                            }
                           }
                         },
                   validator: (value) =>
@@ -280,7 +288,12 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
       final cycle = await ref
           .read(cycleActionsProvider)
           .create(widget.studentId, name, active: false);
-      if (mounted) setState(() => _cycleId = cycle.id);
+      if (mounted) {
+        ref
+            .read(viewedCycleIdsProvider.notifier)
+            .select(widget.studentId, cycle.id);
+        setState(() => _cycleId = cycle.id);
+      }
     } on DuplicateCycleNameException {
       _show(l10n.cycleDuplicateError);
     } on CycleException {

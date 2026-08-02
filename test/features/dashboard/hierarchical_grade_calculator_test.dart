@@ -52,6 +52,19 @@ void main() {
     expect(grade, closeTo(8.0, 0.0001));
   });
 
+  test('calculates the reported five-evaluation average as 8.52', () {
+    final grades = [6.3, 10.0, 10.0, 6.3, 10.0];
+    final calculated = calculator.subjectGrade([
+      for (var index = 0; index < grades.length; index++)
+        (
+          assessment: evaluation('E${index + 1}', grades[index]),
+          grade: grades[index],
+        ),
+    ]);
+
+    expect(calculated, closeTo(8.52, 0.0001));
+  });
+
   test('does not calculate activities until their weight totals 100', () {
     expect(
       calculator.evaluationGrade(evaluation('E1', 9), [

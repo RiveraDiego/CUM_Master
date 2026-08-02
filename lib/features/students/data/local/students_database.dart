@@ -5,7 +5,7 @@ class StudentsDatabase {
   StudentsDatabase({DatabaseFactory? factory, this.databasePath})
     : _factory = factory ?? databaseFactory;
 
-  static const schemaVersion = 9;
+  static const schemaVersion = 10;
   static const fileName = 'cum_master.db';
 
   final DatabaseFactory _factory;
@@ -97,6 +97,14 @@ class StudentsDatabase {
           if (oldVersion < 8) await _createAppPreferencesTable(database);
           if (oldVersion < 9) {
             await database.execute('ALTER TABLE students ADD COLUMN name TEXT');
+          }
+          if (oldVersion < 10) {
+            await database.update(
+              'academic_settings',
+              {'rounding_mode': 'nearest'},
+              where: 'rounding_mode = ?',
+              whereArgs: ['ceiling'],
+            );
           }
         },
       ),
@@ -212,7 +220,7 @@ class StudentsDatabase {
         id INTEGER PRIMARY KEY CHECK(id = 1),
         default_credit_units REAL NOT NULL DEFAULT 1,
         decimal_places INTEGER NOT NULL DEFAULT 1,
-        rounding_mode TEXT NOT NULL DEFAULT 'ceiling',
+        rounding_mode TEXT NOT NULL DEFAULT 'nearest',
         cycle_singular TEXT,
         cycle_plural TEXT,
         subject_singular TEXT,
@@ -230,7 +238,7 @@ class StudentsDatabase {
       'id': 1,
       'default_credit_units': 1,
       'decimal_places': 1,
-      'rounding_mode': 'ceiling',
+      'rounding_mode': 'nearest',
     });
   }
 

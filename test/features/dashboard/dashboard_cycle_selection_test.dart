@@ -1,4 +1,5 @@
 import 'package:cum_master/features/cycles/application/cycle_providers.dart';
+import 'package:cum_master/features/cycles/application/viewed_cycle_provider.dart';
 import 'package:cum_master/features/cycles/data/cycle_repository_sqlite.dart';
 import 'package:cum_master/features/cycles/domain/entities/academic_cycle.dart';
 import 'package:cum_master/features/dashboard/presentation/controllers/dashboard_controller.dart';
@@ -58,6 +59,7 @@ void main() {
       )).single;
       expect(summary.selectedCycleId, 'cycle-1');
       expect(summary.isViewingCurrentCycle, isTrue);
+      expect(container.read(viewedCycleIdsProvider)[student.id], 'cycle-1');
 
       await container
           .read(cycleActionsProvider)
