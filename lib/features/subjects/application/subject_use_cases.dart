@@ -31,7 +31,7 @@ class CreateSubject {
 
   Future<Subject> call({
     required String studentId,
-    String? cycleId,
+    required String cycleId,
     required String name,
     String? code,
     double creditUnits = 1,
@@ -41,7 +41,7 @@ class CreateSubject {
     final subject = Subject(
       id: _uuid.v4(),
       studentId: studentId,
-      cycleId: cycleId ?? 'cycle-$studentId',
+      cycleId: cycleId,
       name: name,
       code: code,
       creditUnits: creditUnits,

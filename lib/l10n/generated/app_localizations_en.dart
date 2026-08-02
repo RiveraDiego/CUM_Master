@@ -370,6 +370,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cycleRenameAction => 'Rename';
 
   @override
+  String get cycleCurrentState => 'This is the current term';
+
+  @override
+  String get cycleNotCurrentState => 'This is not the current term';
+
+  @override
+  String get dashboardNoCurrentCycleMessage =>
+      'You have not set a current term. Activate one to see its subjects and grades here.';
+
+  @override
+  String get dashboardChooseCurrentCycle => 'Choose current term';
+
+  @override
   String get assessmentManualGrade => 'Manual grade (no activities)';
 
   @override

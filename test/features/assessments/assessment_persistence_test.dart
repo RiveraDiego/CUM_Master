@@ -2,6 +2,8 @@ import 'package:cum_master/features/assessments/application/assessment_use_cases
 import 'package:cum_master/features/assessments/data/datasources/assessment_local_data_source.dart';
 import 'package:cum_master/features/assessments/data/repositories/sqlite_assessment_repository.dart';
 import 'package:cum_master/features/assessments/domain/errors/assessment_exceptions.dart';
+import 'package:cum_master/features/cycles/data/cycle_repository_sqlite.dart';
+import 'package:cum_master/features/cycles/domain/entities/academic_cycle.dart';
 import 'package:cum_master/features/students/application/student_use_cases.dart';
 import 'package:cum_master/features/students/data/datasources/student_local_data_source.dart';
 import 'package:cum_master/features/students/data/local/students_database.dart';
@@ -29,8 +31,19 @@ void main() {
       AssessmentLocalDataSource(database),
     );
     final student = await CreateStudent(students)(studentCard: 'A-1');
+    final now = DateTime.now().toUtc();
+    final cycle = AcademicCycle(
+      id: 'cycle-1',
+      studentId: student.id,
+      name: 'Ciclo I',
+      isActive: true,
+      createdAt: now,
+      updatedAt: now,
+    );
+    await SqliteCycleRepository(database).create(cycle);
     subjectId = (await CreateSubject(subjects)(
       studentId: student.id,
+      cycleId: cycle.id,
       name: 'Cálculo',
     )).id;
   });
