@@ -6,7 +6,7 @@ Funciona completamente sin conexión a internet. La información académica se g
 
 ## Descargar la aplicación
 
-[**Descargar CUM Master 1.0.0 · Nuegado para Android**](./CUM_Master-1.0.0-Nuegado.apk)
+[**Descargar CUM Master 1.0.1 · Nuegado Guardián para Android**](./CUM_Master-1.0.1-Nuegado-Guardian.apk)
 
 El APK corresponde a una versión release firmada. Como todavía no se distribuye mediante Google Play, Android puede solicitar autorización para instalar aplicaciones desde esta fuente.
 
@@ -129,7 +129,15 @@ Las sugerencias, reportes de errores y contribuciones son bienvenidos mediante l
 
 ## Versión
 
-**1.0.0 · Nuegado**
+**1.0.1 · Nuegado Guardián**
+
+## Licencia y propiedad intelectual
+
+CUM Master es un proyecto de **Diego Menendez** y se publica bajo una licencia de **todos los derechos reservados**. El repositorio es público para facilitar su consulta, auditoría y presentación, pero eso no autoriza copiar, redistribuir, modificar, republicar ni comercializar el código o la aplicación.
+
+La autoría se documenta mediante la [licencia](LICENSE.md), el [aviso de propiedad](NOTICE.md), el historial Git, la firma de los artefactos Android y metadatos de procedencia incorporados en la aplicación.
+
+Los paquetes de terceros utilizados por CUM Master conservan sus licencias correspondientes. Para solicitar autorización de uso o colaboración, escribe a [dmenendez3075@gmail.com](mailto:dmenendez3075@gmail.com).
 
 ## Autor y contacto
 
