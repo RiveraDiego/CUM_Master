@@ -1315,6 +1315,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Hide guide'**
   String get setupDismissAction;
+
+  /// No description provided for @academicLocationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'You are in'**
+  String get academicLocationLabel;
 }
 
 class _AppLocalizationsDelegate

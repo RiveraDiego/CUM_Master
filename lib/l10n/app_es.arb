@@ -230,5 +230,6 @@
   "setupCreateCycleAction": "Crear primer ciclo",
   "setupCreateSubjectAction": "Agregar primera materia",
   "setupCreateAssessmentAction": "Agregar primera evaluación",
-  "setupDismissAction": "Ocultar guía"
+  "setupDismissAction": "Ocultar guía",
+  "academicLocationLabel": "Estás en"
 }

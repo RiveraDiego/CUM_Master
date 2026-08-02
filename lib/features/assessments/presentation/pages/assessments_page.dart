@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/router/app_router.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/application/academic_location_provider.dart';
+import '../../../../shared/presentation/widgets/academic_location_bar.dart';
 import '../../../../shared/presentation/widgets/app_drawer.dart';
 import '../../../../shared/presentation/widgets/app_navigation_app_bar.dart';
 import '../../../activities/application/activity_providers.dart';
@@ -23,6 +25,7 @@ class AssessmentsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final values = ref.watch(assessmentsControllerProvider(subjectId));
+    final location = ref.watch(subjectLocationProvider(subjectId));
     final terminology = ref.watch(academicSettingsProvider).value;
     final title = terminology?.assessmentPlural?.trim();
     return Scaffold(
@@ -34,35 +37,42 @@ class AssessmentsPage extends ConsumerWidget {
       ),
       drawer: const AppDrawer(),
       body: SafeArea(
-        child: values.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (_, _) => _CenterMessage(
-            text: l10n.assessmentsLoadError,
-            action: l10n.retryAction,
-            onTap: () => ref
-                .read(assessmentsControllerProvider(subjectId).notifier)
-                .refresh(),
-          ),
-          data: (items) => items.isEmpty
-              ? _CenterMessage(
-                  text: l10n.assessmentsEmptyDescription,
-                  action: l10n.assessmentsCreateAction,
-                  onTap: () => _edit(context, ref),
-                )
-              : ListView.separated(
-                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 96),
-                  itemCount: items.length,
-                  separatorBuilder: (_, _) => const SizedBox(height: 8),
-                  itemBuilder: (_, index) => _AssessmentCard(
-                    assessment: items[index],
-                    onOpen: () => context.pushNamed(
-                      AppRoute.activities,
-                      pathParameters: {'assessmentId': items[index].id},
-                    ),
-                    onEdit: () => _edit(context, ref, items[index]),
-                    onDelete: () => _delete(context, ref, items[index]),
-                  ),
+        child: Column(
+          children: [
+            _LocationHeader(location: location),
+            Expanded(
+              child: values.when(
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (_, _) => _CenterMessage(
+                  text: l10n.assessmentsLoadError,
+                  action: l10n.retryAction,
+                  onTap: () => ref
+                      .read(assessmentsControllerProvider(subjectId).notifier)
+                      .refresh(),
                 ),
+                data: (items) => items.isEmpty
+                    ? _CenterMessage(
+                        text: l10n.assessmentsEmptyDescription,
+                        action: l10n.assessmentsCreateAction,
+                        onTap: () => _edit(context, ref),
+                      )
+                    : ListView.separated(
+                        padding: const EdgeInsets.fromLTRB(16, 8, 16, 96),
+                        itemCount: items.length,
+                        separatorBuilder: (_, _) => const SizedBox(height: 8),
+                        itemBuilder: (_, index) => _AssessmentCard(
+                          assessment: items[index],
+                          onOpen: () => context.pushNamed(
+                            AppRoute.activities,
+                            pathParameters: {'assessmentId': items[index].id},
+                          ),
+                          onEdit: () => _edit(context, ref, items[index]),
+                          onDelete: () => _delete(context, ref, items[index]),
+                        ),
+                      ),
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
@@ -79,9 +89,12 @@ class AssessmentsPage extends ConsumerWidget {
     Assessment? current,
   ]) async {
     final l10n = AppLocalizations.of(context)!;
+    final location = await ref.read(subjectLocationProvider(subjectId).future);
+    if (!context.mounted) return;
     final value = await showDialog<_AssessmentFormValue>(
       context: context,
-      builder: (_) => _AssessmentEditorDialog(current: current),
+      builder: (_) =>
+          _AssessmentEditorDialog(current: current, location: location),
     );
     if (value != null && context.mounted) {
       try {
@@ -165,9 +178,10 @@ class _AssessmentFormValue {
 }
 
 class _AssessmentEditorDialog extends StatefulWidget {
-  const _AssessmentEditorDialog({this.current});
+  const _AssessmentEditorDialog({this.current, this.location});
 
   final Assessment? current;
+  final AcademicLocation? location;
 
   @override
   State<_AssessmentEditorDialog> createState() =>
@@ -220,6 +234,24 @@ class _AssessmentEditorDialogState extends State<_AssessmentEditorDialog> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              if (widget.location != null)
+                AcademicLocationBar(
+                  semanticLabel: l10n.academicLocationLabel,
+                  items: [
+                    AcademicLocationItem(
+                      Icons.person_outline,
+                      widget.location!.student,
+                    ),
+                    AcademicLocationItem(
+                      Icons.calendar_month_outlined,
+                      widget.location!.cycle,
+                    ),
+                    AcademicLocationItem(
+                      Icons.menu_book_outlined,
+                      widget.location!.subject,
+                    ),
+                  ],
+                ),
               TextFormField(
                 controller: _name,
                 decoration: InputDecoration(
@@ -317,6 +349,27 @@ class _AssessmentEditorDialogState extends State<_AssessmentEditorDialog> {
     final number = double.tryParse(value ?? '');
     return number != null && number > 0;
   }
+}
+
+class _LocationHeader extends StatelessWidget {
+  const _LocationHeader({required this.location});
+
+  final AsyncValue<AcademicLocation?> location;
+
+  @override
+  Widget build(BuildContext context) => location.maybeWhen(
+    data: (value) => value == null
+        ? const SizedBox.shrink()
+        : AcademicLocationBar(
+            semanticLabel: AppLocalizations.of(context)!.academicLocationLabel,
+            items: [
+              AcademicLocationItem(Icons.person_outline, value.student),
+              AcademicLocationItem(Icons.calendar_month_outlined, value.cycle),
+              AcademicLocationItem(Icons.menu_book_outlined, value.subject),
+            ],
+          ),
+    orElse: () => const SizedBox(height: 8),
+  );
 }
 
 class _AssessmentCard extends ConsumerWidget {

@@ -673,4 +673,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get setupDismissAction => 'Hide guide';
+
+  @override
+  String get academicLocationLabel => 'You are in';
 }

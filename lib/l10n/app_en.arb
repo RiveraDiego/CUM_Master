@@ -230,5 +230,6 @@
   "setupCreateCycleAction": "Create first term",
   "setupCreateSubjectAction": "Add first subject",
   "setupCreateAssessmentAction": "Add first assessment",
-  "setupDismissAction": "Hide guide"
+  "setupDismissAction": "Hide guide",
+  "academicLocationLabel": "You are in"
 }
