@@ -218,4 +218,36 @@ class AppLocalizationsEn extends AppLocalizations {
   String assessmentScore(num score, num maxScore) {
     return '$score out of $maxScore';
   }
+
+  @override
+  String get dashboardTitle => 'Home';
+
+  @override
+  String get activeSemesterTitle => 'Active semester';
+
+  @override
+  String get activeSemesterCurrentScope =>
+      'Summary of each student\'s current subjects.';
+
+  @override
+  String get dashboardLoadError => 'The academic summary could not be loaded.';
+
+  @override
+  String get dashboardNoStudents =>
+      'Add a student to see their academic summary.';
+
+  @override
+  String get dashboardNoSubjects => 'This student has no subjects yet.';
+
+  @override
+  String get dashboardNoGrades => 'No assessments recorded';
+
+  @override
+  String get dashboardWeightedAverage => 'Weighted average';
+
+  @override
+  String get dashboardSimpleAverage => 'Simple average';
+
+  @override
+  String get dashboardManageSubjects => 'Manage subjects';
 }

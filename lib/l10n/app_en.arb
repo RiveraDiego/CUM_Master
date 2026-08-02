@@ -83,5 +83,15 @@
   "assessmentDeleteMessage": "{assessmentName} will be permanently deleted.",
   "@assessmentDeleteMessage": {"placeholders": {"assessmentName": {"type": "String"}}},
   "assessmentScore": "{score} out of {maxScore}",
-  "@assessmentScore": {"placeholders": {"score": {"type": "num"}, "maxScore": {"type": "num"}}}
+  "@assessmentScore": {"placeholders": {"score": {"type": "num"}, "maxScore": {"type": "num"}}},
+  "dashboardTitle": "Home",
+  "activeSemesterTitle": "Active semester",
+  "activeSemesterCurrentScope": "Summary of each student's current subjects.",
+  "dashboardLoadError": "The academic summary could not be loaded.",
+  "dashboardNoStudents": "Add a student to see their academic summary.",
+  "dashboardNoSubjects": "This student has no subjects yet.",
+  "dashboardNoGrades": "No assessments recorded",
+  "dashboardWeightedAverage": "Weighted average",
+  "dashboardSimpleAverage": "Simple average",
+  "dashboardManageSubjects": "Manage subjects"
 }

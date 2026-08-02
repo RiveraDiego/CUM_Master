@@ -481,6 +481,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{score} out of {maxScore}'**
   String assessmentScore(num score, num maxScore);
+
+  /// No description provided for @dashboardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get dashboardTitle;
+
+  /// No description provided for @activeSemesterTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Active semester'**
+  String get activeSemesterTitle;
+
+  /// No description provided for @activeSemesterCurrentScope.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary of each student\'s current subjects.'**
+  String get activeSemesterCurrentScope;
+
+  /// No description provided for @dashboardLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'The academic summary could not be loaded.'**
+  String get dashboardLoadError;
+
+  /// No description provided for @dashboardNoStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a student to see their academic summary.'**
+  String get dashboardNoStudents;
+
+  /// No description provided for @dashboardNoSubjects.
+  ///
+  /// In en, this message translates to:
+  /// **'This student has no subjects yet.'**
+  String get dashboardNoSubjects;
+
+  /// No description provided for @dashboardNoGrades.
+  ///
+  /// In en, this message translates to:
+  /// **'No assessments recorded'**
+  String get dashboardNoGrades;
+
+  /// No description provided for @dashboardWeightedAverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Weighted average'**
+  String get dashboardWeightedAverage;
+
+  /// No description provided for @dashboardSimpleAverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple average'**
+  String get dashboardSimpleAverage;
+
+  /// No description provided for @dashboardManageSubjects.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage subjects'**
+  String get dashboardManageSubjects;
 }
 
 class _AppLocalizationsDelegate

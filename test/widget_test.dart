@@ -12,7 +12,7 @@ void main() {
   testWidgets('shows the localized empty students state', (
     WidgetTester tester,
   ) async {
-    appRouter.go('/');
+    appRouter.go('/students');
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
@@ -28,7 +28,7 @@ void main() {
   });
 
   testWidgets('supports the English locale', (WidgetTester tester) async {
-    appRouter.go('/');
+    appRouter.go('/students');
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
