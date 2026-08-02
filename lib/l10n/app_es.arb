@@ -221,5 +221,7 @@
   "assessmentManualGrade": "Nota manual (sin actividades)",
   "assessmentCalculatedGrade": "Nota calculada por actividades",
   "dashboardGeneralCum": "CUM general histórico: {cum}",
-  "@dashboardGeneralCum": {"placeholders": {"cum": {"type": "String"}}}
+  "@dashboardGeneralCum": {"placeholders": {"cum": {"type": "String"}}},
+  "settingsAdPrivacyAction": "Opciones de privacidad de anuncios",
+  "settingsAdPrivacyError": "No se pudieron abrir las opciones de privacidad. IntÃ©ntalo nuevamente."
 }

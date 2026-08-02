@@ -1261,6 +1261,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Overall historical GPA: {cum}'**
   String dashboardGeneralCum(String cum);
+
+  /// No description provided for @settingsAdPrivacyAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Ad privacy options'**
+  String get settingsAdPrivacyAction;
+
+  /// No description provided for @settingsAdPrivacyError.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy options could not be opened. Please try again.'**
+  String get settingsAdPrivacyError;
 }
 
 class _AppLocalizationsDelegate
