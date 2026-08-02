@@ -4,6 +4,12 @@ CUM Master es una aplicación Android para organizar calificaciones universitari
 
 Funciona completamente sin conexión a internet. La información académica se guarda en el teléfono del usuario y no requiere crear una cuenta.
 
+## Descargar la aplicación
+
+[**Descargar CUM Master 1.0.0 · Nuegado para Android**](./CUM_Master-1.0.0-Nuegado.apk)
+
+El APK corresponde a una versión release firmada. Como todavía no se distribuye mediante Google Play, Android puede solicitar autorización para instalar aplicaciones desde esta fuente.
+
 ## ¿Qué es el CUM?
 
 El CUM es un indicador del rendimiento académico acumulado de un estudiante. A diferencia de un promedio simple, toma en cuenta la nota final de cada materia y sus unidades valorativas (UV): una materia con más UV tiene mayor influencia en el resultado.
