@@ -782,6 +782,78 @@ abstract class AppLocalizations {
   /// **'Choose current term'**
   String get dashboardChooseCurrentCycle;
 
+  /// No description provided for @backupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup'**
+  String get backupTitle;
+
+  /// No description provided for @backupExportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Export all my data'**
+  String get backupExportTitle;
+
+  /// No description provided for @backupExportDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Creates a file you can save or share.'**
+  String get backupExportDescription;
+
+  /// No description provided for @backupImportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Import a backup'**
+  String get backupImportTitle;
+
+  /// No description provided for @backupImportDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Restores students, terms, subjects and grades from a file.'**
+  String get backupImportDescription;
+
+  /// No description provided for @backupImportConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Import a backup?'**
+  String get backupImportConfirmTitle;
+
+  /// No description provided for @backupImportConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Current data on this device will be replaced. This action cannot be undone.'**
+  String get backupImportConfirmMessage;
+
+  /// No description provided for @backupChooseFileAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose file'**
+  String get backupChooseFileAction;
+
+  /// No description provided for @backupImportSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'The backup was imported successfully.'**
+  String get backupImportSuccess;
+
+  /// No description provided for @backupInvalidFileError.
+  ///
+  /// In en, this message translates to:
+  /// **'This file is not a valid CUM Master backup.'**
+  String get backupInvalidFileError;
+
+  /// No description provided for @backupImportError.
+  ///
+  /// In en, this message translates to:
+  /// **'The backup could not be imported.'**
+  String get backupImportError;
+
+  /// No description provided for @backupExportError.
+  ///
+  /// In en, this message translates to:
+  /// **'The backup could not be created.'**
+  String get backupExportError;
+
   /// No description provided for @assessmentManualGrade.
   ///
   /// In en, this message translates to:
