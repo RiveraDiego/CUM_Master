@@ -6,6 +6,7 @@ import '../../../../core/router/app_router.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../cycles/application/cycle_providers.dart';
 import '../../../cycles/domain/errors/cycle_exceptions.dart';
+import '../../../settings/application/academic_settings_providers.dart';
 import '../../application/subject_providers.dart';
 import '../../domain/entities/subject.dart';
 import '../../domain/errors/subject_exceptions.dart';
@@ -25,12 +26,13 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
   final _formKey = GlobalKey<FormState>();
   final _name = TextEditingController();
   final _code = TextEditingController();
-  final _creditUnits = TextEditingController(text: '1');
+  final _creditUnits = TextEditingController();
   final _manualGrade = TextEditingController();
   Future<Subject?>? _subjectFuture;
   bool _initialized = false;
   bool _saving = false;
   String? _cycleId;
+  bool _defaultUvInitialized = false;
 
   bool get _editing => widget.subjectId != null;
 
@@ -91,6 +93,11 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
 
   Widget _form(AppLocalizations l10n) {
     final cycles = ref.watch(cyclesProvider(widget.studentId));
+    final academicSettings = ref.watch(academicSettingsProvider).value;
+    if (!_editing && !_defaultUvInitialized && academicSettings != null) {
+      _creditUnits.text = academicSettings.defaultCreditUnits.toString();
+      _defaultUvInitialized = true;
+    }
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
       child: Form(

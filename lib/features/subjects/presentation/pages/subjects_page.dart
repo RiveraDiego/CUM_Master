@@ -6,6 +6,7 @@ import '../../../../core/router/app_router.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../cycles/application/cycle_providers.dart';
 import '../../../cycles/domain/entities/academic_cycle.dart';
+import '../../../settings/application/academic_settings_providers.dart';
 import '../../domain/entities/subject.dart';
 import '../../domain/errors/subject_exceptions.dart';
 import '../controllers/subjects_controller.dart';
@@ -26,9 +27,13 @@ class _SubjectsPageState extends ConsumerState<SubjectsPage> {
     final l10n = AppLocalizations.of(context)!;
     final subjects = ref.watch(subjectsControllerProvider(widget.studentId));
     final cycles = ref.watch(cyclesProvider(widget.studentId));
+    final terminology = ref.watch(academicSettingsProvider).value;
+    final title = terminology?.subjectPlural?.trim();
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.subjectsTitle),
+        title: Text(
+          title == null || title.isEmpty ? l10n.subjectsTitle : title,
+        ),
         actions: [
           IconButton(
             tooltip: l10n.cyclesTitle,

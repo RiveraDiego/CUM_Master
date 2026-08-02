@@ -7,6 +7,8 @@ import '../../../../core/router/app_router.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../activities/application/activity_providers.dart';
 import '../../../dashboard/application/hierarchical_grade_calculator.dart';
+import '../../../settings/application/academic_settings_providers.dart';
+import '../../../settings/domain/academic_settings.dart';
 import '../../domain/entities/assessment.dart';
 import '../../domain/errors/assessment_exceptions.dart';
 import '../controllers/assessments_controller.dart';
@@ -19,8 +21,14 @@ class AssessmentsPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final values = ref.watch(assessmentsControllerProvider(subjectId));
+    final terminology = ref.watch(academicSettingsProvider).value;
+    final title = terminology?.assessmentPlural?.trim();
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.assessmentsTitle)),
+      appBar: AppBar(
+        title: Text(
+          title == null || title.isEmpty ? l10n.assessmentsTitle : title,
+        ),
+      ),
       body: SafeArea(
         child: values.when(
           loading: () => const Center(child: CircularProgressIndicator()),
@@ -265,6 +273,8 @@ class _AssessmentCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final activities = ref.watch(activitiesProvider(assessment.id));
+    final settings =
+        ref.watch(academicSettingsProvider).value ?? AcademicSettings.defaults;
     final grade = activities.whenData(
       (items) => const HierarchicalGradeCalculator().evaluationGrade(
         assessment,
@@ -276,7 +286,7 @@ class _AssessmentCard extends ConsumerWidget {
       child: ListTile(
         onTap: onOpen,
         leading: CircleAvatar(
-          child: Text(calculated == null ? '—' : calculated.toStringAsFixed(1)),
+          child: Text(calculated == null ? '—' : settings.format(calculated)),
         ),
         title: Text(assessment.name),
         subtitle: Text(

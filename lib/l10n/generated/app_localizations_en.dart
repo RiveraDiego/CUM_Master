@@ -431,6 +431,86 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashboardShowCurrentCycle => 'View current';
 
   @override
+  String get settingsTitle => 'Academic settings';
+
+  @override
+  String get settingsLoadError => 'Settings could not be loaded.';
+
+  @override
+  String get settingsCalculationTitle => 'Calculations and defaults';
+
+  @override
+  String get settingsDefaultUvLabel => 'Default credit units';
+
+  @override
+  String get settingsDefaultUvHelp => 'Used when creating a new subject.';
+
+  @override
+  String get settingsDecimalsLabel => 'Displayed decimals';
+
+  @override
+  String settingsDecimalsValue(int count) {
+    return '$count decimal places';
+  }
+
+  @override
+  String get settingsRoundingLabel => 'Rounding method';
+
+  @override
+  String get settingsRoundingCeiling => 'Round up';
+
+  @override
+  String get settingsRoundingNearest => 'Nearest value';
+
+  @override
+  String get settingsRoundingFloor => 'Round down';
+
+  @override
+  String get settingsApplyUvAction => 'Apply these units to existing subjects';
+
+  @override
+  String get settingsApplyUvTitle => 'Update every subject?';
+
+  @override
+  String settingsApplyUvMessage(String value) {
+    return 'Every subject will use $value credit units. Grades will not change.';
+  }
+
+  @override
+  String get settingsApplyAction => 'Apply';
+
+  @override
+  String get settingsUvApplied => 'Credit units were updated successfully.';
+
+  @override
+  String get settingsTerminologyTitle => 'Terminology';
+
+  @override
+  String get settingsTerminologyHelp =>
+      'Leave fields empty to use the language defaults.';
+
+  @override
+  String get settingsCycleTerm => 'Term';
+
+  @override
+  String get settingsSubjectTerm => 'Subject';
+
+  @override
+  String get settingsAssessmentTerm => 'Assessment';
+
+  @override
+  String get settingsActivityTerm => 'Activity';
+
+  @override
+  String get settingsSingularLabel => 'singular';
+
+  @override
+  String get settingsPluralLabel => 'plural';
+
+  @override
+  String get settingsSaved => 'Settings saved.';
+
+  @override
   String get assessmentManualGrade => 'Manual grade (no activities)';
 
   @override

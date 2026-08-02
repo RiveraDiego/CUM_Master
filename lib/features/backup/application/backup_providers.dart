@@ -8,6 +8,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../../core/state/academic_data_revision.dart';
 import '../../students/application/student_providers.dart';
+import '../../settings/application/academic_settings_providers.dart';
 import '../data/sqlite_backup_repository.dart';
 import '../domain/backup_repository.dart';
 
@@ -46,6 +47,7 @@ class BackupActions {
     if (picked == null) return false;
     final bytes = await picked.readAsBytes();
     await ref.read(backupRepositoryProvider).importJson(utf8.decode(bytes));
+    ref.invalidate(academicSettingsProvider);
     ref.read(academicDataRevisionProvider.notifier).bump();
     return true;
   }

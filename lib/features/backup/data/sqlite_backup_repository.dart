@@ -17,6 +17,7 @@ class SqliteBackupRepository implements BackupRepository {
     'subjects',
     'assessments',
     'activities',
+    'academic_settings',
   ];
 
   final StudentsDatabase database;
@@ -47,6 +48,7 @@ class SqliteBackupRepository implements BackupRepository {
       final db = await database.database;
       await db.transaction((transaction) async {
         await transaction.delete('students');
+        await transaction.delete('academic_settings');
         for (final table in _tables) {
           for (final row in tables[table]!) {
             await transaction.insert(
@@ -55,6 +57,14 @@ class SqliteBackupRepository implements BackupRepository {
               conflictAlgorithm: ConflictAlgorithm.abort,
             );
           }
+        }
+        if (tables['academic_settings']!.isEmpty) {
+          await transaction.insert('academic_settings', {
+            'id': 1,
+            'default_credit_units': 1,
+            'decimal_places': 1,
+            'rounding_mode': 'ceiling',
+          });
         }
       });
     } on DatabaseException {
@@ -72,7 +82,10 @@ class SqliteBackupRepository implements BackupRepository {
         throw const InvalidBackupException();
       }
       final data = decoded['data']! as Map<String, dynamic>;
-      return {for (final table in _tables) table: _rows(data[table])};
+      return {
+        for (final table in _tables)
+          table: _rows(data[table], optional: table == 'academic_settings'),
+      };
     } on BackupException {
       rethrow;
     } on FormatException {
@@ -82,7 +95,8 @@ class SqliteBackupRepository implements BackupRepository {
     }
   }
 
-  List<Map<String, Object?>> _rows(Object? value) {
+  List<Map<String, Object?>> _rows(Object? value, {bool optional = false}) {
+    if (value == null && optional) return const [];
     if (value is! List) throw const InvalidBackupException();
     return value
         .map((row) {

@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import '../../../../core/router/app_router.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/presentation/widgets/app_drawer.dart';
+import '../../../settings/application/academic_settings_providers.dart';
+import '../../../settings/domain/academic_settings.dart';
 import '../../domain/entities/academic_summary.dart';
 import '../controllers/dashboard_controller.dart';
 
@@ -15,6 +17,8 @@ class DashboardPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final summaries = ref.watch(dashboardControllerProvider);
+    final settings =
+        ref.watch(academicSettingsProvider).value ?? AcademicSettings.defaults;
     return Scaffold(
       appBar: AppBar(title: Text(l10n.dashboardTitle)),
       drawer: const AppDrawer(),
@@ -66,6 +70,7 @@ class DashboardPage extends ConsumerWidget {
                   for (final item in items) ...[
                     _StudentSummaryCard(
                       summary: item,
+                      settings: settings,
                       onCycleSelected: (cycleId) => ref
                           .read(dashboardControllerProvider.notifier)
                           .selectCycle(item.id, cycleId),
@@ -88,10 +93,12 @@ class DashboardPage extends ConsumerWidget {
 class _StudentSummaryCard extends StatelessWidget {
   const _StudentSummaryCard({
     required this.summary,
+    required this.settings,
     required this.onCycleSelected,
     required this.onShowCurrent,
   });
   final StudentAcademicSummary summary;
+  final AcademicSettings settings;
   final ValueChanged<String> onCycleSelected;
   final VoidCallback onShowCurrent;
 
@@ -146,7 +153,10 @@ class _StudentSummaryCard extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
-                _AverageBadge(value: summary.overallAverage),
+                _AverageBadge(
+                  value: summary.overallAverage,
+                  settings: settings,
+                ),
               ],
             ),
             const SizedBox(height: 16),
@@ -190,7 +200,9 @@ class _StudentSummaryCard extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               l10n.dashboardGeneralCum(
-                summary.generalCum?.toStringAsFixed(2) ?? '—',
+                summary.generalCum == null
+                    ? '—'
+                    : settings.format(summary.generalCum!),
               ),
             ),
             const SizedBox(height: 8),
@@ -208,7 +220,10 @@ class _StudentSummaryCard extends StatelessWidget {
                         ? l10n.dashboardWeightedAverage
                         : l10n.dashboardSimpleAverage,
                   ),
-                  trailing: _AverageBadge(value: subject.average),
+                  trailing: _AverageBadge(
+                    value: subject.average,
+                    settings: settings,
+                  ),
                   onTap: () => context.pushNamed(
                     AppRoute.assessments,
                     pathParameters: {
@@ -233,8 +248,9 @@ class _StudentSummaryCard extends StatelessWidget {
 }
 
 class _AverageBadge extends StatelessWidget {
-  const _AverageBadge({required this.value});
+  const _AverageBadge({required this.value, required this.settings});
   final double? value;
+  final AcademicSettings settings;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -243,7 +259,7 @@ class _AverageBadge extends StatelessWidget {
       color: Theme.of(context).colorScheme.primaryContainer,
       borderRadius: BorderRadius.circular(16),
     ),
-    child: Text(value == null ? '—' : '${value!.toStringAsFixed(2)}/10'),
+    child: Text(value == null ? '—' : '${settings.format(value!)}/10'),
   );
 }
 

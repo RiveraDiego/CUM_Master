@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../application/activity_providers.dart';
 import '../domain/activity.dart';
+import '../../settings/application/academic_settings_providers.dart';
 
 class ActivitiesPage extends ConsumerWidget {
   const ActivitiesPage({super.key, required this.assessmentId});
@@ -11,8 +12,14 @@ class ActivitiesPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final values = ref.watch(activitiesProvider(assessmentId));
+    final terminology = ref.watch(academicSettingsProvider).value;
+    final title = terminology?.activityPlural?.trim();
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.activitiesTitle)),
+      appBar: AppBar(
+        title: Text(
+          title == null || title.isEmpty ? l10n.activitiesTitle : title,
+        ),
+      ),
       body: values.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (_, _) => Center(child: Text(l10n.activitiesLoadError)),

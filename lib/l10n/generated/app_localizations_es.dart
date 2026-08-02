@@ -435,6 +435,86 @@ class AppLocalizationsEs extends AppLocalizations {
   String get dashboardShowCurrentCycle => 'Ver actual';
 
   @override
+  String get settingsTitle => 'Configuración académica';
+
+  @override
+  String get settingsLoadError => 'No se pudo cargar la configuración.';
+
+  @override
+  String get settingsCalculationTitle => 'Cálculo y valores predeterminados';
+
+  @override
+  String get settingsDefaultUvLabel => 'UV predeterminadas';
+
+  @override
+  String get settingsDefaultUvHelp => 'Se usarán al crear una materia nueva.';
+
+  @override
+  String get settingsDecimalsLabel => 'Decimales mostrados';
+
+  @override
+  String settingsDecimalsValue(int count) {
+    return '$count decimales';
+  }
+
+  @override
+  String get settingsRoundingLabel => 'Método de redondeo';
+
+  @override
+  String get settingsRoundingCeiling => 'Hacia arriba';
+
+  @override
+  String get settingsRoundingNearest => 'Al valor más cercano';
+
+  @override
+  String get settingsRoundingFloor => 'Hacia abajo';
+
+  @override
+  String get settingsApplyUvAction => 'Aplicar estas UV a materias existentes';
+
+  @override
+  String get settingsApplyUvTitle => '¿Actualizar todas las materias?';
+
+  @override
+  String settingsApplyUvMessage(String value) {
+    return 'Todas las materias usarán $value UV. Las notas no cambiarán.';
+  }
+
+  @override
+  String get settingsApplyAction => 'Aplicar';
+
+  @override
+  String get settingsUvApplied => 'Las UV se actualizaron correctamente.';
+
+  @override
+  String get settingsTerminologyTitle => 'Terminología';
+
+  @override
+  String get settingsTerminologyHelp =>
+      'Déjalo vacío para usar los nombres predeterminados del idioma.';
+
+  @override
+  String get settingsCycleTerm => 'Ciclo';
+
+  @override
+  String get settingsSubjectTerm => 'Materia';
+
+  @override
+  String get settingsAssessmentTerm => 'Evaluación';
+
+  @override
+  String get settingsActivityTerm => 'Actividad';
+
+  @override
+  String get settingsSingularLabel => 'singular';
+
+  @override
+  String get settingsPluralLabel => 'plural';
+
+  @override
+  String get settingsSaved => 'Configuración guardada.';
+
+  @override
   String get assessmentManualGrade => 'Nota manual (sin actividades)';
 
   @override
