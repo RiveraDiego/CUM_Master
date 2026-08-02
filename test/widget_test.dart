@@ -25,6 +25,15 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Aún no hay estudiantes'), findsOneWidget);
+
+    await tester.tap(find.byIcon(Icons.menu));
+    await tester.pumpAndSettle();
+    expect(find.text('Desarrollada por Diego Menendez'), findsOneWidget);
+    expect(find.text('Estudiante de Ingeniería en Sistemas'), findsOneWidget);
+    expect(
+      find.text('en la Universidad Tecnológica de El Salvador'),
+      findsOneWidget,
+    );
   });
 
   testWidgets('supports the English locale', (WidgetTester tester) async {
