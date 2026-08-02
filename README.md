@@ -18,6 +18,7 @@ Aplicación Android offline para organizar el historial académico universitario
 - Interfaz en español e inglés.
 - Persistencia SQLite completamente local, sin autenticación ni nube.
 - Tutorial guiado en el primer inicio, omisible en cualquier paso y accesible nuevamente desde el menú lateral.
+- Tema claro, oscuro o sincronizado con la apariencia del dispositivo.
 
 ## Reglas de cálculo implementadas
 
@@ -82,7 +83,8 @@ El repositorio utiliza Conventional Commits y cada hito funcional se valida con:
 - [x] Exportación e importación local
 - [x] Configuración académica: terminología, UV predeterminadas y redondeo
 - [x] Tutorial guiado de primer inicio y acceso desde el menú
-- [ ] Sistema visual definitivo y modo oscuro
+- [x] Modo claro, oscuro y sincronizado con el dispositivo
+- [ ] Refinamiento del sistema visual definitivo
 - [ ] Identidad, firma y Android App Bundle para Google Play
 - [ ] Pruebas internas y cerradas en Google Play
 - [ ] Estadísticas históricas

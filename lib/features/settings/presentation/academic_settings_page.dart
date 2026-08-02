@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/theme/theme_mode_provider.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../application/academic_settings_providers.dart';
 import '../domain/academic_settings.dart';
@@ -35,6 +36,7 @@ class _AcademicSettingsPageState extends ConsumerState<AcademicSettingsPage> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final settings = ref.watch(academicSettingsProvider);
+    final themeMode = ref.watch(appThemeModeProvider).value ?? ThemeMode.system;
     return Scaffold(
       appBar: AppBar(title: Text(l10n.settingsTitle)),
       body: settings.when(
@@ -47,6 +49,36 @@ class _AcademicSettingsPageState extends ConsumerState<AcademicSettingsPage> {
             child: ListView(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 96),
               children: [
+                Text(
+                  l10n.settingsAppearanceTitle,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                const SizedBox(height: 16),
+                DropdownButtonFormField<ThemeMode>(
+                  key: ValueKey(themeMode),
+                  initialValue: themeMode,
+                  decoration: InputDecoration(
+                    labelText: l10n.settingsThemeLabel,
+                    helperText: l10n.settingsThemeHelp,
+                    prefixIcon: const Icon(Icons.brightness_6_outlined),
+                  ),
+                  items: ThemeMode.values
+                      .map(
+                        (mode) => DropdownMenuItem(
+                          value: mode,
+                          child: Text(_themeModeName(l10n, mode)),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: _saving
+                      ? null
+                      : (mode) {
+                          if (mode != null) {
+                            ref.read(appThemeModeActionsProvider).save(mode);
+                          }
+                        },
+                ),
+                const SizedBox(height: 32),
                 Text(
                   l10n.settingsCalculationTitle,
                   style: Theme.of(context).textTheme.titleLarge,
@@ -246,6 +278,13 @@ class _AcademicSettingsPageState extends ConsumerState<AcademicSettingsPage> {
         GradeRoundingMode.ceiling => l10n.settingsRoundingCeiling,
         GradeRoundingMode.nearest => l10n.settingsRoundingNearest,
         GradeRoundingMode.floor => l10n.settingsRoundingFloor,
+      };
+
+  String _themeModeName(AppLocalizations l10n, ThemeMode mode) =>
+      switch (mode) {
+        ThemeMode.system => l10n.settingsThemeSystem,
+        ThemeMode.light => l10n.settingsThemeLight,
+        ThemeMode.dark => l10n.settingsThemeDark,
       };
 
   void _show(String message) => ScaffoldMessenger.of(

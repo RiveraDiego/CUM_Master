@@ -875,8 +875,44 @@ abstract class AppLocalizations {
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:
-  /// **'Academic settings'**
+  /// **'Settings'**
   String get settingsTitle;
+
+  /// No description provided for @settingsAppearanceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get settingsAppearanceTitle;
+
+  /// No description provided for @settingsThemeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'App theme'**
+  String get settingsThemeLabel;
+
+  /// No description provided for @settingsThemeHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow your phone appearance or choose a fixed theme.'**
+  String get settingsThemeHelp;
+
+  /// No description provided for @settingsThemeSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'Use device theme'**
+  String get settingsThemeSystem;
+
+  /// No description provided for @settingsThemeLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get settingsThemeLight;
+
+  /// No description provided for @settingsThemeDark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get settingsThemeDark;
 
   /// No description provided for @settingsLoadError.
   ///
