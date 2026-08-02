@@ -515,6 +515,71 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settingsSaved => 'Configuración guardada.';
 
   @override
+  String get tutorialTitle => 'Cómo usar CUM Master';
+
+  @override
+  String get tutorialMenuAction => 'Ver tutorial';
+
+  @override
+  String get tutorialSkipAction => 'Saltar';
+
+  @override
+  String get tutorialPreviousAction => 'Anterior';
+
+  @override
+  String get tutorialNextAction => 'Siguiente';
+
+  @override
+  String get tutorialFinishAction => 'Comenzar';
+
+  @override
+  String tutorialStepPosition(int current, int total) {
+    return 'Paso $current de $total';
+  }
+
+  @override
+  String get tutorialWelcomeTitle => 'Tu historial académico, en un solo lugar';
+
+  @override
+  String get tutorialWelcomeDescription =>
+      'CUM Master funciona sin cuenta y guarda todo en este dispositivo. Organiza tus ciclos, materias y notas con la estructura que utiliza tu universidad.';
+
+  @override
+  String get tutorialStudentsTitle => 'Empieza por el estudiante';
+
+  @override
+  String get tutorialStudentsDescription =>
+      'Crea un estudiante usando su número de carnet y, opcionalmente, su universidad. Puedes administrar varios estudiantes sin autenticación.';
+
+  @override
+  String get tutorialCyclesTitle => 'Organiza las materias por ciclo';
+
+  @override
+  String get tutorialCyclesDescription =>
+      'Crea tus ciclos históricos y marca como actual únicamente el que estás cursando. Luego agrega cada materia al ciclo que le corresponde y asigna sus UV.';
+
+  @override
+  String get tutorialGradesTitle => 'Registra solo el detalle que necesites';
+
+  @override
+  String get tutorialGradesDescription =>
+      'Puedes escribir directamente la nota de cada evaluación. Si deseas mayor precisión, agrega sus actividades y ponderaciones; la evaluación se calculará cuando completen el 100 %.';
+
+  @override
+  String get tutorialDashboardTitle => 'Consulta promedios y CUM';
+
+  @override
+  String get tutorialDashboardDescription =>
+      'El dashboard muestra las materias del ciclo elegido. Puedes consultar ciclos históricos, volver al ciclo actual y revisar el CUM general ponderado por UV.';
+
+  @override
+  String get tutorialBackupTitle => 'Configura y protege tus datos';
+
+  @override
+  String get tutorialBackupDescription =>
+      'En Configuración académica puedes ajustar UV, decimales, redondeo y terminología. Exporta copias periódicas para restaurarlas en otro teléfono cuando lo necesites.';
+
+  @override
   String get assessmentManualGrade => 'Nota manual (sin actividades)';
 
   @override

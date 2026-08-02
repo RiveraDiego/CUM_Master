@@ -511,6 +511,71 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsSaved => 'Settings saved.';
 
   @override
+  String get tutorialTitle => 'How to use CUM Master';
+
+  @override
+  String get tutorialMenuAction => 'View tutorial';
+
+  @override
+  String get tutorialSkipAction => 'Skip';
+
+  @override
+  String get tutorialPreviousAction => 'Previous';
+
+  @override
+  String get tutorialNextAction => 'Next';
+
+  @override
+  String get tutorialFinishAction => 'Get started';
+
+  @override
+  String tutorialStepPosition(int current, int total) {
+    return 'Step $current of $total';
+  }
+
+  @override
+  String get tutorialWelcomeTitle => 'Your academic history in one place';
+
+  @override
+  String get tutorialWelcomeDescription =>
+      'CUM Master works without an account and stores everything on this device. Organize terms, subjects and grades using your university\'s structure.';
+
+  @override
+  String get tutorialStudentsTitle => 'Start with a student';
+
+  @override
+  String get tutorialStudentsDescription =>
+      'Create a student using their student card number and optional university. You can manage several students without authentication.';
+
+  @override
+  String get tutorialCyclesTitle => 'Organize subjects by term';
+
+  @override
+  String get tutorialCyclesDescription =>
+      'Create historical terms and mark only the one you are attending as current. Then add each subject to its term and assign its credit units.';
+
+  @override
+  String get tutorialGradesTitle => 'Record only the detail you need';
+
+  @override
+  String get tutorialGradesDescription =>
+      'You can enter each assessment grade directly. For more precision, add activities and weights; the assessment is calculated when they total 100%.';
+
+  @override
+  String get tutorialDashboardTitle => 'Review averages and CUM';
+
+  @override
+  String get tutorialDashboardDescription =>
+      'The dashboard shows subjects for the selected term. Browse historical terms, return to the current one and review the general credit-weighted CUM.';
+
+  @override
+  String get tutorialBackupTitle => 'Configure and protect your data';
+
+  @override
+  String get tutorialBackupDescription =>
+      'Academic settings control credit units, decimals, rounding and terminology. Export regular backups so you can restore them on another phone.';
+
+  @override
   String get assessmentManualGrade => 'Manual grade (no activities)';
 
   @override

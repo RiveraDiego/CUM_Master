@@ -4,8 +4,9 @@ import '../../features/activities/presentation/activities_page.dart';
 import '../../features/assessments/presentation/pages/assessments_page.dart';
 import '../../features/backup/presentation/backup_page.dart';
 import '../../features/cycles/presentation/cycles_page.dart';
-import '../../features/dashboard/presentation/pages/dashboard_page.dart';
 import '../../features/settings/presentation/academic_settings_page.dart';
+import '../../features/onboarding/presentation/startup_page.dart';
+import '../../features/onboarding/presentation/tutorial_page.dart';
 import '../../features/students/presentation/pages/student_form_page.dart';
 import '../../features/students/presentation/pages/students_page.dart';
 import '../../features/subjects/presentation/pages/subject_form_page.dart';
@@ -24,6 +25,7 @@ abstract final class AppRoute {
   static const activities = 'activities';
   static const backup = 'backup';
   static const settings = 'settings';
+  static const tutorial = 'tutorial';
 }
 
 final GoRouter appRouter = GoRouter(
@@ -32,7 +34,12 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/',
       name: AppRoute.dashboard,
-      builder: (context, state) => const DashboardPage(),
+      builder: (context, state) => const StartupPage(),
+    ),
+    GoRoute(
+      path: '/tutorial',
+      name: AppRoute.tutorial,
+      builder: (context, state) => const TutorialPage(firstLaunch: false),
     ),
     GoRoute(
       path: '/settings',

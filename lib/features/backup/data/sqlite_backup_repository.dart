@@ -18,6 +18,7 @@ class SqliteBackupRepository implements BackupRepository {
     'assessments',
     'activities',
     'academic_settings',
+    'app_preferences',
   ];
 
   final StudentsDatabase database;
@@ -49,6 +50,7 @@ class SqliteBackupRepository implements BackupRepository {
       await db.transaction((transaction) async {
         await transaction.delete('students');
         await transaction.delete('academic_settings');
+        await transaction.delete('app_preferences');
         for (final table in _tables) {
           for (final row in tables[table]!) {
             await transaction.insert(
@@ -84,7 +86,11 @@ class SqliteBackupRepository implements BackupRepository {
       final data = decoded['data']! as Map<String, dynamic>;
       return {
         for (final table in _tables)
-          table: _rows(data[table], optional: table == 'academic_settings'),
+          table: _rows(
+            data[table],
+            optional:
+                table == 'academic_settings' || table == 'app_preferences',
+          ),
       };
     } on BackupException {
       rethrow;

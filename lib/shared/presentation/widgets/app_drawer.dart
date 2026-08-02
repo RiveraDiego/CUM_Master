@@ -42,6 +42,11 @@ class AppDrawer extends StatelessWidget {
               title: Text(l10n.settingsTitle),
               onTap: () => _navigate(context, AppRoute.settings),
             ),
+            ListTile(
+              leading: const Icon(Icons.school_outlined),
+              title: Text(l10n.tutorialMenuAction),
+              onTap: () => _openTutorial(context),
+            ),
           ],
         ),
       ),
@@ -53,6 +58,14 @@ class AppDrawer extends StatelessWidget {
     Navigator.of(context).pop();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       router.goNamed(routeName);
+    });
+  }
+
+  void _openTutorial(BuildContext context) {
+    final router = GoRouter.of(context);
+    Navigator.of(context).pop();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      router.pushNamed(AppRoute.tutorial);
     });
   }
 }
