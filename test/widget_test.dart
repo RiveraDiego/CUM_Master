@@ -42,6 +42,34 @@ void main() {
 
     expect(find.text('No students yet'), findsOneWidget);
   });
+
+  testWidgets('navigates repeatedly through the drawer without tree errors', (
+    WidgetTester tester,
+  ) async {
+    appRouter.go('/students');
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          appLocaleProvider.overrideWithValue(const Locale('es')),
+          studentRepositoryProvider.overrideWithValue(_EmptyRepository()),
+        ],
+        child: const CumMasterApp(),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byIcon(Icons.menu));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Inicio'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byIcon(Icons.menu));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Estudiantes'));
+    await tester.pumpAndSettle();
+
+    expect(tester.takeException(), isNull);
+    expect(find.text('Estudiantes'), findsWidgets);
+  });
 }
 
 class _EmptyRepository implements StudentRepository {

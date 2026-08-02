@@ -25,22 +25,24 @@ class AppDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.dashboard_outlined),
               title: Text(l10n.dashboardTitle),
-              onTap: () {
-                Navigator.pop(context);
-                context.goNamed(AppRoute.dashboard);
-              },
+              onTap: () => _navigate(context, AppRoute.dashboard),
             ),
             ListTile(
               leading: const Icon(Icons.people_outline),
               title: Text(l10n.studentsTitle),
-              onTap: () {
-                Navigator.pop(context);
-                context.goNamed(AppRoute.students);
-              },
+              onTap: () => _navigate(context, AppRoute.students),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _navigate(BuildContext context, String routeName) {
+    final router = GoRouter.of(context);
+    Navigator.of(context).pop();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      router.goNamed(routeName);
+    });
   }
 }
