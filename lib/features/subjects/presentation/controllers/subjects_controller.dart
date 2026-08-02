@@ -24,9 +24,14 @@ class SubjectsController extends AsyncNotifier<List<Subject>> {
     );
   }
 
-  Future<void> create({required String name, String? code}) async {
+  Future<void> create({
+    required String cycleId,
+    required String name,
+    String? code,
+  }) async {
     await ref.read(createSubjectProvider)(
       studentId: studentId,
+      cycleId: cycleId,
       name: name,
       code: code,
     );
@@ -36,12 +41,14 @@ class SubjectsController extends AsyncNotifier<List<Subject>> {
 
   Future<void> updateSubject({
     required String id,
+    required String cycleId,
     required String name,
     String? code,
   }) async {
     await ref.read(updateSubjectProvider)(
       id: id,
       studentId: studentId,
+      cycleId: cycleId,
       name: name,
       code: code,
     );

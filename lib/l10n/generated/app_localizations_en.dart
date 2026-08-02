@@ -223,11 +223,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashboardTitle => 'Home';
 
   @override
-  String get activeSemesterTitle => 'Active semester';
+  String get activeCycleTitle => 'Active term';
 
   @override
-  String get activeSemesterCurrentScope =>
-      'Summary of each student\'s current subjects.';
+  String get activeCycleCurrentScope =>
+      'Summary of each student\'s subjects in their active academic term.';
 
   @override
   String get dashboardLoadError => 'The academic summary could not be loaded.';
@@ -250,4 +250,45 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dashboardManageSubjects => 'Manage subjects';
+
+  @override
+  String get dashboardNoActiveCycle => 'No active term';
+
+  @override
+  String get cyclesTitle => 'Academic terms';
+
+  @override
+  String get cyclesCreateAction => 'Add term';
+
+  @override
+  String get cyclesEmpty =>
+      'There are no terms yet. Add one to organize subjects.';
+
+  @override
+  String get cyclesLoadError => 'Academic terms could not be loaded.';
+
+  @override
+  String get cycleCreateTitle => 'Add academic term';
+
+  @override
+  String get cycleNameLabel => 'Term name';
+
+  @override
+  String get cycleActive => 'Active term';
+
+  @override
+  String get cycleDuplicateError => 'A term with this name already exists.';
+
+  @override
+  String get cycleInUseError => 'A term containing subjects cannot be deleted.';
+
+  @override
+  String get cycleStorageError => 'The academic term data could not be saved.';
+
+  @override
+  String get subjectCycleLabel => 'Academic term';
+
+  @override
+  String get subjectCycleRequiredError =>
+      'Select the term this subject belongs to.';
 }

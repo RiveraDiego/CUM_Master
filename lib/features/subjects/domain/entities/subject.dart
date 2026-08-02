@@ -2,12 +2,14 @@ class Subject {
   Subject({
     required String id,
     required String studentId,
+    required String cycleId,
     required String name,
     String? code,
     required DateTime createdAt,
     required DateTime updatedAt,
   }) : id = _required(id, 'id'),
        studentId = _required(studentId, 'studentId'),
+       cycleId = _required(cycleId, 'cycleId'),
        name = _required(name, 'name'),
        code = _optional(code),
        createdAt = _utc(createdAt, 'createdAt'),
@@ -15,15 +17,22 @@ class Subject {
 
   final String id;
   final String studentId;
+  final String cycleId;
   final String name;
   final String? code;
   final DateTime createdAt;
   final DateTime updatedAt;
 
-  Subject copyWith({String? name, Object? code = _unset, DateTime? updatedAt}) {
+  Subject copyWith({
+    String? cycleId,
+    String? name,
+    Object? code = _unset,
+    DateTime? updatedAt,
+  }) {
     return Subject(
       id: id,
       studentId: studentId,
+      cycleId: cycleId ?? this.cycleId,
       name: name ?? this.name,
       code: identical(code, _unset) ? this.code : code as String?,
       createdAt: createdAt,
