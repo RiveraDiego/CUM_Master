@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/router/app_router.dart';
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../../shared/presentation/widgets/app_drawer.dart';
 import '../../domain/entities/student.dart';
 import '../../domain/errors/student_exceptions.dart';
 import '../controllers/students_controller.dart';
@@ -18,6 +19,7 @@ class StudentsPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.studentsTitle)),
+      drawer: const AppDrawer(),
       body: SafeArea(
         child: students.when(
           loading: () => const Center(child: CircularProgressIndicator()),

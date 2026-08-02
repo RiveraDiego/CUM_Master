@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/state/academic_data_revision.dart';
 import '../../application/subject_providers.dart';
 import '../../domain/entities/subject.dart';
 
@@ -30,6 +31,7 @@ class SubjectsController extends AsyncNotifier<List<Subject>> {
       code: code,
     );
     await refresh();
+    ref.read(academicDataRevisionProvider.notifier).bump();
   }
 
   Future<void> updateSubject({
@@ -44,10 +46,12 @@ class SubjectsController extends AsyncNotifier<List<Subject>> {
       code: code,
     );
     await refresh();
+    ref.read(academicDataRevisionProvider.notifier).bump();
   }
 
   Future<void> delete(String id) async {
     await ref.read(deleteSubjectProvider)(id);
     await refresh();
+    ref.read(academicDataRevisionProvider.notifier).bump();
   }
 }

@@ -83,5 +83,15 @@
   "assessmentDeleteMessage": "Se eliminará permanentemente {assessmentName}.",
   "@assessmentDeleteMessage": {"placeholders": {"assessmentName": {"type": "String"}}},
   "assessmentScore": "{score} de {maxScore}",
-  "@assessmentScore": {"placeholders": {"score": {"type": "num"}, "maxScore": {"type": "num"}}}
+  "@assessmentScore": {"placeholders": {"score": {"type": "num"}, "maxScore": {"type": "num"}}},
+  "dashboardTitle": "Inicio",
+  "activeSemesterTitle": "Semestre activo",
+  "activeSemesterCurrentScope": "Resumen de las materias actuales de cada estudiante.",
+  "dashboardLoadError": "No se pudo cargar el resumen académico.",
+  "dashboardNoStudents": "Agrega un estudiante para ver su resumen académico.",
+  "dashboardNoSubjects": "Este estudiante aún no tiene materias.",
+  "dashboardNoGrades": "Sin evaluaciones registradas",
+  "dashboardWeightedAverage": "Promedio ponderado",
+  "dashboardSimpleAverage": "Promedio simple",
+  "dashboardManageSubjects": "Gestionar materias"
 }

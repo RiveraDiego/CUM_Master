@@ -221,4 +221,36 @@ class AppLocalizationsEs extends AppLocalizations {
   String assessmentScore(num score, num maxScore) {
     return '$score de $maxScore';
   }
+
+  @override
+  String get dashboardTitle => 'Inicio';
+
+  @override
+  String get activeSemesterTitle => 'Semestre activo';
+
+  @override
+  String get activeSemesterCurrentScope =>
+      'Resumen de las materias actuales de cada estudiante.';
+
+  @override
+  String get dashboardLoadError => 'No se pudo cargar el resumen académico.';
+
+  @override
+  String get dashboardNoStudents =>
+      'Agrega un estudiante para ver su resumen académico.';
+
+  @override
+  String get dashboardNoSubjects => 'Este estudiante aún no tiene materias.';
+
+  @override
+  String get dashboardNoGrades => 'Sin evaluaciones registradas';
+
+  @override
+  String get dashboardWeightedAverage => 'Promedio ponderado';
+
+  @override
+  String get dashboardSimpleAverage => 'Promedio simple';
+
+  @override
+  String get dashboardManageSubjects => 'Gestionar materias';
 }

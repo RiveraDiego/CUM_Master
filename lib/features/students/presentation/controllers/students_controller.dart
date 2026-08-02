@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../../core/state/academic_data_revision.dart';
 import '../../application/student_providers.dart';
 import '../../domain/entities/student.dart';
 
@@ -26,6 +27,7 @@ class StudentsController extends AsyncNotifier<List<Student>> {
       university: university,
     );
     await refresh();
+    ref.read(academicDataRevisionProvider.notifier).bump();
     return student;
   }
 
@@ -40,11 +42,13 @@ class StudentsController extends AsyncNotifier<List<Student>> {
       university: university,
     );
     await refresh();
+    ref.read(academicDataRevisionProvider.notifier).bump();
     return student;
   }
 
   Future<void> delete(String studentId) async {
     await ref.read(deleteStudentProvider)(studentId);
     await refresh();
+    ref.read(academicDataRevisionProvider.notifier).bump();
   }
 }
