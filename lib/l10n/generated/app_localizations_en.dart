@@ -695,4 +695,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get backupSaveSuccess => 'The backup was saved successfully.';
+
+  @override
+  String get backupSaveCancelled =>
+      'The backup was not saved. You can try again.';
 }

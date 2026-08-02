@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
-import 'package:file_selector/file_selector.dart' hide XFile;
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
@@ -12,6 +13,7 @@ import '../../students/application/student_providers.dart';
 import '../../settings/application/academic_settings_providers.dart';
 import '../../../core/theme/theme_mode_provider.dart';
 import '../data/sqlite_backup_repository.dart';
+import '../domain/backup_exceptions.dart';
 import '../domain/backup_repository.dart';
 
 final backupRepositoryProvider = Provider<BackupRepository>(
@@ -46,33 +48,26 @@ class BackupActions {
 
   Future<bool> exportAndSave() async {
     final export = await _createExport();
-    const type = XTypeGroup(
-      label: 'CUM Master backup',
-      extensions: ['json'],
-      mimeTypes: ['application/json'],
+    final path = await FilePicker.platform.saveFile(
+      dialogTitle: 'Guardar copia de CUM Master',
+      fileName: export.name,
+      type: FileType.custom,
+      allowedExtensions: const ['json'],
+      bytes: Uint8List.fromList(utf8.encode(export.json)),
     );
-    final location = await getSaveLocation(
-      suggestedName: export.name,
-      acceptedTypeGroups: const [type],
-    );
-    if (location == null) return false;
-    await XFile.fromData(
-      utf8.encode(export.json),
-      mimeType: 'application/json',
-      name: export.name,
-    ).saveTo(location.path);
-    return true;
+    return path != null;
   }
 
   Future<bool> pickAndImport() async {
-    const type = XTypeGroup(
-      label: 'CUM Master backup',
-      extensions: ['json'],
-      mimeTypes: ['application/json'],
+    final result = await FilePicker.platform.pickFiles(
+      dialogTitle: 'Seleccionar copia de CUM Master',
+      type: FileType.custom,
+      allowedExtensions: const ['json'],
+      withData: true,
     );
-    final picked = await openFile(acceptedTypeGroups: const [type]);
-    if (picked == null) return false;
-    final bytes = await picked.readAsBytes();
+    if (result == null) return false;
+    final bytes = result.files.single.bytes;
+    if (bytes == null) throw const BackupStorageException();
     await ref.read(backupRepositoryProvider).importJson(utf8.decode(bytes));
     ref.invalidate(academicSettingsProvider);
     ref.invalidate(tutorialCompletedProvider);

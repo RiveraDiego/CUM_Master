@@ -105,6 +105,10 @@ class _BackupPageState extends ConsumerState<BackupPage> {
           : await actions.exportAndShare();
       if (completed && mounted && destination == _ExportDestination.save) {
         _show(l10n.backupSaveSuccess);
+      } else if (!completed &&
+          mounted &&
+          destination == _ExportDestination.save) {
+        _show(l10n.backupSaveCancelled);
       }
     } on BackupException {
       _show(l10n.backupExportError);

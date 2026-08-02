@@ -1357,6 +1357,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The backup was saved successfully.'**
   String get backupSaveSuccess;
+
+  /// No description provided for @backupSaveCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'The backup was not saved. You can try again.'**
+  String get backupSaveCancelled;
 }
 
 class _AppLocalizationsDelegate

@@ -237,5 +237,6 @@
   "backupSaveDeviceDescription": "Elige la carpeta y el nombre del archivo",
   "backupShareAction": "Compartir con otra aplicación",
   "backupShareDescription": "Envíala por WhatsApp, correo u otra aplicación",
-  "backupSaveSuccess": "La copia se guardó correctamente."
+  "backupSaveSuccess": "La copia se guardó correctamente.",
+  "backupSaveCancelled": "No se guardó la copia. Puedes intentarlo nuevamente."
 }

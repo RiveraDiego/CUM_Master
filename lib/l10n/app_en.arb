@@ -237,5 +237,6 @@
   "backupSaveDeviceDescription": "Choose the folder and file name",
   "backupShareAction": "Share with another app",
   "backupShareDescription": "Send it through WhatsApp, email, or another app",
-  "backupSaveSuccess": "The backup was saved successfully."
+  "backupSaveSuccess": "The backup was saved successfully.",
+  "backupSaveCancelled": "The backup was not saved. You can try again."
 }
