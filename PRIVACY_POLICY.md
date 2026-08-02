@@ -10,18 +10,13 @@ Los estudiantes, carnets, universidades, ciclos, materias, evaluaciones, activid
 
 La exportación de una copia de seguridad ocurre únicamente cuando el usuario la solicita. El usuario decide dónde guardar o compartir ese archivo y es responsable de protegerlo.
 
-## Publicidad
+## Publicidad y servicios externos
 
-CUM Master utiliza Google Mobile Ads para mostrar publicidad mínima. Google y sus socios pueden tratar datos como identificadores del dispositivo, dirección IP, interacciones con anuncios y datos de diagnóstico para ofrecer, medir y proteger la publicidad. Este tratamiento está sujeto a las políticas de Google.
-
-Cuando la legislación aplicable lo requiere, la aplicación solicita una elección de consentimiento antes de cargar anuncios. Las opciones pueden revisarse posteriormente desde Configuración cuando Google indique que deben estar disponibles.
-
-- [Política de privacidad de Google](https://policies.google.com/privacy)
-- [Cómo utiliza Google la información de sitios o aplicaciones](https://policies.google.com/technologies/partner-sites)
+La versión inicial de CUM Master no muestra publicidad ni integra SDK publicitarios. Si una versión futura incorpora publicidad u otro servicio externo, esta política se actualizará antes de distribuir esa versión.
 
 ## Retención y eliminación
 
-La información académica permanece en el dispositivo hasta que el usuario la edita, la elimina desde la aplicación o desinstala CUM Master. Los datos tratados por Google se rigen por sus propios periodos y controles de retención.
+La información académica permanece en el dispositivo hasta que el usuario la edita, la elimina desde la aplicación o desinstala CUM Master.
 
 ## Menores
 
@@ -33,4 +28,4 @@ Esta política puede actualizarse cuando cambien las funciones, proveedores o re
 
 ## Contacto
 
-Para consultas de privacidad relacionadas con CUM Master, abre una consulta en el [repositorio del proyecto](https://github.com/RiveraDiego/CUM_Master/issues).
+Para consultas de privacidad relacionadas con CUM Master, escribe a [dmenendez3075@gmail.com](mailto:dmenendez3075@gmail.com).

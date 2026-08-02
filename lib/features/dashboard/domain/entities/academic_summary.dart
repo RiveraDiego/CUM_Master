@@ -58,6 +58,15 @@ class StudentAcademicSummary {
   bool get isViewingCurrentCycle =>
       currentCycleId != null && selectedCycleId == currentCycleId;
 
+  bool get hasCurrentCycle => currentCycleId != null;
+  bool get hasSubjectsInViewedCycle => subjects.isNotEmpty;
+  bool get hasAssessmentsInViewedCycle =>
+      subjects.any((subject) => subject.assessmentCount > 0);
+  bool get isInitialSetupComplete =>
+      hasCurrentCycle &&
+      hasSubjectsInViewedCycle &&
+      hasAssessmentsInViewedCycle;
+
   double? get overallAverage {
     final values = subjects.map((item) => item.average).whereType<double>();
     if (values.isEmpty) return null;

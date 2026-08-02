@@ -648,9 +648,32 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get settingsAdPrivacyAction => 'Ad privacy options';
+  String get setupTitle => 'Complete initial setup';
 
   @override
-  String get settingsAdPrivacyError =>
-      'Privacy options could not be opened. Please try again.';
+  String get setupStudentStep => 'Student created';
+
+  @override
+  String get setupCurrentCycleStep => 'Current term selected';
+
+  @override
+  String get setupFirstSubjectStep => 'First subject added';
+
+  @override
+  String get setupFirstAssessmentStep => 'First assessment recorded';
+
+  @override
+  String get setupCreateCycleAction => 'Create first term';
+
+  @override
+  String get setupCreateSubjectAction => 'Add first subject';
+
+  @override
+  String get setupCreateAssessmentAction => 'Add first assessment';
+
+  @override
+  String get setupDismissAction => 'Hide guide';
+
+  @override
+  String get academicLocationLabel => 'You are in';
 }

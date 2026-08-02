@@ -1262,17 +1262,65 @@ abstract class AppLocalizations {
   /// **'Overall historical GPA: {cum}'**
   String dashboardGeneralCum(String cum);
 
-  /// No description provided for @settingsAdPrivacyAction.
+  /// No description provided for @setupTitle.
   ///
   /// In en, this message translates to:
-  /// **'Ad privacy options'**
-  String get settingsAdPrivacyAction;
+  /// **'Complete initial setup'**
+  String get setupTitle;
 
-  /// No description provided for @settingsAdPrivacyError.
+  /// No description provided for @setupStudentStep.
   ///
   /// In en, this message translates to:
-  /// **'Privacy options could not be opened. Please try again.'**
-  String get settingsAdPrivacyError;
+  /// **'Student created'**
+  String get setupStudentStep;
+
+  /// No description provided for @setupCurrentCycleStep.
+  ///
+  /// In en, this message translates to:
+  /// **'Current term selected'**
+  String get setupCurrentCycleStep;
+
+  /// No description provided for @setupFirstSubjectStep.
+  ///
+  /// In en, this message translates to:
+  /// **'First subject added'**
+  String get setupFirstSubjectStep;
+
+  /// No description provided for @setupFirstAssessmentStep.
+  ///
+  /// In en, this message translates to:
+  /// **'First assessment recorded'**
+  String get setupFirstAssessmentStep;
+
+  /// No description provided for @setupCreateCycleAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Create first term'**
+  String get setupCreateCycleAction;
+
+  /// No description provided for @setupCreateSubjectAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add first subject'**
+  String get setupCreateSubjectAction;
+
+  /// No description provided for @setupCreateAssessmentAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add first assessment'**
+  String get setupCreateAssessmentAction;
+
+  /// No description provided for @setupDismissAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide guide'**
+  String get setupDismissAction;
+
+  /// No description provided for @academicLocationLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'You are in'**
+  String get academicLocationLabel;
 }
 
 class _AppLocalizationsDelegate

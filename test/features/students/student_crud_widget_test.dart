@@ -54,8 +54,10 @@ void main() {
     await tester.tap(find.text('Guardar'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Diego'), findsOneWidget);
-    expect(find.text('AB-123 · Universidad Nacional'), findsOneWidget);
+    expect(
+      appRouter.routerDelegate.currentConfiguration.uri.path,
+      '/students/${repository.students.single.id}/cycles',
+    );
     expect(repository.students, hasLength(1));
     expect(repository.students.single.name, 'Diego');
   });

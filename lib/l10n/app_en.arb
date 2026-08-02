@@ -222,6 +222,14 @@
   "assessmentCalculatedGrade": "Grade calculated from activities",
   "dashboardGeneralCum": "Overall historical GPA: {cum}",
   "@dashboardGeneralCum": {"placeholders": {"cum": {"type": "String"}}},
-  "settingsAdPrivacyAction": "Ad privacy options",
-  "settingsAdPrivacyError": "Privacy options could not be opened. Please try again."
+  "setupTitle": "Complete initial setup",
+  "setupStudentStep": "Student created",
+  "setupCurrentCycleStep": "Current term selected",
+  "setupFirstSubjectStep": "First subject added",
+  "setupFirstAssessmentStep": "First assessment recorded",
+  "setupCreateCycleAction": "Create first term",
+  "setupCreateSubjectAction": "Add first subject",
+  "setupCreateAssessmentAction": "Add first assessment",
+  "setupDismissAction": "Hide guide",
+  "academicLocationLabel": "You are in"
 }

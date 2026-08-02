@@ -23,7 +23,8 @@ Aplicación Android offline para organizar el historial académico universitario
 - Tema claro, oscuro o sincronizado con la apariencia del dispositivo.
 - Menú lateral disponible en todas las pantallas operativas y navegación Atrás basada en el historial real.
 - Sistema visual Material 3 unificado e identidad propia de CUM Master.
-- Banner publicitario mínimo en el dashboard, condicionado por el flujo de consentimiento de Google.
+- Asistente contextual que guía la primera configuración: estudiante, ciclo actual, materia y evaluación.
+- Versionado semántico con nombre en clave visible en Configuración (`1.0.0 · Nuegado`).
 
 ## Reglas de cálculo implementadas
 
@@ -117,13 +118,13 @@ El repositorio utiliza Conventional Commits y cada hito funcional se valida con:
 - [x] Generar Android App Bundle firmado para Google Play
 - [ ] Pruebas internas y cerradas en Google Play
 - [x] Estadísticas históricas
-- [x] Publicidad mínima
+- [ ] Publicidad mínima después de la publicación inicial
 
 El simulador independiente, Premium y la sincronización en la nube están fuera del alcance de la versión inicial.
 
 ## Privacidad y datos
 
-CUM Master no requiere una cuenta ni envía información académica a servidores propios. Los datos académicos viven en el dispositivo y el usuario puede exportar una copia al servicio que prefiera. La versión con publicidad integra Google Mobile Ads, cuyo tratamiento de datos se describe en la [política de privacidad](PRIVACY_POLICY.md).
+CUM Master no requiere una cuenta ni envía información académica a servidores. Los datos viven en el dispositivo y el usuario puede exportar una copia al servicio que prefiera. La versión inicial no incluye publicidad ni SDK publicitarios. Consulta la [política de privacidad](PRIVACY_POLICY.md).
 
 ## Autor
 

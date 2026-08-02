@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../l10n/generated/app_localizations.dart';
+import '../../../shared/application/academic_location_provider.dart';
+import '../../../shared/presentation/widgets/academic_location_bar.dart';
 import '../../../shared/presentation/widgets/app_drawer.dart';
 import '../../../shared/presentation/widgets/app_navigation_app_bar.dart';
 import '../application/activity_providers.dart';
@@ -14,6 +16,7 @@ class ActivitiesPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final values = ref.watch(activitiesProvider(assessmentId));
+    final location = ref.watch(assessmentLocationProvider(assessmentId));
     final terminology = ref.watch(academicSettingsProvider).value;
     final title = terminology?.activityPlural?.trim();
     return Scaffold(
@@ -24,44 +27,62 @@ class ActivitiesPage extends ConsumerWidget {
         ),
       ),
       drawer: const AppDrawer(),
-      body: values.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
-        error: (_, _) => Center(child: Text(l10n.activitiesLoadError)),
-        data: (items) {
-          final total = items.fold<double>(0, (sum, item) => sum + item.weight);
-          return Column(
-            children: [
-              ListTile(
-                title: Text(l10n.activityWeightTotal(total)),
-                subtitle: Text(
-                  (total - 100).abs() < .001
-                      ? l10n.activityCalculationReady
-                      : l10n.activityCalculationIncomplete,
-                ),
-              ),
-              Expanded(
-                child: items.isEmpty
-                    ? Center(child: Text(l10n.activitiesEmpty))
-                    : ListView.builder(
-                        itemCount: items.length,
-                        itemBuilder: (_, i) => ListTile(
-                          title: Text(items[i].name),
-                          subtitle: Text(
-                            '${items[i].score}/${items[i].maxScore} · ${items[i].weight}%',
-                          ),
-                          onTap: () => _edit(context, ref, items[i]),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.delete_outline),
-                            onPressed: () => ref
-                                .read(activityActionsProvider)
-                                .delete(assessmentId, items[i].id),
-                          ),
-                        ),
+      body: Column(
+        children: [
+          location.maybeWhen(
+            data: (value) => value == null
+                ? const SizedBox.shrink()
+                : AcademicLocationBar(
+                    semanticLabel: l10n.academicLocationLabel,
+                    items: _locationItems(value),
+                  ),
+            orElse: () => const SizedBox(height: 8),
+          ),
+          Expanded(
+            child: values.when(
+              loading: () => const Center(child: CircularProgressIndicator()),
+              error: (_, _) => Center(child: Text(l10n.activitiesLoadError)),
+              data: (items) {
+                final total = items.fold<double>(
+                  0,
+                  (sum, item) => sum + item.weight,
+                );
+                return Column(
+                  children: [
+                    ListTile(
+                      title: Text(l10n.activityWeightTotal(total)),
+                      subtitle: Text(
+                        (total - 100).abs() < .001
+                            ? l10n.activityCalculationReady
+                            : l10n.activityCalculationIncomplete,
                       ),
-              ),
-            ],
-          );
-        },
+                    ),
+                    Expanded(
+                      child: items.isEmpty
+                          ? Center(child: Text(l10n.activitiesEmpty))
+                          : ListView.builder(
+                              itemCount: items.length,
+                              itemBuilder: (_, i) => ListTile(
+                                title: Text(items[i].name),
+                                subtitle: Text(
+                                  '${items[i].score}/${items[i].maxScore} · ${items[i].weight}%',
+                                ),
+                                onTap: () => _edit(context, ref, items[i]),
+                                trailing: IconButton(
+                                  icon: const Icon(Icons.delete_outline),
+                                  onPressed: () => ref
+                                      .read(activityActionsProvider)
+                                      .delete(assessmentId, items[i].id),
+                                ),
+                              ),
+                            ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _edit(context, ref),
@@ -77,6 +98,10 @@ class ActivitiesPage extends ConsumerWidget {
     Activity? current,
   ]) async {
     final l10n = AppLocalizations.of(context)!;
+    final location = await ref.read(
+      assessmentLocationProvider(assessmentId).future,
+    );
+    if (!context.mounted) return;
     final name = TextEditingController(text: current?.name);
     final score = TextEditingController(text: current?.score.toString());
     final max = TextEditingController(text: current?.maxScore.toString());
@@ -94,6 +119,11 @@ class ActivitiesPage extends ConsumerWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                if (location != null)
+                  AcademicLocationBar(
+                    semanticLabel: l10n.academicLocationLabel,
+                    items: _locationItems(location),
+                  ),
                 TextFormField(
                   controller: name,
                   decoration: InputDecoration(
@@ -182,4 +212,12 @@ class ActivitiesPage extends ConsumerWidget {
     final n = double.tryParse(value ?? '');
     return n != null && (allowZero ? n >= 0 : n > 0);
   }
+
+  static List<AcademicLocationItem> _locationItems(AcademicLocation value) => [
+    AcademicLocationItem(Icons.person_outline, value.student),
+    AcademicLocationItem(Icons.calendar_month_outlined, value.cycle),
+    AcademicLocationItem(Icons.menu_book_outlined, value.subject),
+    if (value.assessment != null)
+      AcademicLocationItem(Icons.fact_check_outlined, value.assessment!),
+  ];
 }

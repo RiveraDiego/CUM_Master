@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import '../../../core/router/app_router.dart';
 import '../../../l10n/generated/app_localizations.dart';
 import '../../../shared/presentation/widgets/app_drawer.dart';
 import '../../../shared/presentation/widgets/app_navigation_app_bar.dart';
@@ -148,9 +150,19 @@ class CyclesPage extends ConsumerWidget {
     controller.dispose();
     if (name == null || name.isEmpty) return;
     try {
+      final isFirstCycle =
+          ref.read(cyclesProvider(studentId)).value?.isEmpty ?? false;
       await ref
           .read(cycleActionsProvider)
-          .create(studentId, name, active: false);
+          .create(studentId, name, active: isFirstCycle);
+      if (isFirstCycle &&
+          context.mounted &&
+          GoRouter.maybeOf(context) != null) {
+        context.pushNamed(
+          AppRoute.subjectCreate,
+          pathParameters: {'studentId': studentId},
+        );
+      }
     } on DuplicateCycleNameException {
       if (context.mounted) _show(context, l10n.cycleDuplicateError);
     } on CycleException {
