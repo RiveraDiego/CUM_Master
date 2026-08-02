@@ -355,6 +355,24 @@ class AppLocalizationsEs extends AppLocalizations {
   String get cycleEditTitle => 'Renombrar ciclo';
 
   @override
+  String get cyclesManageAction => 'Gestionar ciclos';
+
+  @override
+  String get cycleCreateInlineAction => 'Crear nuevo ciclo';
+
+  @override
+  String get subjectsCycleFilterLabel => 'Ciclo que deseas consultar';
+
+  @override
+  String get subjectsEmptyForCycle => 'Este ciclo aún no tiene materias.';
+
+  @override
+  String get cycleActivateAction => 'Marcar como ciclo activo';
+
+  @override
+  String get cycleRenameAction => 'Renombrar';
+
+  @override
   String get assessmentManualGrade => 'Nota manual (sin actividades)';
 
   @override

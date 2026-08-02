@@ -16,26 +16,24 @@ final cyclesProvider = FutureProvider.family<List<AcademicCycle>, String>(
 class CycleActions {
   const CycleActions(this.ref);
   final Ref ref;
-  Future<void> create(
+  Future<AcademicCycle> create(
     String studentId,
     String name, {
     required bool active,
   }) async {
     final now = DateTime.now().toUtc();
-    await ref
-        .read(cycleRepositoryProvider)
-        .create(
-          AcademicCycle(
-            id: const Uuid().v4(),
-            studentId: studentId,
-            name: name,
-            isActive: active,
-            createdAt: now,
-            updatedAt: now,
-          ),
-        );
+    final cycle = AcademicCycle(
+      id: const Uuid().v4(),
+      studentId: studentId,
+      name: name,
+      isActive: active,
+      createdAt: now,
+      updatedAt: now,
+    );
+    await ref.read(cycleRepositoryProvider).create(cycle);
     ref.invalidate(cyclesProvider(studentId));
     ref.read(academicDataRevisionProvider.notifier).bump();
+    return cycle;
   }
 
   Future<void> setActive(String studentId, String id) async {

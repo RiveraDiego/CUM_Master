@@ -351,6 +351,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cycleEditTitle => 'Rename term';
 
   @override
+  String get cyclesManageAction => 'Manage terms';
+
+  @override
+  String get cycleCreateInlineAction => 'Create new term';
+
+  @override
+  String get subjectsCycleFilterLabel => 'Academic term to view';
+
+  @override
+  String get subjectsEmptyForCycle =>
+      'This term does not have any subjects yet.';
+
+  @override
+  String get cycleActivateAction => 'Set as active term';
+
+  @override
+  String get cycleRenameAction => 'Rename';
+
+  @override
   String get assessmentManualGrade => 'Manual grade (no activities)';
 
   @override

@@ -30,12 +30,6 @@ class CyclesPage extends ConsumerWidget {
                           : Icons.calendar_month_outlined,
                     ),
                     title: Text(items[index].name),
-                    onLongPress: () => _rename(
-                      context,
-                      ref,
-                      items[index].id,
-                      items[index].name,
-                    ),
                     subtitle: items[index].isActive
                         ? Text(l10n.cycleActive)
                         : null,
@@ -44,9 +38,40 @@ class CyclesPage extends ConsumerWidget {
                         : () => ref
                               .read(cycleActionsProvider)
                               .setActive(studentId, items[index].id),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.delete_outline),
-                      onPressed: () => _delete(context, ref, items[index].id),
+                    trailing: PopupMenuButton<_CycleAction>(
+                      tooltip: l10n.subjectMoreActions,
+                      onSelected: (action) async {
+                        switch (action) {
+                          case _CycleAction.activate:
+                            await ref
+                                .read(cycleActionsProvider)
+                                .setActive(studentId, items[index].id);
+                          case _CycleAction.rename:
+                            await _rename(
+                              context,
+                              ref,
+                              items[index].id,
+                              items[index].name,
+                            );
+                          case _CycleAction.delete:
+                            await _delete(context, ref, items[index].id);
+                        }
+                      },
+                      itemBuilder: (_) => [
+                        if (!items[index].isActive)
+                          PopupMenuItem(
+                            value: _CycleAction.activate,
+                            child: Text(l10n.cycleActivateAction),
+                          ),
+                        PopupMenuItem(
+                          value: _CycleAction.rename,
+                          child: Text(l10n.cycleRenameAction),
+                        ),
+                        PopupMenuItem(
+                          value: _CycleAction.delete,
+                          child: Text(l10n.deleteAction),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -137,7 +162,13 @@ class CyclesPage extends ConsumerWidget {
     );
     controller.dispose();
     if (name != null && name.isNotEmpty) {
-      await ref.read(cycleActionsProvider).rename(studentId, id, name);
+      try {
+        await ref.read(cycleActionsProvider).rename(studentId, id, name);
+      } on DuplicateCycleNameException {
+        if (context.mounted) _show(context, l10n.cycleDuplicateError);
+      } on CycleException {
+        if (context.mounted) _show(context, l10n.cycleStorageError);
+      }
     }
   }
 
@@ -146,3 +177,5 @@ class CyclesPage extends ConsumerWidget {
         context,
       ).showSnackBar(SnackBar(content: Text(message)));
 }
+
+enum _CycleAction { activate, rename, delete }
