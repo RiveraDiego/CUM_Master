@@ -5,6 +5,7 @@ import '../../../assessments/application/assessment_providers.dart';
 import '../../../assessments/domain/entities/assessment.dart';
 import '../../../activities/application/activity_providers.dart';
 import '../../../cycles/application/cycle_providers.dart';
+import '../../../cycles/application/viewed_cycle_provider.dart';
 import '../../../students/application/student_providers.dart';
 import '../../../subjects/application/subject_providers.dart';
 import '../../application/hierarchical_grade_calculator.dart';
@@ -16,11 +17,10 @@ final dashboardControllerProvider =
     );
 
 class DashboardController extends AsyncNotifier<List<StudentAcademicSummary>> {
-  final _selectedCycleIds = <String, String>{};
-
   @override
   Future<List<StudentAcademicSummary>> build() {
     ref.watch(academicDataRevisionProvider);
+    ref.watch(viewedCycleIdsProvider);
     return _load();
   }
 
@@ -30,7 +30,7 @@ class DashboardController extends AsyncNotifier<List<StudentAcademicSummary>> {
   }
 
   Future<void> selectCycle(String studentId, String cycleId) async {
-    _selectedCycleIds[studentId] = cycleId;
+    ref.read(viewedCycleIdsProvider.notifier).select(studentId, cycleId);
     state = await AsyncValue.guard(_load);
   }
 
@@ -51,15 +51,17 @@ class DashboardController extends AsyncNotifier<List<StudentAcademicSummary>> {
       final subjects = await ref.read(listSubjectsProvider)(student.id);
       final cycles = await ref.read(cycleRepositoryProvider).getAll(student.id);
       final activeCycle = cycles.where((item) => item.isActive).firstOrNull;
-      final requestedCycleId = _selectedCycleIds[student.id];
+      final requestedCycleId = ref.read(viewedCycleIdsProvider)[student.id];
       final selectedCycle = activeCycle == null
           ? null
           : cycles.where((item) => item.id == requestedCycleId).firstOrNull ??
                 activeCycle;
-      if (selectedCycle == null) {
-        _selectedCycleIds.remove(student.id);
-      } else {
-        _selectedCycleIds[student.id] = selectedCycle.id;
+      if (requestedCycleId == null && selectedCycle != null) {
+        Future.microtask(() {
+          ref
+              .read(viewedCycleIdsProvider.notifier)
+              .select(student.id, selectedCycle.id);
+        });
       }
       final allSubjectSummaries = <SubjectSummary>[];
       for (final subject in subjects) {

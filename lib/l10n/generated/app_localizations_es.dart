@@ -523,10 +523,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get settingsRoundingLabel => 'Método de redondeo';
 
   @override
-  String get settingsRoundingCeiling => 'Hacia arriba';
+  String get settingsRoundingCeiling => 'Siempre hacia arriba';
 
   @override
-  String get settingsRoundingNearest => 'Al valor más cercano';
+  String get settingsRoundingNearest => 'Convencional (5 o más hacia arriba)';
 
   @override
   String get settingsRoundingFloor => 'Hacia abajo';

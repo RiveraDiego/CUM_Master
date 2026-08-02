@@ -7,6 +7,7 @@ import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/presentation/widgets/app_drawer.dart';
 import '../../../../shared/presentation/widgets/app_navigation_app_bar.dart';
 import '../../../cycles/application/cycle_providers.dart';
+import '../../../cycles/application/viewed_cycle_provider.dart';
 import '../../../cycles/domain/entities/academic_cycle.dart';
 import '../../../settings/application/academic_settings_providers.dart';
 import '../../domain/entities/subject.dart';
@@ -22,8 +23,6 @@ class SubjectsPage extends ConsumerStatefulWidget {
 }
 
 class _SubjectsPageState extends ConsumerState<SubjectsPage> {
-  String? _selectedCycleId;
-
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
@@ -77,8 +76,9 @@ class _SubjectsPageState extends ConsumerState<SubjectsPage> {
         onPressed: _manageCycles,
       );
     }
-    final selected = cycles.any((cycle) => cycle.id == _selectedCycleId)
-        ? _selectedCycleId!
+    final viewedCycleId = ref.watch(viewedCycleIdsProvider)[widget.studentId];
+    final selected = cycles.any((cycle) => cycle.id == viewedCycleId)
+        ? viewedCycleId!
         : cycles.where((cycle) => cycle.isActive).firstOrNull?.id ??
               cycles.first.id;
     return Column(
@@ -107,8 +107,13 @@ class _SubjectsPageState extends ConsumerState<SubjectsPage> {
                         ),
                       )
                       .toList(),
-                  onChanged: (value) =>
-                      setState(() => _selectedCycleId = value),
+                  onChanged: (value) {
+                    if (value != null) {
+                      ref
+                          .read(viewedCycleIdsProvider.notifier)
+                          .select(widget.studentId, value);
+                    }
+                  },
                 ),
               ),
               const SizedBox(width: 8),

@@ -24,7 +24,7 @@ class _AcademicSettingsPageState extends ConsumerState<AcademicSettingsPage> {
   bool _initialized = false;
   bool _saving = false;
   int _decimalPlaces = 1;
-  GradeRoundingMode _roundingMode = GradeRoundingMode.ceiling;
+  GradeRoundingMode _roundingMode = GradeRoundingMode.nearest;
 
   @override
   void dispose() {

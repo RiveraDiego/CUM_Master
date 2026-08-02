@@ -20,7 +20,7 @@ class AcademicSettings {
   static const defaults = AcademicSettings(
     defaultCreditUnits: 1,
     decimalPlaces: 1,
-    roundingMode: GradeRoundingMode.ceiling,
+    roundingMode: GradeRoundingMode.nearest,
   );
 
   final double defaultCreditUnits;

@@ -1031,13 +1031,13 @@ abstract class AppLocalizations {
   /// No description provided for @settingsRoundingCeiling.
   ///
   /// In en, this message translates to:
-  /// **'Round up'**
+  /// **'Always round up'**
   String get settingsRoundingCeiling;
 
   /// No description provided for @settingsRoundingNearest.
   ///
   /// In en, this message translates to:
-  /// **'Nearest value'**
+  /// **'Standard (5 or more rounds up)'**
   String get settingsRoundingNearest;
 
   /// No description provided for @settingsRoundingFloor.

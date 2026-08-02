@@ -518,10 +518,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settingsRoundingLabel => 'Rounding method';
 
   @override
-  String get settingsRoundingCeiling => 'Round up';
+  String get settingsRoundingCeiling => 'Always round up';
 
   @override
-  String get settingsRoundingNearest => 'Nearest value';
+  String get settingsRoundingNearest => 'Standard (5 or more rounds up)';
 
   @override
   String get settingsRoundingFloor => 'Round down';
