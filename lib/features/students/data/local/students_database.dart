@@ -5,7 +5,7 @@ class StudentsDatabase {
   StudentsDatabase({DatabaseFactory? factory, this.databasePath})
     : _factory = factory ?? databaseFactory;
 
-  static const schemaVersion = 1;
+  static const schemaVersion = 2;
   static const fileName = 'cum_master.db';
 
   final DatabaseFactory _factory;
@@ -47,8 +47,32 @@ class StudentsDatabase {
               CHECK(updated_at >= created_at)
             )
           ''');
+          await _createSubjectsTable(database);
+        },
+        onUpgrade: (database, oldVersion, newVersion) async {
+          if (oldVersion < 2) await _createSubjectsTable(database);
         },
       ),
+    );
+  }
+
+  static Future<void> _createSubjectsTable(Database database) async {
+    await database.execute('''
+      CREATE TABLE subjects (
+        id TEXT PRIMARY KEY NOT NULL,
+        student_id TEXT NOT NULL,
+        name TEXT NOT NULL COLLATE NOCASE,
+        code TEXT,
+        created_at TEXT NOT NULL,
+        updated_at TEXT NOT NULL,
+        FOREIGN KEY(student_id) REFERENCES students(id) ON DELETE CASCADE,
+        UNIQUE(student_id, name),
+        CHECK(length(trim(name)) > 0),
+        CHECK(updated_at >= created_at)
+      )
+    ''');
+    await database.execute(
+      'CREATE INDEX idx_subjects_student_id ON subjects(student_id)',
     );
   }
 

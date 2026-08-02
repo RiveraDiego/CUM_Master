@@ -259,6 +259,108 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try again'**
   String get retryAction;
+
+  /// No description provided for @subjectsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Subjects'**
+  String get subjectsTitle;
+
+  /// No description provided for @subjectsCreateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add subject'**
+  String get subjectsCreateAction;
+
+  /// No description provided for @subjectsEmptyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'This student has no subjects yet. Add the first one to start organizing grades.'**
+  String get subjectsEmptyDescription;
+
+  /// No description provided for @subjectsLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Subjects could not be loaded.'**
+  String get subjectsLoadError;
+
+  /// No description provided for @subjectCreateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add subject'**
+  String get subjectCreateTitle;
+
+  /// No description provided for @subjectEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit subject'**
+  String get subjectEditTitle;
+
+  /// No description provided for @subjectNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Subject name'**
+  String get subjectNameLabel;
+
+  /// No description provided for @subjectNameRequiredError.
+  ///
+  /// In en, this message translates to:
+  /// **'The subject name is required.'**
+  String get subjectNameRequiredError;
+
+  /// No description provided for @subjectCodeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Code (optional)'**
+  String get subjectCodeLabel;
+
+  /// No description provided for @subjectCodeNotSpecified.
+  ///
+  /// In en, this message translates to:
+  /// **'No code'**
+  String get subjectCodeNotSpecified;
+
+  /// No description provided for @subjectDuplicateError.
+  ///
+  /// In en, this message translates to:
+  /// **'A subject with this name already exists for the student.'**
+  String get subjectDuplicateError;
+
+  /// No description provided for @subjectMoreActions.
+  ///
+  /// In en, this message translates to:
+  /// **'More subject actions'**
+  String get subjectMoreActions;
+
+  /// No description provided for @subjectDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete subject?'**
+  String get subjectDeleteTitle;
+
+  /// No description provided for @subjectDeleteMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The subject {subjectName} will be permanently deleted.'**
+  String subjectDeleteMessage(String subjectName);
+
+  /// No description provided for @subjectDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Subject deleted.'**
+  String get subjectDeleted;
+
+  /// No description provided for @subjectNotFoundError.
+  ///
+  /// In en, this message translates to:
+  /// **'This subject no longer exists.'**
+  String get subjectNotFoundError;
+
+  /// No description provided for @subjectStorageError.
+  ///
+  /// In en, this message translates to:
+  /// **'The subject data could not be saved. Try again.'**
+  String get subjectStorageError;
 }
 
 class _AppLocalizationsDelegate

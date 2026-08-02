@@ -93,4 +93,60 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get retryAction => 'Try again';
+
+  @override
+  String get subjectsTitle => 'Subjects';
+
+  @override
+  String get subjectsCreateAction => 'Add subject';
+
+  @override
+  String get subjectsEmptyDescription =>
+      'This student has no subjects yet. Add the first one to start organizing grades.';
+
+  @override
+  String get subjectsLoadError => 'Subjects could not be loaded.';
+
+  @override
+  String get subjectCreateTitle => 'Add subject';
+
+  @override
+  String get subjectEditTitle => 'Edit subject';
+
+  @override
+  String get subjectNameLabel => 'Subject name';
+
+  @override
+  String get subjectNameRequiredError => 'The subject name is required.';
+
+  @override
+  String get subjectCodeLabel => 'Code (optional)';
+
+  @override
+  String get subjectCodeNotSpecified => 'No code';
+
+  @override
+  String get subjectDuplicateError =>
+      'A subject with this name already exists for the student.';
+
+  @override
+  String get subjectMoreActions => 'More subject actions';
+
+  @override
+  String get subjectDeleteTitle => 'Delete subject?';
+
+  @override
+  String subjectDeleteMessage(String subjectName) {
+    return 'The subject $subjectName will be permanently deleted.';
+  }
+
+  @override
+  String get subjectDeleted => 'Subject deleted.';
+
+  @override
+  String get subjectNotFoundError => 'This subject no longer exists.';
+
+  @override
+  String get subjectStorageError =>
+      'The subject data could not be saved. Try again.';
 }

@@ -94,4 +94,61 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get retryAction => 'Reintentar';
+
+  @override
+  String get subjectsTitle => 'Materias';
+
+  @override
+  String get subjectsCreateAction => 'Agregar materia';
+
+  @override
+  String get subjectsEmptyDescription =>
+      'Este estudiante aún no tiene materias. Agrega la primera para comenzar a organizar sus notas.';
+
+  @override
+  String get subjectsLoadError => 'No se pudieron cargar las materias.';
+
+  @override
+  String get subjectCreateTitle => 'Agregar materia';
+
+  @override
+  String get subjectEditTitle => 'Editar materia';
+
+  @override
+  String get subjectNameLabel => 'Nombre de la materia';
+
+  @override
+  String get subjectNameRequiredError =>
+      'El nombre de la materia es obligatorio.';
+
+  @override
+  String get subjectCodeLabel => 'Código (opcional)';
+
+  @override
+  String get subjectCodeNotSpecified => 'Sin código';
+
+  @override
+  String get subjectDuplicateError =>
+      'Ya existe una materia con este nombre para el estudiante.';
+
+  @override
+  String get subjectMoreActions => 'Más acciones de la materia';
+
+  @override
+  String get subjectDeleteTitle => '¿Eliminar materia?';
+
+  @override
+  String subjectDeleteMessage(String subjectName) {
+    return 'Se eliminará permanentemente la materia $subjectName.';
+  }
+
+  @override
+  String get subjectDeleted => 'Materia eliminada.';
+
+  @override
+  String get subjectNotFoundError => 'Esta materia ya no existe.';
+
+  @override
+  String get subjectStorageError =>
+      'No se pudieron guardar los datos de la materia. Inténtalo de nuevo.';
 }
