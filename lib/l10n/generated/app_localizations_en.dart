@@ -241,6 +241,37 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashboardAllStudents => 'All students';
 
   @override
+  String get statisticsTitle => 'Statistics';
+
+  @override
+  String get statisticsLoadError => 'Statistics could not be calculated.';
+
+  @override
+  String get statisticsNoStudents =>
+      'Add a student to start building their academic history.';
+
+  @override
+  String get statisticsNoCycles => 'This student does not have any terms yet.';
+
+  @override
+  String get statisticsEvolutionTitle => 'Average evolution by term';
+
+  @override
+  String statisticsCycleSubjects(int graded, int total) {
+    return '$graded of $total subjects graded';
+  }
+
+  @override
+  String statisticsAverageValue(String value) {
+    return 'Avg. $value';
+  }
+
+  @override
+  String statisticsCumValue(String value) {
+    return 'GPA $value';
+  }
+
+  @override
   String get dashboardLoadError => 'The academic summary could not be loaded.';
 
   @override

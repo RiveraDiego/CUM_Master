@@ -68,6 +68,13 @@ class AppDrawer extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             ListTile(
+              leading: const Icon(Icons.insights_outlined),
+              title: Text(l10n.statisticsTitle),
+              selected: currentRoute == AppRoute.statistics,
+              onTap: () => _navigate(context, AppRoute.statistics),
+            ),
+            const SizedBox(height: 4),
+            ListTile(
               leading: const Icon(Icons.backup_outlined),
               title: Text(l10n.backupTitle),
               selected: currentRoute == AppRoute.backup,
