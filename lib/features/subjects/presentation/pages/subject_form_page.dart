@@ -343,7 +343,13 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
               : double.parse(_manualGrade.text),
         );
       } else {
-        await notifier.create(
+        final isFirstSubject =
+            ref
+                .read(subjectsControllerProvider(widget.studentId))
+                .value
+                ?.isEmpty ??
+            false;
+        final subject = await notifier.create(
           cycleId: _cycleId!,
           name: _name.text,
           code: _code.text,
@@ -352,6 +358,16 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
               ? null
               : double.parse(_manualGrade.text),
         );
+        if (mounted && isFirstSubject && GoRouter.maybeOf(context) != null) {
+          context.goNamed(
+            AppRoute.assessments,
+            pathParameters: {
+              'studentId': widget.studentId,
+              'subjectId': subject.id,
+            },
+          );
+          return;
+        }
       }
       if (mounted) context.pop();
     } on DuplicateSubjectNameException {

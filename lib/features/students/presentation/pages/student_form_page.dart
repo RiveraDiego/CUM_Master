@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/router/app_router.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/presentation/widgets/app_drawer.dart';
 import '../../../../shared/presentation/widgets/app_navigation_app_bar.dart';
@@ -183,11 +184,20 @@ class _StudentFormPageState extends ConsumerState<StudentFormPage> {
           university: _universityController.text,
         );
       } else {
-        await notifier.create(
+        final isFirstStudent =
+            ref.read(studentsControllerProvider).value?.isEmpty ?? false;
+        final student = await notifier.create(
           studentCard: _studentCardController.text,
           name: _nameController.text,
           university: _universityController.text,
         );
+        if (mounted && isFirstStudent && GoRouter.maybeOf(context) != null) {
+          context.goNamed(
+            AppRoute.cycles,
+            pathParameters: {'studentId': student.id},
+          );
+          return;
+        }
       }
       if (mounted) context.pop();
     } on DuplicateStudentCardException {

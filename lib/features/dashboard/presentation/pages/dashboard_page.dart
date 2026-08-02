@@ -6,7 +6,6 @@ import '../../../../core/router/app_router.dart';
 import '../../../../l10n/generated/app_localizations.dart';
 import '../../../../shared/presentation/widgets/app_drawer.dart';
 import '../../../../shared/presentation/widgets/app_navigation_app_bar.dart';
-import '../../../../shared/presentation/widgets/minimal_banner_ad.dart';
 import '../../../settings/application/academic_settings_providers.dart';
 import '../../../settings/domain/academic_settings.dart';
 import '../../domain/entities/academic_summary.dart';
@@ -21,6 +20,7 @@ class DashboardPage extends ConsumerStatefulWidget {
 
 class _DashboardPageState extends ConsumerState<DashboardPage> {
   String? _selectedStudentId;
+  final _dismissedSetupStudentIds = <String>{};
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,6 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
     return Scaffold(
       appBar: appNavigationAppBar(context, title: Text(l10n.dashboardTitle)),
       drawer: const AppDrawer(),
-      bottomNavigationBar: const MinimalBannerAd(),
       body: SafeArea(
         child: summaries.when(
           loading: () => const Center(child: CircularProgressIndicator()),
@@ -89,6 +88,17 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                   ),
                   const SizedBox(height: 16),
                   for (final item in visibleItems) ...[
+                    if (!item.isInitialSetupComplete &&
+                        !_dismissedSetupStudentIds.contains(item.id)) ...[
+                      _InitialSetupCard(
+                        summary: item,
+                        onContinue: () => _continueInitialSetup(item),
+                        onDismiss: () => setState(
+                          () => _dismissedSetupStudentIds.add(item.id),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                    ],
                     _StudentSummaryCard(
                       summary: item,
                       settings: settings,
@@ -109,6 +119,125 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
       ),
     );
   }
+
+  void _continueInitialSetup(StudentAcademicSummary summary) {
+    if (!summary.hasCurrentCycle) {
+      context.pushNamed(
+        AppRoute.cycles,
+        pathParameters: {'studentId': summary.id},
+      );
+      return;
+    }
+    if (!summary.hasSubjectsInViewedCycle) {
+      context.pushNamed(
+        AppRoute.subjectCreate,
+        pathParameters: {'studentId': summary.id},
+      );
+      return;
+    }
+    final subject = summary.subjects.firstWhere(
+      (item) => item.assessmentCount == 0,
+      orElse: () => summary.subjects.first,
+    );
+    context.pushNamed(
+      AppRoute.assessments,
+      pathParameters: {'studentId': summary.id, 'subjectId': subject.id},
+    );
+  }
+}
+
+class _InitialSetupCard extends StatelessWidget {
+  const _InitialSetupCard({
+    required this.summary,
+    required this.onContinue,
+    required this.onDismiss,
+  });
+
+  final StudentAcademicSummary summary;
+  final VoidCallback onContinue;
+  final VoidCallback onDismiss;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final nextAction = !summary.hasCurrentCycle
+        ? l10n.setupCreateCycleAction
+        : !summary.hasSubjectsInViewedCycle
+        ? l10n.setupCreateSubjectAction
+        : l10n.setupCreateAssessmentAction;
+    return Card(
+      color: Theme.of(context).colorScheme.secondaryContainer,
+      child: Padding(
+        padding: const EdgeInsets.all(18),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.route_outlined),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    l10n.setupTitle,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+                IconButton(
+                  tooltip: l10n.setupDismissAction,
+                  onPressed: onDismiss,
+                  icon: const Icon(Icons.close),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            _SetupStep(label: l10n.setupStudentStep, complete: true),
+            _SetupStep(
+              label: l10n.setupCurrentCycleStep,
+              complete: summary.hasCurrentCycle,
+            ),
+            _SetupStep(
+              label: l10n.setupFirstSubjectStep,
+              complete: summary.hasSubjectsInViewedCycle,
+            ),
+            _SetupStep(
+              label: l10n.setupFirstAssessmentStep,
+              complete: summary.hasAssessmentsInViewedCycle,
+            ),
+            const SizedBox(height: 12),
+            FilledButton.icon(
+              onPressed: onContinue,
+              icon: const Icon(Icons.arrow_forward),
+              label: Text(nextAction),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _SetupStep extends StatelessWidget {
+  const _SetupStep({required this.label, required this.complete});
+
+  final String label;
+  final bool complete;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.symmetric(vertical: 3),
+    child: Row(
+      children: [
+        Icon(
+          complete ? Icons.check_circle : Icons.radio_button_unchecked,
+          size: 20,
+        ),
+        const SizedBox(width: 8),
+        Expanded(child: Text(label)),
+      ],
+    ),
+  );
 }
 
 class _StudentSummaryCard extends StatelessWidget {

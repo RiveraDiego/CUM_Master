@@ -42,8 +42,8 @@ void main() {
     );
     await tester.pumpAndSettle();
 
+    expect(find.text('Completa la configuración inicial'), findsWidgets);
     expect(find.text('Diego'), findsOneWidget);
-    expect(find.text('Ana'), findsOneWidget);
     await tester.tap(find.text('Todos los estudiantes'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Ana').last);
