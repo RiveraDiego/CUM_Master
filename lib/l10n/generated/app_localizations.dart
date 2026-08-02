@@ -722,6 +722,42 @@ abstract class AppLocalizations {
   /// **'Rename term'**
   String get cycleEditTitle;
 
+  /// No description provided for @cyclesManageAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage terms'**
+  String get cyclesManageAction;
+
+  /// No description provided for @cycleCreateInlineAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Create new term'**
+  String get cycleCreateInlineAction;
+
+  /// No description provided for @subjectsCycleFilterLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Academic term to view'**
+  String get subjectsCycleFilterLabel;
+
+  /// No description provided for @subjectsEmptyForCycle.
+  ///
+  /// In en, this message translates to:
+  /// **'This term does not have any subjects yet.'**
+  String get subjectsEmptyForCycle;
+
+  /// No description provided for @cycleActivateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Set as active term'**
+  String get cycleActivateAction;
+
+  /// No description provided for @cycleRenameAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename'**
+  String get cycleRenameAction;
+
   /// No description provided for @assessmentManualGrade.
   ///
   /// In en, this message translates to:
