@@ -101,7 +101,11 @@ class AppDrawer extends StatelessWidget {
     Navigator.of(context).pop();
     if (currentRoute == routeName) return;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      router.pushNamed(routeName);
+      if (routeName == AppRoute.dashboard) {
+        router.goNamed(routeName);
+      } else {
+        router.pushNamed(routeName);
+      }
     });
   }
 

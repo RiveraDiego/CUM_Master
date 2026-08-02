@@ -43,7 +43,7 @@ void main() {
     expect(find.text('No students yet'), findsOneWidget);
   });
 
-  testWidgets('drawer keeps history and back returns to the previous screen', (
+  testWidgets('home from drawer resets history and root navigation', (
     WidgetTester tester,
   ) async {
     appRouter.go('/students');
@@ -62,6 +62,8 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text('Inicio'));
     await tester.pumpAndSettle();
+    expect(find.byIcon(Icons.arrow_back), findsNothing);
+    expect(find.byIcon(Icons.menu), findsOneWidget);
     await tester.tap(find.byIcon(Icons.menu));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Estudiantes'));
@@ -72,11 +74,39 @@ void main() {
     await tester.tap(find.byIcon(Icons.arrow_back));
     await tester.pumpAndSettle();
     expect(find.text('Inicio'), findsWidgets);
-    await tester.tap(find.byIcon(Icons.arrow_back));
-    await tester.pumpAndSettle();
-    expect(find.text('Estudiantes'), findsWidgets);
     expect(find.byIcon(Icons.arrow_back), findsNothing);
     expect(find.byIcon(Icons.menu), findsOneWidget);
+  });
+
+  testWidgets('home discards an open edit screen from the stack', (
+    WidgetTester tester,
+  ) async {
+    final repository = _SingleStudentRepository();
+    appRouter.goNamed(
+      AppRoute.studentEdit,
+      pathParameters: {'studentId': repository.student.id},
+    );
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          appLocaleProvider.overrideWithValue(const Locale('es')),
+          studentRepositoryProvider.overrideWithValue(repository),
+        ],
+        child: const CumMasterApp(),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('Editar estudiante'), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.menu));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Inicio'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Editar estudiante'), findsNothing);
+    expect(find.byIcon(Icons.arrow_back), findsNothing);
+    expect(find.byIcon(Icons.menu), findsOneWidget);
+    expect(appRouter.canPop(), isFalse);
   });
 }
 
@@ -92,6 +122,32 @@ class _EmptyRepository implements StudentRepository {
 
   @override
   Future<Student?> getById(String id) async => null;
+
+  @override
+  Future<void> update(Student student) async {}
+}
+
+class _SingleStudentRepository implements StudentRepository {
+  final Student student = Student(
+    id: 'student-1',
+    studentCard: 'TEST-1',
+    name: 'Estudiante de prueba',
+    createdAt: DateTime.utc(2026),
+    updatedAt: DateTime.utc(2026),
+  );
+
+  @override
+  Future<void> create(Student student) async {}
+
+  @override
+  Future<void> delete(String id) async {}
+
+  @override
+  Future<List<Student>> getAll() async => [student];
+
+  @override
+  Future<Student?> getById(String id) async =>
+      id == student.id ? student : null;
 
   @override
   Future<void> update(Student student) async {}
