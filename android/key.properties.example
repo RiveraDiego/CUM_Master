@@ -1,0 +1,6 @@
+# Copia este archivo como key.properties y reemplaza los valores.
+# Nunca subas key.properties ni el archivo .jks al repositorio.
+storePassword=REEMPLAZAR
+keyPassword=REEMPLAZAR
+keyAlias=upload
+storeFile=C:\\ruta\\privada\\upload-keystore.jks
