@@ -40,6 +40,10 @@ void main() {
     expect(find.text('El carnet estudiantil es obligatorio.'), findsOneWidget);
 
     await tester.enterText(
+      find.widgetWithText(TextFormField, 'Nombre del estudiante'),
+      '  Diego  ',
+    );
+    await tester.enterText(
       find.widgetWithText(TextFormField, 'Carnet estudiantil'),
       '  AB-123  ',
     );
@@ -50,9 +54,10 @@ void main() {
     await tester.tap(find.text('Guardar'));
     await tester.pumpAndSettle();
 
-    expect(find.text('AB-123'), findsOneWidget);
-    expect(find.text('Universidad Nacional'), findsOneWidget);
+    expect(find.text('Diego'), findsOneWidget);
+    expect(find.text('AB-123 · Universidad Nacional'), findsOneWidget);
     expect(repository.students, hasLength(1));
+    expect(repository.students.single.name, 'Diego');
   });
 
   testWidgets('shows a specific duplicate-card error', (tester) async {

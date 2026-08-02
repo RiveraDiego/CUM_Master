@@ -29,10 +29,12 @@ void main() {
   test('creates, lists and gets a normalized student', () async {
     final created = await createStudent(
       studentCard: '  AB-123  ',
+      name: '  Diego  ',
       university: '  UES  ',
     );
 
     expect(created.studentCard, 'AB-123');
+    expect(created.name, 'Diego');
     expect(created.university, 'UES');
     expect(await GetStudent(repository)(created.id), isNotNull);
     expect(await ListStudents(repository).call(), [created]);
@@ -43,11 +45,13 @@ void main() {
     final updated = await UpdateStudent(repository)(
       studentId: created.id,
       studentCard: 'B-2',
+      name: 'Ana',
       university: 'UCA',
     );
 
     final persisted = await GetStudent(repository)(created.id);
     expect(persisted?.studentCard, 'B-2');
+    expect(persisted?.name, 'Ana');
     expect(persisted?.university, 'UCA');
     expect(persisted?.createdAt, created.createdAt);
     expect(updated.updatedAt.isAfter(created.updatedAt), isTrue);
@@ -116,6 +120,21 @@ void main() {
     );
 
     expect((await GetStudent(repository)(created.id))?.university, isNull);
+  });
+
+  test('normalizes an empty optional name to null', () async {
+    final created = await createStudent(
+      studentCard: 'A-1',
+      name: 'Nombre temporal',
+    );
+
+    await UpdateStudent(repository)(
+      studentId: created.id,
+      studentCard: created.studentCard,
+      name: '   ',
+    );
+
+    expect((await GetStudent(repository)(created.id))?.name, isNull);
   });
 
   test('shares one handle for concurrent database opens', () async {

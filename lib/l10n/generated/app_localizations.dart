@@ -152,6 +152,24 @@ abstract class AppLocalizations {
   /// **'Student ID'**
   String get studentCardLabel;
 
+  /// No description provided for @studentNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Student name'**
+  String get studentNameLabel;
+
+  /// No description provided for @studentNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'E.g. Diego, Ana, or My account'**
+  String get studentNameHint;
+
+  /// No description provided for @optionalFieldLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional'**
+  String get optionalFieldLabel;
+
   /// No description provided for @studentCardHint.
   ///
   /// In en, this message translates to:
@@ -493,6 +511,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Home'**
   String get dashboardTitle;
+
+  /// No description provided for @dashboardStudentFilterLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter by student'**
+  String get dashboardStudentFilterLabel;
+
+  /// No description provided for @dashboardAllStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'All students'**
+  String get dashboardAllStudents;
 
   /// No description provided for @activeCycleTitle.
   ///

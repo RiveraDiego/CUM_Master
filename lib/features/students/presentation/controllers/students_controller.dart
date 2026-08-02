@@ -20,10 +20,12 @@ class StudentsController extends AsyncNotifier<List<Student>> {
 
   Future<Student> create({
     required String studentCard,
+    String? name,
     String? university,
   }) async {
     final student = await ref.read(createStudentProvider)(
       studentCard: studentCard,
+      name: name,
       university: university,
     );
     await refresh();
@@ -34,11 +36,13 @@ class StudentsController extends AsyncNotifier<List<Student>> {
   Future<Student> updateStudent({
     required String studentId,
     required String studentCard,
+    String? name,
     String? university,
   }) async {
     final student = await ref.read(updateStudentProvider)(
       studentId: studentId,
       studentCard: studentCard,
+      name: name,
       university: university,
     );
     await refresh();

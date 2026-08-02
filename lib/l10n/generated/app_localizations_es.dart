@@ -37,6 +37,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get studentCardLabel => 'Carnet estudiantil';
 
   @override
+  String get studentNameLabel => 'Nombre del estudiante';
+
+  @override
+  String get studentNameHint => 'Ej. Diego, Ana o Mi cuenta';
+
+  @override
+  String get optionalFieldLabel => 'Opcional';
+
+  @override
   String get studentCardHint => 'Ingresa el número de carnet';
 
   @override
@@ -227,6 +236,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get dashboardTitle => 'Inicio';
+
+  @override
+  String get dashboardStudentFilterLabel => 'Filtrar por estudiante';
+
+  @override
+  String get dashboardAllStudents => 'Todos los estudiantes';
 
   @override
   String get activeCycleTitle => 'Ciclo activo';

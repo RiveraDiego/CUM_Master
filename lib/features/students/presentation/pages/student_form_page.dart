@@ -22,6 +22,7 @@ class StudentFormPage extends ConsumerStatefulWidget {
 class _StudentFormPageState extends ConsumerState<StudentFormPage> {
   final _formKey = GlobalKey<FormState>();
   final _studentCardController = TextEditingController();
+  final _nameController = TextEditingController();
   final _universityController = TextEditingController();
   Future<Student?>? _studentFuture;
   bool _saving = false;
@@ -40,6 +41,7 @@ class _StudentFormPageState extends ConsumerState<StudentFormPage> {
   @override
   void dispose() {
     _studentCardController.dispose();
+    _nameController.dispose();
     _universityController.dispose();
     super.dispose();
   }
@@ -87,6 +89,7 @@ class _StudentFormPageState extends ConsumerState<StudentFormPage> {
 
   void _initialize(Student student) {
     _studentCardController.text = student.studentCard;
+    _nameController.text = student.name ?? '';
     _universityController.text = student.university ?? '';
     _initialized = true;
   }
@@ -109,10 +112,23 @@ class _StudentFormPageState extends ConsumerState<StudentFormPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 TextFormField(
-                  controller: _studentCardController,
+                  controller: _nameController,
                   enabled: !_saving,
                   textInputAction: TextInputAction.next,
                   autofocus: !_isEditing,
+                  textCapitalization: TextCapitalization.words,
+                  decoration: InputDecoration(
+                    labelText: l10n.studentNameLabel,
+                    hintText: l10n.studentNameHint,
+                    helperText: l10n.optionalFieldLabel,
+                    prefixIcon: const Icon(Icons.person_outline),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  controller: _studentCardController,
+                  enabled: !_saving,
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                     labelText: l10n.studentCardLabel,
                     hintText: l10n.studentCardHint,
@@ -163,11 +179,13 @@ class _StudentFormPageState extends ConsumerState<StudentFormPage> {
         await notifier.updateStudent(
           studentId: widget.studentId!,
           studentCard: _studentCardController.text,
+          name: _nameController.text,
           university: _universityController.text,
         );
       } else {
         await notifier.create(
           studentCard: _studentCardController.text,
+          name: _nameController.text,
           university: _universityController.text,
         );
       }

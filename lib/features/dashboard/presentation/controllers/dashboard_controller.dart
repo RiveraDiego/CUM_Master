@@ -92,6 +92,7 @@ class DashboardController extends AsyncNotifier<List<StudentAcademicSummary>> {
         StudentAcademicSummary(
           id: student.id,
           studentCard: student.studentCard,
+          studentName: student.name,
           university: student.university,
           activeCycleName: activeCycle?.name,
           currentCycleId: activeCycle?.id,

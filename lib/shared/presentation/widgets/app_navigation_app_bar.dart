@@ -6,7 +6,7 @@ PreferredSizeWidget appNavigationAppBar(
   List<Widget> actions = const [],
 }) {
   final navigator = Navigator.of(context);
-  final canGoBack = navigator.canPop();
+  final canGoBack = ModalRoute.of(context)?.canPop ?? false;
   return AppBar(
     title: title,
     leading: canGoBack ? BackButton(onPressed: navigator.maybePop) : null,

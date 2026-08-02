@@ -43,6 +43,7 @@ class StudentLocalDataSource {
       'students',
       {
         'student_card': student.studentCard,
+        'name': student.name,
         'university': student.university,
         'updated_at': student.updatedAt.toIso8601String(),
       },
@@ -66,6 +67,7 @@ class StudentLocalDataSource {
   Map<String, Object?> _toMap(Student student) => {
     'id': student.id,
     'student_card': student.studentCard,
+    'name': student.name,
     'university': student.university,
     'created_at': student.createdAt.toIso8601String(),
     'updated_at': student.updatedAt.toIso8601String(),
@@ -74,6 +76,7 @@ class StudentLocalDataSource {
   Student _fromMap(Map<String, Object?> map) => Student(
     id: map['id']! as String,
     studentCard: map['student_card']! as String,
+    name: map['name'] as String?,
     university: map['university'] as String?,
     createdAt: DateTime.parse(map['created_at']! as String),
     updatedAt: DateTime.parse(map['updated_at']! as String),
