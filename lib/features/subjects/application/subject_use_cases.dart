@@ -31,15 +31,21 @@ class CreateSubject {
 
   Future<Subject> call({
     required String studentId,
+    String? cycleId,
     required String name,
     String? code,
+    double creditUnits = 1,
+    double? manualFinalGrade,
   }) async {
     final now = _now().toUtc();
     final subject = Subject(
       id: _uuid.v4(),
       studentId: studentId,
+      cycleId: cycleId ?? 'cycle-$studentId',
       name: name,
       code: code,
+      creditUnits: creditUnits,
+      manualFinalGrade: manualFinalGrade,
       createdAt: now,
       updatedAt: now,
     );
@@ -56,8 +62,11 @@ class UpdateSubject {
   Future<Subject> call({
     required String id,
     required String studentId,
+    String? cycleId,
     required String name,
     String? code,
+    double? creditUnits,
+    Object? manualFinalGrade = _notProvided,
   }) async {
     final current = await _repository.getById(id);
     if (current == null || current.studentId != studentId) {
@@ -65,8 +74,13 @@ class UpdateSubject {
     }
     final now = _now().toUtc();
     final updated = current.copyWith(
+      cycleId: cycleId ?? current.cycleId,
       name: name,
       code: code,
+      creditUnits: creditUnits,
+      manualFinalGrade: identical(manualFinalGrade, _notProvided)
+          ? current.manualFinalGrade
+          : manualFinalGrade,
       updatedAt: now.isAfter(current.updatedAt)
           ? now
           : current.updatedAt.add(const Duration(microseconds: 1)),
@@ -75,6 +89,8 @@ class UpdateSubject {
     return updated;
   }
 }
+
+const _notProvided = Object();
 
 class DeleteSubject {
   const DeleteSubject(this._repository);

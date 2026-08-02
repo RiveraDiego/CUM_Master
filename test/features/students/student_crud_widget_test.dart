@@ -14,7 +14,7 @@ void main() {
 
   setUp(() {
     repository = FakeStudentRepository();
-    appRouter.go('/');
+    appRouter.go('/students');
   });
 
   Future<void> pumpApp(WidgetTester tester) async {

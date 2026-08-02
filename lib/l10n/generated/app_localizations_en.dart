@@ -218,4 +218,146 @@ class AppLocalizationsEn extends AppLocalizations {
   String assessmentScore(num score, num maxScore) {
     return '$score out of $maxScore';
   }
+
+  @override
+  String get dashboardTitle => 'Home';
+
+  @override
+  String get activeCycleTitle => 'Active term';
+
+  @override
+  String get activeCycleCurrentScope =>
+      'Summary of each student\'s subjects in their active academic term.';
+
+  @override
+  String get dashboardLoadError => 'The academic summary could not be loaded.';
+
+  @override
+  String get dashboardNoStudents =>
+      'Add a student to see their academic summary.';
+
+  @override
+  String get dashboardNoSubjects => 'This student has no subjects yet.';
+
+  @override
+  String get dashboardNoGrades => 'No assessments recorded';
+
+  @override
+  String get dashboardWeightedAverage => 'Weighted average';
+
+  @override
+  String get dashboardSimpleAverage => 'Simple average';
+
+  @override
+  String get dashboardManageSubjects => 'Manage subjects';
+
+  @override
+  String get dashboardNoActiveCycle => 'No active term';
+
+  @override
+  String get cyclesTitle => 'Academic terms';
+
+  @override
+  String get cyclesCreateAction => 'Add term';
+
+  @override
+  String get cyclesEmpty =>
+      'There are no terms yet. Add one to organize subjects.';
+
+  @override
+  String get cyclesLoadError => 'Academic terms could not be loaded.';
+
+  @override
+  String get cycleCreateTitle => 'Add academic term';
+
+  @override
+  String get cycleNameLabel => 'Term name';
+
+  @override
+  String get cycleActive => 'Active term';
+
+  @override
+  String get cycleDuplicateError => 'A term with this name already exists.';
+
+  @override
+  String get cycleInUseError => 'A term containing subjects cannot be deleted.';
+
+  @override
+  String get cycleStorageError => 'The academic term data could not be saved.';
+
+  @override
+  String get subjectCycleLabel => 'Academic term';
+
+  @override
+  String get subjectCycleRequiredError =>
+      'Select the term this subject belongs to.';
+
+  @override
+  String get subjectCreditUnitsLabel => 'Credit units';
+
+  @override
+  String get subjectCreditUnitsError => 'Enter credit units greater than zero.';
+
+  @override
+  String get subjectHistoricalGradeLabel => 'Historical final grade (optional)';
+
+  @override
+  String get subjectHistoricalGradeHelp =>
+      'When entered, it takes priority over assessment calculations.';
+
+  @override
+  String get subjectHistoricalGradeError =>
+      'The grade must be between 0 and 10.';
+
+  @override
+  String get activitiesTitle => 'Activities';
+
+  @override
+  String get activitiesCreateAction => 'Add activity';
+
+  @override
+  String get activitiesEmpty =>
+      'There are no activities. The manual assessment grade will be used.';
+
+  @override
+  String get activitiesLoadError => 'Activities could not be loaded.';
+
+  @override
+  String get activityCreateTitle => 'Add activity';
+
+  @override
+  String get activityEditTitle => 'Edit activity';
+
+  @override
+  String get activityNameLabel => 'Activity name';
+
+  @override
+  String get activityRequiredError => 'The name is required.';
+
+  @override
+  String activityWeightTotal(num weight) {
+    return 'Total weight: $weight%';
+  }
+
+  @override
+  String get activityCalculationReady =>
+      'The assessment grade will be calculated from these activities.';
+
+  @override
+  String get activityCalculationIncomplete =>
+      'Complete exactly 100% to calculate the assessment.';
+
+  @override
+  String get cycleEditTitle => 'Rename term';
+
+  @override
+  String get assessmentManualGrade => 'Manual grade (no activities)';
+
+  @override
+  String get assessmentCalculatedGrade => 'Grade calculated from activities';
+
+  @override
+  String dashboardGeneralCum(String cum) {
+    return 'Overall historical GPA: $cum';
+  }
 }

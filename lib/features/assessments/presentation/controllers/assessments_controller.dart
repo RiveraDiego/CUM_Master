@@ -1,4 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../../../core/state/academic_data_revision.dart';
 import '../../application/assessment_providers.dart';
 import '../../domain/entities/assessment.dart';
 
@@ -36,6 +38,7 @@ class AssessmentsController extends AsyncNotifier<List<Assessment>> {
       weight: weight,
     );
     await refresh();
+    ref.read(academicDataRevisionProvider.notifier).bump();
   }
 
   Future<void> updateValue({
@@ -54,10 +57,12 @@ class AssessmentsController extends AsyncNotifier<List<Assessment>> {
       weight: weight,
     );
     await refresh();
+    ref.read(academicDataRevisionProvider.notifier).bump();
   }
 
   Future<void> delete(String id) async {
     await ref.read(deleteAssessmentProvider)(id);
     await refresh();
+    ref.read(academicDataRevisionProvider.notifier).bump();
   }
 }

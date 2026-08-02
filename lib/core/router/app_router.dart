@@ -1,19 +1,25 @@
 import 'package:go_router/go_router.dart';
 
+import '../../features/activities/presentation/activities_page.dart';
 import '../../features/assessments/presentation/pages/assessments_page.dart';
+import '../../features/cycles/presentation/cycles_page.dart';
+import '../../features/dashboard/presentation/pages/dashboard_page.dart';
 import '../../features/students/presentation/pages/student_form_page.dart';
 import '../../features/students/presentation/pages/students_page.dart';
 import '../../features/subjects/presentation/pages/subject_form_page.dart';
 import '../../features/subjects/presentation/pages/subjects_page.dart';
 
 abstract final class AppRoute {
-  static const home = 'home';
+  static const dashboard = 'dashboard';
+  static const students = 'students';
   static const studentCreate = 'student-create';
   static const studentEdit = 'student-edit';
   static const subjects = 'subjects';
   static const subjectCreate = 'subject-create';
   static const subjectEdit = 'subject-edit';
   static const assessments = 'assessments';
+  static const cycles = 'cycles';
+  static const activities = 'activities';
 }
 
 final GoRouter appRouter = GoRouter(
@@ -21,16 +27,33 @@ final GoRouter appRouter = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      name: AppRoute.home,
+      name: AppRoute.dashboard,
+      builder: (context, state) => const DashboardPage(),
+    ),
+    GoRoute(
+      path: '/activities/:assessmentId',
+      name: AppRoute.activities,
+      builder: (context, state) =>
+          ActivitiesPage(assessmentId: state.pathParameters['assessmentId']!),
+    ),
+    GoRoute(
+      path: '/students',
+      name: AppRoute.students,
       builder: (context, state) => const StudentsPage(),
       routes: [
         GoRoute(
-          path: 'students/new',
+          path: 'new',
           name: AppRoute.studentCreate,
           builder: (context, state) => const StudentFormPage(),
         ),
         GoRoute(
-          path: 'students/:studentId/subjects',
+          path: ':studentId/edit',
+          name: AppRoute.studentEdit,
+          builder: (context, state) =>
+              StudentFormPage(studentId: state.pathParameters['studentId']!),
+        ),
+        GoRoute(
+          path: ':studentId/subjects',
           name: AppRoute.subjects,
           builder: (context, state) =>
               SubjectsPage(studentId: state.pathParameters['studentId']!),
@@ -60,10 +83,10 @@ final GoRouter appRouter = GoRouter(
           ],
         ),
         GoRoute(
-          path: 'students/:studentId/edit',
-          name: AppRoute.studentEdit,
+          path: ':studentId/cycles',
+          name: AppRoute.cycles,
           builder: (context, state) =>
-              StudentFormPage(studentId: state.pathParameters['studentId']!),
+              CyclesPage(studentId: state.pathParameters['studentId']!),
         ),
       ],
     ),

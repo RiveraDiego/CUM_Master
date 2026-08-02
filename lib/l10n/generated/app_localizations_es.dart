@@ -221,4 +221,147 @@ class AppLocalizationsEs extends AppLocalizations {
   String assessmentScore(num score, num maxScore) {
     return '$score de $maxScore';
   }
+
+  @override
+  String get dashboardTitle => 'Inicio';
+
+  @override
+  String get activeCycleTitle => 'Ciclo activo';
+
+  @override
+  String get activeCycleCurrentScope =>
+      'Resumen de las materias del ciclo lectivo activo de cada estudiante.';
+
+  @override
+  String get dashboardLoadError => 'No se pudo cargar el resumen académico.';
+
+  @override
+  String get dashboardNoStudents =>
+      'Agrega un estudiante para ver su resumen académico.';
+
+  @override
+  String get dashboardNoSubjects => 'Este estudiante aún no tiene materias.';
+
+  @override
+  String get dashboardNoGrades => 'Sin evaluaciones registradas';
+
+  @override
+  String get dashboardWeightedAverage => 'Promedio ponderado';
+
+  @override
+  String get dashboardSimpleAverage => 'Promedio simple';
+
+  @override
+  String get dashboardManageSubjects => 'Gestionar materias';
+
+  @override
+  String get dashboardNoActiveCycle => 'Sin ciclo activo';
+
+  @override
+  String get cyclesTitle => 'Ciclos lectivos';
+
+  @override
+  String get cyclesCreateAction => 'Agregar ciclo';
+
+  @override
+  String get cyclesEmpty =>
+      'Aún no hay ciclos. Agrega uno para organizar las materias.';
+
+  @override
+  String get cyclesLoadError => 'No se pudieron cargar los ciclos.';
+
+  @override
+  String get cycleCreateTitle => 'Agregar ciclo lectivo';
+
+  @override
+  String get cycleNameLabel => 'Nombre del ciclo';
+
+  @override
+  String get cycleActive => 'Ciclo activo';
+
+  @override
+  String get cycleDuplicateError => 'Ya existe un ciclo con este nombre.';
+
+  @override
+  String get cycleInUseError =>
+      'No se puede eliminar un ciclo que tiene materias.';
+
+  @override
+  String get cycleStorageError => 'No se pudieron guardar los datos del ciclo.';
+
+  @override
+  String get subjectCycleLabel => 'Ciclo lectivo';
+
+  @override
+  String get subjectCycleRequiredError =>
+      'Selecciona el ciclo al que pertenece la materia.';
+
+  @override
+  String get subjectCreditUnitsLabel => 'Unidades valorativas (UV)';
+
+  @override
+  String get subjectCreditUnitsError =>
+      'Ingresa una cantidad de UV mayor que cero.';
+
+  @override
+  String get subjectHistoricalGradeLabel => 'Nota final histórica (opcional)';
+
+  @override
+  String get subjectHistoricalGradeHelp =>
+      'Si la completas, tendrá prioridad sobre el cálculo de evaluaciones.';
+
+  @override
+  String get subjectHistoricalGradeError => 'La nota debe estar entre 0 y 10.';
+
+  @override
+  String get activitiesTitle => 'Actividades';
+
+  @override
+  String get activitiesCreateAction => 'Agregar actividad';
+
+  @override
+  String get activitiesEmpty =>
+      'No hay actividades. Se utilizará la nota manual de la evaluación.';
+
+  @override
+  String get activitiesLoadError => 'No se pudieron cargar las actividades.';
+
+  @override
+  String get activityCreateTitle => 'Agregar actividad';
+
+  @override
+  String get activityEditTitle => 'Editar actividad';
+
+  @override
+  String get activityNameLabel => 'Nombre de la actividad';
+
+  @override
+  String get activityRequiredError => 'El nombre es obligatorio.';
+
+  @override
+  String activityWeightTotal(num weight) {
+    return 'Ponderación total: $weight%';
+  }
+
+  @override
+  String get activityCalculationReady =>
+      'La nota de la evaluación se calculará con estas actividades.';
+
+  @override
+  String get activityCalculationIncomplete =>
+      'Completa exactamente 100% para calcular la evaluación.';
+
+  @override
+  String get cycleEditTitle => 'Renombrar ciclo';
+
+  @override
+  String get assessmentManualGrade => 'Nota manual (sin actividades)';
+
+  @override
+  String get assessmentCalculatedGrade => 'Nota calculada por actividades';
+
+  @override
+  String dashboardGeneralCum(String cum) {
+    return 'CUM general histórico: $cum';
+  }
 }

@@ -43,8 +43,11 @@ class SubjectLocalDataSource {
     return await database.update(
           'subjects',
           {
+            'cycle_id': subject.cycleId,
             'name': subject.name,
             'code': subject.code,
+            'credit_units': subject.creditUnits,
+            'manual_final_grade': subject.manualFinalGrade,
             'updated_at': subject.updatedAt.toIso8601String(),
           },
           where: 'id = ? AND student_id = ?',
@@ -63,8 +66,11 @@ class SubjectLocalDataSource {
   Map<String, Object?> _toMap(Subject subject) => {
     'id': subject.id,
     'student_id': subject.studentId,
+    'cycle_id': subject.cycleId,
     'name': subject.name,
     'code': subject.code,
+    'credit_units': subject.creditUnits,
+    'manual_final_grade': subject.manualFinalGrade,
     'created_at': subject.createdAt.toIso8601String(),
     'updated_at': subject.updatedAt.toIso8601String(),
   };
@@ -72,8 +78,11 @@ class SubjectLocalDataSource {
   Subject _fromMap(Map<String, Object?> map) => Subject(
     id: map['id']! as String,
     studentId: map['student_id']! as String,
+    cycleId: map['cycle_id']! as String,
     name: map['name']! as String,
     code: map['code'] as String?,
+    creditUnits: (map['credit_units'] as num?)?.toDouble() ?? 1,
+    manualFinalGrade: (map['manual_final_grade'] as num?)?.toDouble(),
     createdAt: DateTime.parse(map['created_at']! as String),
     updatedAt: DateTime.parse(map['updated_at']! as String),
   );

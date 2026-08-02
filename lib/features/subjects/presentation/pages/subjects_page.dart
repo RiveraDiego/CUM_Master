@@ -17,7 +17,19 @@ class SubjectsPage extends ConsumerWidget {
     final l10n = AppLocalizations.of(context)!;
     final subjects = ref.watch(subjectsControllerProvider(studentId));
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.subjectsTitle)),
+      appBar: AppBar(
+        title: Text(l10n.subjectsTitle),
+        actions: [
+          IconButton(
+            tooltip: l10n.cyclesTitle,
+            onPressed: () => context.pushNamed(
+              AppRoute.cycles,
+              pathParameters: {'studentId': studentId},
+            ),
+            icon: const Icon(Icons.calendar_month_outlined),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: subjects.when(
           loading: () => const Center(child: CircularProgressIndicator()),

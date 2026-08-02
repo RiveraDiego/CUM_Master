@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../l10n/generated/app_localizations.dart';
+import '../../../cycles/application/cycle_providers.dart';
 import '../../application/subject_providers.dart';
 import '../../domain/entities/subject.dart';
 import '../../domain/errors/subject_exceptions.dart';
@@ -21,9 +22,12 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
   final _formKey = GlobalKey<FormState>();
   final _name = TextEditingController();
   final _code = TextEditingController();
+  final _creditUnits = TextEditingController(text: '1');
+  final _manualGrade = TextEditingController();
   Future<Subject?>? _subjectFuture;
   bool _initialized = false;
   bool _saving = false;
+  String? _cycleId;
 
   bool get _editing => widget.subjectId != null;
 
@@ -39,6 +43,8 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
   void dispose() {
     _name.dispose();
     _code.dispose();
+    _creditUnits.dispose();
+    _manualGrade.dispose();
     super.dispose();
   }
 
@@ -67,6 +73,10 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
                   }
                   _name.text = subject.name;
                   _code.text = subject.code ?? '';
+                  _creditUnits.text = subject.creditUnits.toString();
+                  _manualGrade.text =
+                      subject.manualFinalGrade?.toString() ?? '';
+                  _cycleId = subject.cycleId;
                   _initialized = true;
                   return _form(l10n);
                 },
@@ -76,52 +86,121 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
     );
   }
 
-  Widget _form(AppLocalizations l10n) => SingleChildScrollView(
-    padding: const EdgeInsets.all(24),
-    child: Form(
-      key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TextFormField(
-            controller: _name,
-            enabled: !_saving,
-            autofocus: !_editing,
-            textInputAction: TextInputAction.next,
-            decoration: InputDecoration(
-              labelText: l10n.subjectNameLabel,
-              prefixIcon: const Icon(Icons.menu_book_outlined),
+  Widget _form(AppLocalizations l10n) {
+    final cycles = ref.watch(cyclesProvider(widget.studentId));
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(24),
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            cycles.when(
+              loading: () => const LinearProgressIndicator(),
+              error: (_, _) => Text(l10n.cyclesLoadError),
+              data: (items) {
+                _cycleId ??= items
+                    .where((item) => item.isActive)
+                    .firstOrNull
+                    ?.id;
+                return DropdownButtonFormField<String>(
+                  initialValue: _cycleId,
+                  decoration: InputDecoration(
+                    labelText: l10n.subjectCycleLabel,
+                    prefixIcon: const Icon(Icons.calendar_month_outlined),
+                  ),
+                  items: items
+                      .map(
+                        (item) => DropdownMenuItem(
+                          value: item.id,
+                          child: Text(item.name),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: _saving
+                      ? null
+                      : (value) => setState(() => _cycleId = value),
+                  validator: (value) =>
+                      value == null ? l10n.subjectCycleRequiredError : null,
+                );
+              },
             ),
-            validator: (value) => value == null || value.trim().isEmpty
-                ? l10n.subjectNameRequiredError
-                : null,
-          ),
-          const SizedBox(height: 20),
-          TextFormField(
-            controller: _code,
-            enabled: !_saving,
-            textInputAction: TextInputAction.done,
-            onFieldSubmitted: (_) => _save(),
-            decoration: InputDecoration(
-              labelText: l10n.subjectCodeLabel,
-              prefixIcon: const Icon(Icons.tag),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _name,
+              enabled: !_saving,
+              autofocus: !_editing,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(
+                labelText: l10n.subjectNameLabel,
+                prefixIcon: const Icon(Icons.menu_book_outlined),
+              ),
+              validator: (value) => value == null || value.trim().isEmpty
+                  ? l10n.subjectNameRequiredError
+                  : null,
             ),
-          ),
-          const SizedBox(height: 32),
-          FilledButton.icon(
-            onPressed: _saving ? null : _save,
-            icon: _saving
-                ? const SizedBox.square(
-                    dimension: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                : const Icon(Icons.save_outlined),
-            label: Text(l10n.saveAction),
-          ),
-        ],
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _code,
+              enabled: !_saving,
+              textInputAction: TextInputAction.done,
+              onFieldSubmitted: (_) => _save(),
+              decoration: InputDecoration(
+                labelText: l10n.subjectCodeLabel,
+                prefixIcon: const Icon(Icons.tag),
+              ),
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _creditUnits,
+              enabled: !_saving,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              decoration: InputDecoration(
+                labelText: l10n.subjectCreditUnitsLabel,
+                prefixIcon: const Icon(Icons.school_outlined),
+              ),
+              validator: (value) => (double.tryParse(value ?? '') ?? 0) > 0
+                  ? null
+                  : l10n.subjectCreditUnitsError,
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _manualGrade,
+              enabled: !_saving,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              decoration: InputDecoration(
+                labelText: l10n.subjectHistoricalGradeLabel,
+                helperText: l10n.subjectHistoricalGradeHelp,
+                prefixIcon: const Icon(Icons.history_edu_outlined),
+              ),
+              validator: (value) {
+                if (value == null || value.trim().isEmpty) return null;
+                final grade = double.tryParse(value);
+                return grade != null && grade >= 0 && grade <= 10
+                    ? null
+                    : l10n.subjectHistoricalGradeError;
+              },
+            ),
+            const SizedBox(height: 32),
+            FilledButton.icon(
+              onPressed: _saving ? null : _save,
+              icon: _saving
+                  ? const SizedBox.square(
+                      dimension: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : const Icon(Icons.save_outlined),
+              label: Text(l10n.saveAction),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 
   Widget _loadError(String message, {bool retry = false}) {
     final l10n = AppLocalizations.of(context)!;
@@ -156,11 +235,24 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
       if (_editing) {
         await notifier.updateSubject(
           id: widget.subjectId!,
+          cycleId: _cycleId!,
           name: _name.text,
           code: _code.text,
+          creditUnits: double.parse(_creditUnits.text),
+          manualFinalGrade: _manualGrade.text.trim().isEmpty
+              ? null
+              : double.parse(_manualGrade.text),
         );
       } else {
-        await notifier.create(name: _name.text, code: _code.text);
+        await notifier.create(
+          cycleId: _cycleId!,
+          name: _name.text,
+          code: _code.text,
+          creditUnits: double.parse(_creditUnits.text),
+          manualFinalGrade: _manualGrade.text.trim().isEmpty
+              ? null
+              : double.parse(_manualGrade.text),
+        );
       }
       if (mounted) context.pop();
     } on DuplicateSubjectNameException {

@@ -481,6 +481,264 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{score} out of {maxScore}'**
   String assessmentScore(num score, num maxScore);
+
+  /// No description provided for @dashboardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get dashboardTitle;
+
+  /// No description provided for @activeCycleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Active term'**
+  String get activeCycleTitle;
+
+  /// No description provided for @activeCycleCurrentScope.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary of each student\'s subjects in their active academic term.'**
+  String get activeCycleCurrentScope;
+
+  /// No description provided for @dashboardLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'The academic summary could not be loaded.'**
+  String get dashboardLoadError;
+
+  /// No description provided for @dashboardNoStudents.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a student to see their academic summary.'**
+  String get dashboardNoStudents;
+
+  /// No description provided for @dashboardNoSubjects.
+  ///
+  /// In en, this message translates to:
+  /// **'This student has no subjects yet.'**
+  String get dashboardNoSubjects;
+
+  /// No description provided for @dashboardNoGrades.
+  ///
+  /// In en, this message translates to:
+  /// **'No assessments recorded'**
+  String get dashboardNoGrades;
+
+  /// No description provided for @dashboardWeightedAverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Weighted average'**
+  String get dashboardWeightedAverage;
+
+  /// No description provided for @dashboardSimpleAverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple average'**
+  String get dashboardSimpleAverage;
+
+  /// No description provided for @dashboardManageSubjects.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage subjects'**
+  String get dashboardManageSubjects;
+
+  /// No description provided for @dashboardNoActiveCycle.
+  ///
+  /// In en, this message translates to:
+  /// **'No active term'**
+  String get dashboardNoActiveCycle;
+
+  /// No description provided for @cyclesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Academic terms'**
+  String get cyclesTitle;
+
+  /// No description provided for @cyclesCreateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add term'**
+  String get cyclesCreateAction;
+
+  /// No description provided for @cyclesEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no terms yet. Add one to organize subjects.'**
+  String get cyclesEmpty;
+
+  /// No description provided for @cyclesLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Academic terms could not be loaded.'**
+  String get cyclesLoadError;
+
+  /// No description provided for @cycleCreateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add academic term'**
+  String get cycleCreateTitle;
+
+  /// No description provided for @cycleNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Term name'**
+  String get cycleNameLabel;
+
+  /// No description provided for @cycleActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Active term'**
+  String get cycleActive;
+
+  /// No description provided for @cycleDuplicateError.
+  ///
+  /// In en, this message translates to:
+  /// **'A term with this name already exists.'**
+  String get cycleDuplicateError;
+
+  /// No description provided for @cycleInUseError.
+  ///
+  /// In en, this message translates to:
+  /// **'A term containing subjects cannot be deleted.'**
+  String get cycleInUseError;
+
+  /// No description provided for @cycleStorageError.
+  ///
+  /// In en, this message translates to:
+  /// **'The academic term data could not be saved.'**
+  String get cycleStorageError;
+
+  /// No description provided for @subjectCycleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Academic term'**
+  String get subjectCycleLabel;
+
+  /// No description provided for @subjectCycleRequiredError.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the term this subject belongs to.'**
+  String get subjectCycleRequiredError;
+
+  /// No description provided for @subjectCreditUnitsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Credit units'**
+  String get subjectCreditUnitsLabel;
+
+  /// No description provided for @subjectCreditUnitsError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter credit units greater than zero.'**
+  String get subjectCreditUnitsError;
+
+  /// No description provided for @subjectHistoricalGradeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical final grade (optional)'**
+  String get subjectHistoricalGradeLabel;
+
+  /// No description provided for @subjectHistoricalGradeHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'When entered, it takes priority over assessment calculations.'**
+  String get subjectHistoricalGradeHelp;
+
+  /// No description provided for @subjectHistoricalGradeError.
+  ///
+  /// In en, this message translates to:
+  /// **'The grade must be between 0 and 10.'**
+  String get subjectHistoricalGradeError;
+
+  /// No description provided for @activitiesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Activities'**
+  String get activitiesTitle;
+
+  /// No description provided for @activitiesCreateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add activity'**
+  String get activitiesCreateAction;
+
+  /// No description provided for @activitiesEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no activities. The manual assessment grade will be used.'**
+  String get activitiesEmpty;
+
+  /// No description provided for @activitiesLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Activities could not be loaded.'**
+  String get activitiesLoadError;
+
+  /// No description provided for @activityCreateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add activity'**
+  String get activityCreateTitle;
+
+  /// No description provided for @activityEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit activity'**
+  String get activityEditTitle;
+
+  /// No description provided for @activityNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity name'**
+  String get activityNameLabel;
+
+  /// No description provided for @activityRequiredError.
+  ///
+  /// In en, this message translates to:
+  /// **'The name is required.'**
+  String get activityRequiredError;
+
+  /// No description provided for @activityWeightTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total weight: {weight}%'**
+  String activityWeightTotal(num weight);
+
+  /// No description provided for @activityCalculationReady.
+  ///
+  /// In en, this message translates to:
+  /// **'The assessment grade will be calculated from these activities.'**
+  String get activityCalculationReady;
+
+  /// No description provided for @activityCalculationIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete exactly 100% to calculate the assessment.'**
+  String get activityCalculationIncomplete;
+
+  /// No description provided for @cycleEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename term'**
+  String get cycleEditTitle;
+
+  /// No description provided for @assessmentManualGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Manual grade (no activities)'**
+  String get assessmentManualGrade;
+
+  /// No description provided for @assessmentCalculatedGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade calculated from activities'**
+  String get assessmentCalculatedGrade;
+
+  /// No description provided for @dashboardGeneralCum.
+  ///
+  /// In en, this message translates to:
+  /// **'Overall historical GPA: {cum}'**
+  String dashboardGeneralCum(String cum);
 }
 
 class _AppLocalizationsDelegate
