@@ -524,18 +524,6 @@ abstract class AppLocalizations {
   /// **'All students'**
   String get dashboardAllStudents;
 
-  /// No description provided for @activeCycleTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Active term'**
-  String get activeCycleTitle;
-
-  /// No description provided for @activeCycleCurrentScope.
-  ///
-  /// In en, this message translates to:
-  /// **'Summary of each student\'s subjects in their active academic term.'**
-  String get activeCycleCurrentScope;
-
   /// No description provided for @dashboardLoadError.
   ///
   /// In en, this message translates to:

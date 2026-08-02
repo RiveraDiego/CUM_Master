@@ -85,17 +85,7 @@ class _DashboardPageState extends ConsumerState<DashboardPage> {
                     onChanged: (studentId) =>
                         setState(() => _selectedStudentId = studentId),
                   ),
-                  const SizedBox(height: 24),
-                  Text(
-                    l10n.activeCycleTitle,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    l10n.activeCycleCurrentScope,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 16),
                   for (final item in visibleItems) ...[
                     _StudentSummaryCard(
                       summary: item,

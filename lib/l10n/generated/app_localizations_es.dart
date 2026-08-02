@@ -244,13 +244,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get dashboardAllStudents => 'Todos los estudiantes';
 
   @override
-  String get activeCycleTitle => 'Ciclo activo';
-
-  @override
-  String get activeCycleCurrentScope =>
-      'Resumen de las materias del ciclo lectivo activo de cada estudiante.';
-
-  @override
   String get dashboardLoadError => 'No se pudo cargar el resumen académico.';
 
   @override

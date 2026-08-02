@@ -241,13 +241,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashboardAllStudents => 'All students';
 
   @override
-  String get activeCycleTitle => 'Active term';
-
-  @override
-  String get activeCycleCurrentScope =>
-      'Summary of each student\'s subjects in their active academic term.';
-
-  @override
   String get dashboardLoadError => 'The academic summary could not be loaded.';
 
   @override
