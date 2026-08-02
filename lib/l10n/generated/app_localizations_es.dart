@@ -681,4 +681,28 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get academicLocationLabel => 'Estás en';
+
+  @override
+  String get backupExportQuestion => '¿Qué quieres hacer con tu copia?';
+
+  @override
+  String get backupSaveDeviceAction => 'Guardar en el dispositivo';
+
+  @override
+  String get backupSaveDeviceDescription =>
+      'Elige la carpeta y el nombre del archivo';
+
+  @override
+  String get backupShareAction => 'Compartir con otra aplicación';
+
+  @override
+  String get backupShareDescription =>
+      'Envíala por WhatsApp, correo u otra aplicación';
+
+  @override
+  String get backupSaveSuccess => 'La copia se guardó correctamente.';
+
+  @override
+  String get backupSaveCancelled =>
+      'No se guardó la copia. Puedes intentarlo nuevamente.';
 }

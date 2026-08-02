@@ -60,9 +60,56 @@ class _BackupPageState extends ConsumerState<BackupPage> {
 
   Future<void> _export() async {
     final l10n = AppLocalizations.of(context)!;
+    final destination = await showModalBottomSheet<_ExportDestination>(
+      context: context,
+      showDragHandle: true,
+      builder: (sheetContext) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 12),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(24, 4, 24, 12),
+                child: Text(
+                  l10n.backupExportQuestion,
+                  style: Theme.of(sheetContext).textTheme.titleLarge,
+                ),
+              ),
+              ListTile(
+                leading: const Icon(Icons.save_alt_outlined),
+                title: Text(l10n.backupSaveDeviceAction),
+                subtitle: Text(l10n.backupSaveDeviceDescription),
+                onTap: () =>
+                    Navigator.pop(sheetContext, _ExportDestination.save),
+              ),
+              ListTile(
+                leading: const Icon(Icons.share_outlined),
+                title: Text(l10n.backupShareAction),
+                subtitle: Text(l10n.backupShareDescription),
+                onTap: () =>
+                    Navigator.pop(sheetContext, _ExportDestination.share),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    if (destination == null || !mounted) return;
     setState(() => _busy = true);
     try {
-      await ref.read(backupActionsProvider).exportAndShare();
+      final actions = ref.read(backupActionsProvider);
+      final completed = destination == _ExportDestination.save
+          ? await actions.exportAndSave()
+          : await actions.exportAndShare();
+      if (completed && mounted && destination == _ExportDestination.save) {
+        _show(l10n.backupSaveSuccess);
+      } else if (!completed &&
+          mounted &&
+          destination == _ExportDestination.save) {
+        _show(l10n.backupSaveCancelled);
+      }
     } on BackupException {
       _show(l10n.backupExportError);
     } on Exception {
@@ -121,3 +168,5 @@ class _BackupPageState extends ConsumerState<BackupPage> {
     ).showSnackBar(SnackBar(content: Text(message)));
   }
 }
+
+enum _ExportDestination { save, share }

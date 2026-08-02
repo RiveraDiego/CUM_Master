@@ -1321,6 +1321,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You are in'**
   String get academicLocationLabel;
+
+  /// No description provided for @backupExportQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'What do you want to do with your backup?'**
+  String get backupExportQuestion;
+
+  /// No description provided for @backupSaveDeviceAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Save on this device'**
+  String get backupSaveDeviceAction;
+
+  /// No description provided for @backupSaveDeviceDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the folder and file name'**
+  String get backupSaveDeviceDescription;
+
+  /// No description provided for @backupShareAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Share with another app'**
+  String get backupShareAction;
+
+  /// No description provided for @backupShareDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Send it through WhatsApp, email, or another app'**
+  String get backupShareDescription;
+
+  /// No description provided for @backupSaveSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'The backup was saved successfully.'**
+  String get backupSaveSuccess;
+
+  /// No description provided for @backupSaveCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'The backup was not saved. You can try again.'**
+  String get backupSaveCancelled;
 }
 
 class _AppLocalizationsDelegate

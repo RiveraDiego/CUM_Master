@@ -43,7 +43,8 @@ La aplicación permite registrar únicamente las notas finales disponibles o añ
 - Indicadores visuales para reconocer el estudiante, ciclo y materia seleccionados.
 - Configuración de terminología, UV, decimales y redondeo.
 - Tutorial y asistente para completar la configuración inicial.
-- Exportación e importación de una copia de seguridad en formato JSON.
+- Exportación e importación de copias JSON, con opción de guardarlas en una carpeta o compartirlas con otra aplicación.
+- Uso exclusivamente vertical para mantener una interfaz consistente en cualquier dispositivo Android.
 - Tema claro, oscuro o sincronizado con el dispositivo.
 - Interfaz disponible en español e inglés.
 - Funcionamiento sin internet, nube ni publicidad en la versión inicial.

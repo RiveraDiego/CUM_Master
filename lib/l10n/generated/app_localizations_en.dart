@@ -676,4 +676,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get academicLocationLabel => 'You are in';
+
+  @override
+  String get backupExportQuestion => 'What do you want to do with your backup?';
+
+  @override
+  String get backupSaveDeviceAction => 'Save on this device';
+
+  @override
+  String get backupSaveDeviceDescription => 'Choose the folder and file name';
+
+  @override
+  String get backupShareAction => 'Share with another app';
+
+  @override
+  String get backupShareDescription =>
+      'Send it through WhatsApp, email, or another app';
+
+  @override
+  String get backupSaveSuccess => 'The backup was saved successfully.';
+
+  @override
+  String get backupSaveCancelled =>
+      'The backup was not saved. You can try again.';
 }
