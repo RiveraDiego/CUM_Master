@@ -361,6 +361,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The subject data could not be saved. Try again.'**
   String get subjectStorageError;
+
+  /// No description provided for @assessmentsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Assessments and grades'**
+  String get assessmentsTitle;
+
+  /// No description provided for @assessmentsCreateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add assessment'**
+  String get assessmentsCreateAction;
+
+  /// No description provided for @assessmentsEmptyDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'This subject has no assessments yet. Add the first grade.'**
+  String get assessmentsEmptyDescription;
+
+  /// No description provided for @assessmentsLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Assessments could not be loaded.'**
+  String get assessmentsLoadError;
+
+  /// No description provided for @assessmentCreateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add assessment'**
+  String get assessmentCreateTitle;
+
+  /// No description provided for @assessmentEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit assessment'**
+  String get assessmentEditTitle;
+
+  /// No description provided for @assessmentNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Assessment name'**
+  String get assessmentNameLabel;
+
+  /// No description provided for @assessmentNameRequiredError.
+  ///
+  /// In en, this message translates to:
+  /// **'The name is required.'**
+  String get assessmentNameRequiredError;
+
+  /// No description provided for @assessmentScoreLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Score obtained'**
+  String get assessmentScoreLabel;
+
+  /// No description provided for @assessmentMaxScoreLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Maximum score'**
+  String get assessmentMaxScoreLabel;
+
+  /// No description provided for @assessmentWeightLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight % (optional)'**
+  String get assessmentWeightLabel;
+
+  /// No description provided for @assessmentNumberError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a number equal to or greater than zero.'**
+  String get assessmentNumberError;
+
+  /// No description provided for @assessmentPositiveError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a number greater than zero.'**
+  String get assessmentPositiveError;
+
+  /// No description provided for @assessmentScoreRangeError.
+  ///
+  /// In en, this message translates to:
+  /// **'The obtained score cannot exceed the maximum score.'**
+  String get assessmentScoreRangeError;
+
+  /// No description provided for @assessmentWeightError.
+  ///
+  /// In en, this message translates to:
+  /// **'The weight must be between 0 and 100.'**
+  String get assessmentWeightError;
+
+  /// No description provided for @assessmentDuplicateError.
+  ///
+  /// In en, this message translates to:
+  /// **'An assessment with this name already exists.'**
+  String get assessmentDuplicateError;
+
+  /// No description provided for @assessmentStorageError.
+  ///
+  /// In en, this message translates to:
+  /// **'The assessment data could not be saved.'**
+  String get assessmentStorageError;
+
+  /// No description provided for @assessmentDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete assessment?'**
+  String get assessmentDeleteTitle;
+
+  /// No description provided for @assessmentDeleteMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'{assessmentName} will be permanently deleted.'**
+  String assessmentDeleteMessage(String assessmentName);
+
+  /// No description provided for @assessmentScore.
+  ///
+  /// In en, this message translates to:
+  /// **'{score} out of {maxScore}'**
+  String assessmentScore(num score, num maxScore);
 }
 
 class _AppLocalizationsDelegate

@@ -149,4 +149,73 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get subjectStorageError =>
       'The subject data could not be saved. Try again.';
+
+  @override
+  String get assessmentsTitle => 'Assessments and grades';
+
+  @override
+  String get assessmentsCreateAction => 'Add assessment';
+
+  @override
+  String get assessmentsEmptyDescription =>
+      'This subject has no assessments yet. Add the first grade.';
+
+  @override
+  String get assessmentsLoadError => 'Assessments could not be loaded.';
+
+  @override
+  String get assessmentCreateTitle => 'Add assessment';
+
+  @override
+  String get assessmentEditTitle => 'Edit assessment';
+
+  @override
+  String get assessmentNameLabel => 'Assessment name';
+
+  @override
+  String get assessmentNameRequiredError => 'The name is required.';
+
+  @override
+  String get assessmentScoreLabel => 'Score obtained';
+
+  @override
+  String get assessmentMaxScoreLabel => 'Maximum score';
+
+  @override
+  String get assessmentWeightLabel => 'Weight % (optional)';
+
+  @override
+  String get assessmentNumberError =>
+      'Enter a number equal to or greater than zero.';
+
+  @override
+  String get assessmentPositiveError => 'Enter a number greater than zero.';
+
+  @override
+  String get assessmentScoreRangeError =>
+      'The obtained score cannot exceed the maximum score.';
+
+  @override
+  String get assessmentWeightError => 'The weight must be between 0 and 100.';
+
+  @override
+  String get assessmentDuplicateError =>
+      'An assessment with this name already exists.';
+
+  @override
+  String get assessmentStorageError =>
+      'The assessment data could not be saved.';
+
+  @override
+  String get assessmentDeleteTitle => 'Delete assessment?';
+
+  @override
+  String assessmentDeleteMessage(String assessmentName) {
+    return '$assessmentName will be permanently deleted.';
+  }
+
+  @override
+  String assessmentScore(num score, num maxScore) {
+    return '$score out of $maxScore';
+  }
 }
