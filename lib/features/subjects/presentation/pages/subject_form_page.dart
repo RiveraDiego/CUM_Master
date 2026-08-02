@@ -22,6 +22,8 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
   final _formKey = GlobalKey<FormState>();
   final _name = TextEditingController();
   final _code = TextEditingController();
+  final _creditUnits = TextEditingController(text: '1');
+  final _manualGrade = TextEditingController();
   Future<Subject?>? _subjectFuture;
   bool _initialized = false;
   bool _saving = false;
@@ -41,6 +43,8 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
   void dispose() {
     _name.dispose();
     _code.dispose();
+    _creditUnits.dispose();
+    _manualGrade.dispose();
     super.dispose();
   }
 
@@ -69,6 +73,9 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
                   }
                   _name.text = subject.name;
                   _code.text = subject.code ?? '';
+                  _creditUnits.text = subject.creditUnits.toString();
+                  _manualGrade.text =
+                      subject.manualFinalGrade?.toString() ?? '';
                   _cycleId = subject.cycleId;
                   _initialized = true;
                   return _form(l10n);
@@ -143,6 +150,41 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
                 prefixIcon: const Icon(Icons.tag),
               ),
             ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _creditUnits,
+              enabled: !_saving,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              decoration: InputDecoration(
+                labelText: l10n.subjectCreditUnitsLabel,
+                prefixIcon: const Icon(Icons.school_outlined),
+              ),
+              validator: (value) => (double.tryParse(value ?? '') ?? 0) > 0
+                  ? null
+                  : l10n.subjectCreditUnitsError,
+            ),
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: _manualGrade,
+              enabled: !_saving,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              decoration: InputDecoration(
+                labelText: l10n.subjectHistoricalGradeLabel,
+                helperText: l10n.subjectHistoricalGradeHelp,
+                prefixIcon: const Icon(Icons.history_edu_outlined),
+              ),
+              validator: (value) {
+                if (value == null || value.trim().isEmpty) return null;
+                final grade = double.tryParse(value);
+                return grade != null && grade >= 0 && grade <= 10
+                    ? null
+                    : l10n.subjectHistoricalGradeError;
+              },
+            ),
             const SizedBox(height: 32),
             FilledButton.icon(
               onPressed: _saving ? null : _save,
@@ -196,12 +238,20 @@ class _SubjectFormPageState extends ConsumerState<SubjectFormPage> {
           cycleId: _cycleId!,
           name: _name.text,
           code: _code.text,
+          creditUnits: double.parse(_creditUnits.text),
+          manualFinalGrade: _manualGrade.text.trim().isEmpty
+              ? null
+              : double.parse(_manualGrade.text),
         );
       } else {
         await notifier.create(
           cycleId: _cycleId!,
           name: _name.text,
           code: _code.text,
+          creditUnits: double.parse(_creditUnits.text),
+          manualFinalGrade: _manualGrade.text.trim().isEmpty
+              ? null
+              : double.parse(_manualGrade.text),
         );
       }
       if (mounted) context.pop();

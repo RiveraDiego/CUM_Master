@@ -619,6 +619,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select the term this subject belongs to.'**
   String get subjectCycleRequiredError;
+
+  /// No description provided for @subjectCreditUnitsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Credit units'**
+  String get subjectCreditUnitsLabel;
+
+  /// No description provided for @subjectCreditUnitsError.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter credit units greater than zero.'**
+  String get subjectCreditUnitsError;
+
+  /// No description provided for @subjectHistoricalGradeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Historical final grade (optional)'**
+  String get subjectHistoricalGradeLabel;
+
+  /// No description provided for @subjectHistoricalGradeHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'When entered, it takes priority over assessment calculations.'**
+  String get subjectHistoricalGradeHelp;
+
+  /// No description provided for @subjectHistoricalGradeError.
+  ///
+  /// In en, this message translates to:
+  /// **'The grade must be between 0 and 10.'**
+  String get subjectHistoricalGradeError;
+
+  /// No description provided for @activitiesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Activities'**
+  String get activitiesTitle;
+
+  /// No description provided for @activitiesCreateAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Add activity'**
+  String get activitiesCreateAction;
+
+  /// No description provided for @activitiesEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no activities. The manual assessment grade will be used.'**
+  String get activitiesEmpty;
+
+  /// No description provided for @activitiesLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Activities could not be loaded.'**
+  String get activitiesLoadError;
+
+  /// No description provided for @activityCreateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add activity'**
+  String get activityCreateTitle;
+
+  /// No description provided for @activityEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit activity'**
+  String get activityEditTitle;
+
+  /// No description provided for @activityNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity name'**
+  String get activityNameLabel;
+
+  /// No description provided for @activityRequiredError.
+  ///
+  /// In en, this message translates to:
+  /// **'The name is required.'**
+  String get activityRequiredError;
+
+  /// No description provided for @activityWeightTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total weight: {weight}%'**
+  String activityWeightTotal(num weight);
+
+  /// No description provided for @activityCalculationReady.
+  ///
+  /// In en, this message translates to:
+  /// **'The assessment grade will be calculated from these activities.'**
+  String get activityCalculationReady;
+
+  /// No description provided for @activityCalculationIncomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete exactly 100% to calculate the assessment.'**
+  String get activityCalculationIncomplete;
+
+  /// No description provided for @cycleEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename term'**
+  String get cycleEditTitle;
+
+  /// No description provided for @assessmentManualGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Manual grade (no activities)'**
+  String get assessmentManualGrade;
+
+  /// No description provided for @assessmentCalculatedGrade.
+  ///
+  /// In en, this message translates to:
+  /// **'Grade calculated from activities'**
+  String get assessmentCalculatedGrade;
+
+  /// No description provided for @dashboardGeneralCum.
+  ///
+  /// In en, this message translates to:
+  /// **'Overall historical GPA: {cum}'**
+  String dashboardGeneralCum(String cum);
 }
 
 class _AppLocalizationsDelegate

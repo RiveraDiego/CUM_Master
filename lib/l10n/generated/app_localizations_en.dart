@@ -291,4 +291,73 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get subjectCycleRequiredError =>
       'Select the term this subject belongs to.';
+
+  @override
+  String get subjectCreditUnitsLabel => 'Credit units';
+
+  @override
+  String get subjectCreditUnitsError => 'Enter credit units greater than zero.';
+
+  @override
+  String get subjectHistoricalGradeLabel => 'Historical final grade (optional)';
+
+  @override
+  String get subjectHistoricalGradeHelp =>
+      'When entered, it takes priority over assessment calculations.';
+
+  @override
+  String get subjectHistoricalGradeError =>
+      'The grade must be between 0 and 10.';
+
+  @override
+  String get activitiesTitle => 'Activities';
+
+  @override
+  String get activitiesCreateAction => 'Add activity';
+
+  @override
+  String get activitiesEmpty =>
+      'There are no activities. The manual assessment grade will be used.';
+
+  @override
+  String get activitiesLoadError => 'Activities could not be loaded.';
+
+  @override
+  String get activityCreateTitle => 'Add activity';
+
+  @override
+  String get activityEditTitle => 'Edit activity';
+
+  @override
+  String get activityNameLabel => 'Activity name';
+
+  @override
+  String get activityRequiredError => 'The name is required.';
+
+  @override
+  String activityWeightTotal(num weight) {
+    return 'Total weight: $weight%';
+  }
+
+  @override
+  String get activityCalculationReady =>
+      'The assessment grade will be calculated from these activities.';
+
+  @override
+  String get activityCalculationIncomplete =>
+      'Complete exactly 100% to calculate the assessment.';
+
+  @override
+  String get cycleEditTitle => 'Rename term';
+
+  @override
+  String get assessmentManualGrade => 'Manual grade (no activities)';
+
+  @override
+  String get assessmentCalculatedGrade => 'Grade calculated from activities';
+
+  @override
+  String dashboardGeneralCum(String cum) {
+    return 'Overall historical GPA: $cum';
+  }
 }
