@@ -104,6 +104,12 @@ abstract class AppLocalizations {
   /// **'CUM Master'**
   String get appTitle;
 
+  /// No description provided for @drawerTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Your academic progress'**
+  String get drawerTagline;
+
   /// Heading shown before the first student is created
   ///
   /// In en, this message translates to:

@@ -10,37 +10,79 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final currentRoute = GoRouterState.of(context).name;
+    final colors = Theme.of(context).colorScheme;
     return Drawer(
       child: SafeArea(
         child: ListView(
-          padding: EdgeInsets.zero,
+          padding: const EdgeInsets.fromLTRB(12, 12, 12, 20),
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
-              child: Text(
-                l10n.appTitle,
-                style: Theme.of(context).textTheme.headlineSmall,
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: colors.primaryContainer,
+                borderRadius: BorderRadius.circular(22),
+              ),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 26,
+                    backgroundColor: colors.primary,
+                    foregroundColor: colors.onPrimary,
+                    child: const Icon(Icons.school_rounded, size: 30),
+                  ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          l10n.appTitle,
+                          style: Theme.of(context).textTheme.titleLarge
+                              ?.copyWith(fontWeight: FontWeight.w800),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          l10n.drawerTagline,
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
+            const SizedBox(height: 16),
             ListTile(
               leading: const Icon(Icons.dashboard_outlined),
               title: Text(l10n.dashboardTitle),
+              selected: currentRoute == AppRoute.dashboard,
               onTap: () => _navigate(context, AppRoute.dashboard),
             ),
+            const SizedBox(height: 4),
             ListTile(
               leading: const Icon(Icons.people_outline),
               title: Text(l10n.studentsTitle),
+              selected: currentRoute == AppRoute.students,
               onTap: () => _navigate(context, AppRoute.students),
             ),
+            const SizedBox(height: 4),
             ListTile(
               leading: const Icon(Icons.backup_outlined),
               title: Text(l10n.backupTitle),
+              selected: currentRoute == AppRoute.backup,
               onTap: () => _navigate(context, AppRoute.backup),
             ),
+            const SizedBox(height: 4),
             ListTile(
               leading: const Icon(Icons.settings_outlined),
               title: Text(l10n.settingsTitle),
+              selected: currentRoute == AppRoute.settings,
               onTap: () => _navigate(context, AppRoute.settings),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 8),
+              child: Divider(),
             ),
             ListTile(
               leading: const Icon(Icons.school_outlined),

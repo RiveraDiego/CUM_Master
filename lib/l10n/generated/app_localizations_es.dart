@@ -12,6 +12,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get appTitle => 'CUM Master';
 
   @override
+  String get drawerTagline => 'Tu progreso académico';
+
+  @override
   String get studentsEmptyTitle => 'Aún no hay estudiantes';
 
   @override
