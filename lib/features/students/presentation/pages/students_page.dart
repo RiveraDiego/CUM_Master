@@ -38,6 +38,10 @@ class StudentsPage extends ConsumerWidget {
                     separatorBuilder: (_, _) => const SizedBox(height: 8),
                     itemBuilder: (context, index) => _StudentCard(
                       student: items[index],
+                      onOpen: () => context.pushNamed(
+                        AppRoute.subjects,
+                        pathParameters: {'studentId': items[index].id},
+                      ),
                       onEdit: () => context.pushNamed(
                         AppRoute.studentEdit,
                         pathParameters: {'studentId': items[index].id},
@@ -108,11 +112,13 @@ class StudentsPage extends ConsumerWidget {
 class _StudentCard extends StatelessWidget {
   const _StudentCard({
     required this.student,
+    required this.onOpen,
     required this.onEdit,
     required this.onDelete,
   });
 
   final Student student;
+  final VoidCallback onOpen;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
 
@@ -121,12 +127,14 @@ class _StudentCard extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     return Card(
       child: ListTile(
+        onTap: onOpen,
         contentPadding: const EdgeInsetsDirectional.fromSTEB(16, 8, 8, 8),
         leading: const CircleAvatar(child: Icon(Icons.person_outline)),
         title: Text(student.studentCard),
         subtitle: student.university == null
             ? Text(l10n.studentUniversityNotSpecified)
             : Text(student.university!),
+        isThreeLine: false,
         trailing: PopupMenuButton<_StudentAction>(
           tooltip: l10n.studentMoreActions,
           onSelected: (action) {
