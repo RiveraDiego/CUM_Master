@@ -45,6 +45,13 @@ class SubjectsPage extends ConsumerWidget {
                     separatorBuilder: (_, _) => const SizedBox(height: 8),
                     itemBuilder: (context, index) => _SubjectCard(
                       subject: items[index],
+                      onOpen: () => context.pushNamed(
+                        AppRoute.assessments,
+                        pathParameters: {
+                          'studentId': studentId,
+                          'subjectId': items[index].id,
+                        },
+                      ),
                       onEdit: () => context.pushNamed(
                         AppRoute.subjectEdit,
                         pathParameters: {
@@ -123,10 +130,12 @@ class SubjectsPage extends ConsumerWidget {
 class _SubjectCard extends StatelessWidget {
   const _SubjectCard({
     required this.subject,
+    required this.onOpen,
     required this.onEdit,
     required this.onDelete,
   });
   final Subject subject;
+  final VoidCallback onOpen;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
 
@@ -135,6 +144,7 @@ class _SubjectCard extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     return Card(
       child: ListTile(
+        onTap: onOpen,
         leading: const CircleAvatar(child: Icon(Icons.menu_book_outlined)),
         title: Text(subject.name),
         subtitle: subject.code == null

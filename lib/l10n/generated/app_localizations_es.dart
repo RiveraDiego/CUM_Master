@@ -151,4 +151,74 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get subjectStorageError =>
       'No se pudieron guardar los datos de la materia. Inténtalo de nuevo.';
+
+  @override
+  String get assessmentsTitle => 'Evaluaciones y notas';
+
+  @override
+  String get assessmentsCreateAction => 'Agregar evaluación';
+
+  @override
+  String get assessmentsEmptyDescription =>
+      'Esta materia aún no tiene evaluaciones. Agrega la primera nota.';
+
+  @override
+  String get assessmentsLoadError => 'No se pudieron cargar las evaluaciones.';
+
+  @override
+  String get assessmentCreateTitle => 'Agregar evaluación';
+
+  @override
+  String get assessmentEditTitle => 'Editar evaluación';
+
+  @override
+  String get assessmentNameLabel => 'Nombre de la evaluación';
+
+  @override
+  String get assessmentNameRequiredError => 'El nombre es obligatorio.';
+
+  @override
+  String get assessmentScoreLabel => 'Nota obtenida';
+
+  @override
+  String get assessmentMaxScoreLabel => 'Nota máxima';
+
+  @override
+  String get assessmentWeightLabel => 'Ponderación % (opcional)';
+
+  @override
+  String get assessmentNumberError =>
+      'Ingresa un número igual o mayor que cero.';
+
+  @override
+  String get assessmentPositiveError => 'Ingresa un número mayor que cero.';
+
+  @override
+  String get assessmentScoreRangeError =>
+      'La nota obtenida no puede superar la nota máxima.';
+
+  @override
+  String get assessmentWeightError =>
+      'La ponderación debe estar entre 0 y 100.';
+
+  @override
+  String get assessmentDuplicateError =>
+      'Ya existe una evaluación con este nombre.';
+
+  @override
+  String get assessmentStorageError =>
+      'No se pudieron guardar los datos de la evaluación.';
+
+  @override
+  String get assessmentDeleteTitle => '¿Eliminar evaluación?';
+
+  @override
+  String assessmentDeleteMessage(String assessmentName) {
+    return 'Se eliminará permanentemente $assessmentName.';
+  }
+
+  @override
+  String assessmentScore(num score, num maxScore) {
+    return '$score de $maxScore';
+  }
 }

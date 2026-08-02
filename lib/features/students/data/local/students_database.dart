@@ -5,7 +5,7 @@ class StudentsDatabase {
   StudentsDatabase({DatabaseFactory? factory, this.databasePath})
     : _factory = factory ?? databaseFactory;
 
-  static const schemaVersion = 2;
+  static const schemaVersion = 3;
   static const fileName = 'cum_master.db';
 
   final DatabaseFactory _factory;
@@ -48,9 +48,11 @@ class StudentsDatabase {
             )
           ''');
           await _createSubjectsTable(database);
+          await _createAssessmentsTable(database);
         },
         onUpgrade: (database, oldVersion, newVersion) async {
           if (oldVersion < 2) await _createSubjectsTable(database);
+          if (oldVersion < 3) await _createAssessmentsTable(database);
         },
       ),
     );
@@ -73,6 +75,30 @@ class StudentsDatabase {
     ''');
     await database.execute(
       'CREATE INDEX idx_subjects_student_id ON subjects(student_id)',
+    );
+  }
+
+  static Future<void> _createAssessmentsTable(Database database) async {
+    await database.execute('''
+      CREATE TABLE assessments (
+        id TEXT PRIMARY KEY NOT NULL,
+        subject_id TEXT NOT NULL,
+        name TEXT NOT NULL COLLATE NOCASE,
+        score REAL NOT NULL,
+        max_score REAL NOT NULL,
+        weight REAL,
+        created_at TEXT NOT NULL,
+        updated_at TEXT NOT NULL,
+        FOREIGN KEY(subject_id) REFERENCES subjects(id) ON DELETE CASCADE,
+        UNIQUE(subject_id, name),
+        CHECK(length(trim(name)) > 0),
+        CHECK(score >= 0 AND max_score > 0 AND score <= max_score),
+        CHECK(weight IS NULL OR (weight > 0 AND weight <= 100)),
+        CHECK(updated_at >= created_at)
+      )
+    ''');
+    await database.execute(
+      'CREATE INDEX idx_assessments_subject_id ON assessments(subject_id)',
     );
   }
 
