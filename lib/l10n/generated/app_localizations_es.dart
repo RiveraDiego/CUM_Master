@@ -386,6 +386,46 @@ class AppLocalizationsEs extends AppLocalizations {
   String get dashboardChooseCurrentCycle => 'Elegir ciclo actual';
 
   @override
+  String get backupTitle => 'Copia de seguridad';
+
+  @override
+  String get backupExportTitle => 'Exportar todos mis datos';
+
+  @override
+  String get backupExportDescription =>
+      'Crea un archivo para guardarlo o compartirlo.';
+
+  @override
+  String get backupImportTitle => 'Importar una copia';
+
+  @override
+  String get backupImportDescription =>
+      'Restaura estudiantes, ciclos, materias y notas desde un archivo.';
+
+  @override
+  String get backupImportConfirmTitle => '¿Importar una copia?';
+
+  @override
+  String get backupImportConfirmMessage =>
+      'Los datos actuales del dispositivo serán reemplazados. Esta acción no se puede deshacer.';
+
+  @override
+  String get backupChooseFileAction => 'Elegir archivo';
+
+  @override
+  String get backupImportSuccess => 'La copia se importó correctamente.';
+
+  @override
+  String get backupInvalidFileError =>
+      'El archivo no es una copia válida de CUM Master.';
+
+  @override
+  String get backupImportError => 'No se pudo importar la copia.';
+
+  @override
+  String get backupExportError => 'No se pudo crear la copia de seguridad.';
+
+  @override
   String get assessmentManualGrade => 'Nota manual (sin actividades)';
 
   @override

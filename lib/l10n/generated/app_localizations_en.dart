@@ -383,6 +383,45 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dashboardChooseCurrentCycle => 'Choose current term';
 
   @override
+  String get backupTitle => 'Backup';
+
+  @override
+  String get backupExportTitle => 'Export all my data';
+
+  @override
+  String get backupExportDescription => 'Creates a file you can save or share.';
+
+  @override
+  String get backupImportTitle => 'Import a backup';
+
+  @override
+  String get backupImportDescription =>
+      'Restores students, terms, subjects and grades from a file.';
+
+  @override
+  String get backupImportConfirmTitle => 'Import a backup?';
+
+  @override
+  String get backupImportConfirmMessage =>
+      'Current data on this device will be replaced. This action cannot be undone.';
+
+  @override
+  String get backupChooseFileAction => 'Choose file';
+
+  @override
+  String get backupImportSuccess => 'The backup was imported successfully.';
+
+  @override
+  String get backupInvalidFileError =>
+      'This file is not a valid CUM Master backup.';
+
+  @override
+  String get backupImportError => 'The backup could not be imported.';
+
+  @override
+  String get backupExportError => 'The backup could not be created.';
+
+  @override
   String get assessmentManualGrade => 'Manual grade (no activities)';
 
   @override
